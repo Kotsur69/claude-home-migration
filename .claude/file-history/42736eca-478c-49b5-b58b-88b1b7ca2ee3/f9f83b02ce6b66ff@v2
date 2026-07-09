@@ -1,0 +1,34 @@
+{
+  "t2period": "6.07.2026 - 10.07.2026",
+  "t2date": "13.07.2026",
+  "t2summary": "Role użytkowników (młodszy i starszy handlowiec oraz administrator), obieg akceptacji ofert, panel administracyjny, migracje bazy danych i tłumaczenia PL/EN.",
+  "t3": [
+    ["Nowy typ użytkownika", "Administrator"],
+    ["Nowy typ użytkownika", "Starszy handlowiec"],
+    ["Nowy typ użytkownika", "Młodszy handlowiec"],
+    ["Baza danych", "Nowe migracje 004-006: kolumny roli i statusu oferty, pola recenzji, nowa tabela clients wraz z migracją istniejących danych klientów"],
+    ["Bezpieczeństwo i dostęp", "Kontrola uprawnień po stronie serwera (RBAC), rola zapisana w tokenie sesji, natychmiastowa blokada logowania po dezaktywacji konta"],
+    ["Baza klientów", "Wydzielenie danych klienta z ofert do osobnej tabeli, z zachowaniem historii dotychczasowych ofert"]
+  ],
+  "t4": [
+    ["Dodanie funkcjonalności", "Po najechaniu na kod pakowania (S01, S03, S12, S13, SB2, SB3) widoczny jest opis rodzaju pakowania. Opisy są dwujęzyczne PL/EN i można je w każdej chwili zmienić wedle zaleceń działu handlowego."]
+  ],
+  "t5": [
+    ["Obieg akceptacji", "Nowe statusy oferty: szkic, do weryfikacji, zatwierdzona, odrzucona, wysłana, z kolorowym oznaczeniem na liście ofert"],
+    ["Młodszy handlowiec", "Zamiast wysyłki do klienta ma przycisk Wyślij do weryfikacji, a jego oferty trafiają do akceptacji starszego handlowca"],
+    ["Starszy handlowiec", "Może zatwierdzić lub odrzucić z podaniem powodu oferty oczekujące na weryfikację oraz wysyłać własne oferty bez weryfikacji"],
+    ["Blokada edycji", "Oferta wysłana do klienta staje się tylko do odczytu, z blokadą po stronie serwera, nie tylko interfejsu"]
+  ],
+  "t7": [
+    ["Panel administratora", "Nowy panel pod adresem /admin: pulpit z podsumowaniem, zarządzanie handlowcami, baza klientów oraz przegląd wszystkich ofert z filtrami"],
+    ["Nawigacja", "Link Panel Admina widoczny wyłącznie dla roli administratora"],
+    ["Oznaczenia statusów", "Kolorowe plakietki statusu oferty spójne z jasnym i ciemnym motywem aplikacji"],
+    ["Dwujęzyczność PL/EN", "Tłumaczenia wszystkich nowych ekranów, statusów, przycisków obiegu oferty i komunikatów walidacji"]
+  ],
+  "plany": [
+    "Wybór klienta z bazy w kalkulatorze zamiast ręcznego wpisywania danych w każdej ofercie",
+    "Uruchomienie migracji 004-006 na bazie danych oraz wskazanie konta administratora",
+    "Testy ręczne end-to-end wszystkich trzech ról i pełnego obiegu oferty na środowisku hostingowym",
+    "Weryfikacja typów i budowa aplikacji (npm install, next build) na środowisku dostawcy hostingu"
+  ]
+}

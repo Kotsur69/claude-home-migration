@@ -1,0 +1,60 @@
+okay now in polish. potrzebuje abyś stowrzył dla mnie dokładny opisy aplikacji. Najpierw safety
+     hub_bhp. musi to być lvl gdzie mozna to pokazać zarządowi arcelormittal. z opisem poszczegolnych
+     klas uzytkownika, mozliwymi akcjami i działaniem."C:\Users\mmazur\source\repos\safetyhub_bhp"
+   ouitput ma być w wodzie aplikacja to A gamified PWA that turns warehouse health & safety (BHP)
+   into something workers actually want to engage with: daily-login streaks, a points/rank system,
+   daily safety quizzes, leader-assigned missions, and a full worker → team leader → manager
+   hierarchy for oversight and approvals.
+
+   Originally built for a production warehouse environment, using employees' existing employee IDs
+   rather than a signup flow.
+
+   Roles & login
+   Login is employee_id + PIN (bcrypt-hashed), not email/password — the app is meant to be used from
+   a phone or shared terminal on the floor. Three roles:
+
+   worker — daily login, BHP quiz, missions, avatar/points, pre-shift check-in, news feed
+   leader (brygadzista) — everything a worker has, plus: approve/assign missions, run pre-shift
+   briefings and rate participants, manage their team, log violations, message their manager
+   manager (kierownik) — oversight across leaders/teams, analytics dashboards, bonus points and "good
+   practice" request approval
+   admin — user management, question bank, news, monthly quiz config, certifications, system config,
+   emergency/monthly reset tools
+   Core features
+   Gamification — points, ranks/titles with helmet-color progression, avatars, a monthly quiz with
+   its own ranking and campaign items
+   BHP quiz — a short daily quiz drawn from a question bank, plus a separate monthly quiz
+   Missions — leader-created tasks workers complete for points
+   Pre-shift flow — start/complete a shift, leader ratings, shift membership
+   Violations & certifications — track safety violations and worker certifications, with point awards
+   tied to certification completion
+   Bonus points / good practice requests — workers or leaders can request discretionary point awards
+   for manager approval
+   News feed with read tracking
+   Push notifications (Web Push / VAPID) — e.g. quiz reminders
+   Admin analytics — activity, per-leader and per-manager breakdowns, a "Top 5" leaderboard view
+   File uploads (avatars etc.) via S3-compatible storage with presigned URLs
+   Stack
+   Next.js (App Router), Prisma + PostgreSQL, NextAuth-style JWT/cookie session handling in
+   lib/auth.ts, Tailwind CSS, web-push for notifications, AWS S3 for file storage, deployed as an
+   installable PWA (manifest + service worker in public/).
+
+   Setup
+   npm install   # or yarn
+   cp .env.example .env   # fill in DATABASE_URL, NEXTAUTH_SECRET, AWS_*, VAPID_*, CRON_SECRET
+   npx prisma migrate deploy
+   npx prisma db seed     # runs scripts/safe-seed.ts, which sanity-checks
+                           # scripts/seed.ts for delete/deleteMany calls before
+                           # running it, then seeds placeholder users/data
+                           # (admin, leader, manager, a handful of workers —
+                           # none of it real)
+   npm run dev
+   VAPID keys for push notifications can be generated with:
+
+   npx web-push generate-vapid-keys
+   Notes
+   Real employee data, generated safety/employee reports, and local build artifacts are excluded from
+   this repo via .gitignore — see scripts/seed.ts for placeholder accounts to log in with locally
+   (e.g. EMP001 / PIN 5678).
+   AWS_PROFILE is used with the default AWS SDK credential chain rather than a hardcoded access key —
+   see lib/aws-config.ts. napisz dla mnie prompt zeby claude to zrobił wszystko

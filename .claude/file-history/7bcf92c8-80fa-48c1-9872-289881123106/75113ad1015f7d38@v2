@@ -1,0 +1,13 @@
+# Secrets — see .env.example
+.env
+.env.local
+.env*.local
+
+# Dependencies / build artifacts
+node_modules/
+.next/
+.yarn/
+*.tsbuildinfo
+
+# Internal app-builder platform metadata, not part of the codebase
+.abacus.donotdelete

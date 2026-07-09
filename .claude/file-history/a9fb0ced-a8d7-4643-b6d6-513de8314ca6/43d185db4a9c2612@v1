@@ -1,0 +1,14 @@
+{
+  "model": "sonnet",
+  "extraKnownMarketplaces": {
+    "ruflo": {
+      "source": {
+        "source": "github",
+        "repo": "ruvnet/ruflo"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "ruflo-core@ruflo": true
+  }
+}

@@ -1,0 +1,28 @@
+You are an expert AI Systems Architect specializing in Claude Code, Claude CLI setups, and advanced agentic skill frameworks. I need you to execute a multi-phase system diagnostic, evaluation, and migration plan. Follow these strict rules:
+
+1. NO CODE OVERWRITING OR DESTRUCTIVE BUG CORRECTIONS: Do not attempt to modify any file, configuration, or environment variable until you have presented a explicit diff or structural layout and received my explicit validation.
+2. DO NOT hallucinate repository behavior. Use your environment tools (curl, fetch, or browser plugins) to read the actual readmes and setup structures of the requested URLs.
+
+Execute the following phases in order and output your findings cleanly:
+
+---
+PHASE 1: LOCAL SETUP AUDIT & REPOSITORIES ASSESSMENT
+1. Inspect the current terminal environment, Node/Python dependencies, global npm modules, and the structure of my Claude CLI settings, memories, and plugins directory (typically under `~/.claude/` or similar). 
+2. Analyze the following GitHub repositories and determine if adding them to my setup provides a distinct upgrade or if they introduce bloat/conflict:
+   - https://github.com/obra/superpowers (Analyze its "agentic skills framework & software development methodology" to see if its brainstorming, git-worktrees, and subagent workflows prevent the rewriting/bug overwrite issues I am trying to escape).
+   - https://github.com/JuliusBrussee/caveman (Assess if it's better to use its compressed/terse token-saving framework to improve speed and context window longevity).
+   - https://github.com/browser-use/video-use (Evaluate its video editing skill suite and if my local system has the required ffmpeg/python dependencies to support it).
+   - Compare these explicitly against ECC (https://github.com/affaan-m/ECC), noting why this stack outperforms weaker alternatives like 'ruflo'.
+
+---
+PHASE 2: FULL ENVIRONMENT MIGRATION STRATEGY (Work PC to Home PC)
+I am currently on my work PC and need to safely package absolutely everything to move to my home PC. This includes:
+- All custom Claude CLI configurations and global profiles.
+- AI memory states, history, context snapshots, and CLAUDE.md files.
+- The entire ECC setup, including all ~300 skills, active plugins, and sub-agent setups.
+
+1. Tell me exactly where all of these entities are stored on this machine.
+2. Provide a single, safe terminal command (e.g., a tar/zip archiving script) that packages all configuration, memory directories, and custom skills into a single portable payload without breaking symlinks or environment paths.
+3. Write a clear "Restore and Sync Checklist" for when I extract this payload on my home PC, ensuring zero loss of skills or customized behaviors.
+
+Begin by executing Phase 1 and summarizing your verdict on the new tools.

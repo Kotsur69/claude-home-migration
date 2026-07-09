@@ -1,0 +1,5 @@
+// Minimalna dlugosc hasla przyjmowanego przy zakladaniu/zmianie konta.
+//
+// NA CZAS TESTOW = 4 (konta testowe maja haslo "1234").
+// TODO(BEZPIECZENSTWO): przywrocic 6 (lub wiecej) PRZED wdrozeniem do dzialu handlowego.
+export const MIN_PASSWORD_LENGTH = 4;

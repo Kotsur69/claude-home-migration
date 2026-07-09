@@ -1,0 +1,26 @@
+# SteelQuote - lokalne srodowisko testowe (przenosny Postgres + Next.js dev)
+# Uruchom: prawy klik > "Uruchom z PowerShell", albo w terminalu: powershell -File steelquote-start.ps1
+$bin  = "C:\Users\mmazur\pgportable\pgsql\bin"
+$data = "C:\Users\mmazur\pgdata"
+$app  = "C:\Users\mmazur\source\repos\AMSteel_Quote\finance_calculator_deployed\nextjs_space"
+
+# Postgres: wystartuj jesli nie dziala
+& "$bin\pg_ctl.exe" -D $data status *> $null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Startuje Postgres na porcie 5432..."
+    & "$bin\pg_ctl.exe" -D $data -o "-p 5432" -l "$data\server.log" start
+    Start-Sleep -Seconds 2
+} else {
+    Write-Host "Postgres juz dziala."
+}
+& "$bin\pg_isready.exe" -p 5432
+
+Write-Host ""
+Write-Host "Konta testowe (haslo w nawiasie):"
+Write-Host "  admin  -> example@gmail.com (1234)"
+Write-Host "  senior -> starszy@email.com (1234)"
+Write-Host "  junior -> mlodszy@email.com (1234)"
+Write-Host ""
+Write-Host "Startuje Next.js dev -> http://localhost:3000  (Ctrl+C aby zatrzymac)"
+Set-Location $app
+npm run dev

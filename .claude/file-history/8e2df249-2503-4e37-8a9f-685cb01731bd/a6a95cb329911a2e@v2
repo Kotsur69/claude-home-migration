@@ -1,0 +1,214 @@
+# STAN PROJEKTU — SteelQuote / AMSteel Quote
+
+> Plik roboczy „na czym stoimy". Luna czyta go, gdy zaczynamy pracę nad tym projektem.
+> Aktualizujemy po każdej większej zmianie. **Nie jest wypychany na GitHub** (jest w .gitignore).
+
+## Co to za projekt
+Aplikacja webowa do wyceny stali dla handlowców (Next.js 14 + PostgreSQL).
+Kalkulator HRS/CR/HDG, 200+ gatunków, dopłaty huty + przetwórcze (SSC), marża, transport,
+tryb coil/arkusz, zarządzanie ofertami, eksport PDF, dwujęzyczność PL/EN.
+
+## Lokalizacje
+- **Folder projektu:** `C:\Users\mmazur\source\repos\AMSteel_Quote`
+- **Kod źródłowy (jedyna wersja, od 2026-07-08):** `finance_calculator_deployed\nextjs_space`.
+  Stary równoległy szkielet `finance_calculator/` (src/app, zwykły pg, jsPDF po stronie klienta)
+  **usunięty z repo 2026-07-08** — był rozjechany z tym, co realnie działa na produkcji, więc
+  repo zostało zastąpione dokładnie tym, co jest wdrożone. Nie ma już dwóch wersji do synchronizacji.
+- **WERSJA WDROŻONA (produkcja):** to samo co wyżej — `finance_calculator_deployed\nextjs_space`
+  to teraz jednocześnie źródło prawdy w repo I stan produkcyjny na https://steelpricinghub.abacusai.app.
+  Układ `app/` (nie `src/app/`), zainstalowane (ale uśpione) Prisma + NextAuth, `components/ui`
+  (shadcn), rozdzielone konteksty, skrypty seed. Aktywny auth to JWT (jose), klienci żyją w `pg`
+  (migracja 006), nie w Prisma.
+- **GitHub:** https://github.com/Kotsur69/SteelQuote — **publiczne**
+
+## Co już zrobione
+- **2026-07-08 — repo zsynchronizowane z produkcją:** usunięty `finance_calculator/`, repo
+  zastąpione aktualnym stanem `finance_calculator_deployed/nextjs_space` z dysku (role/panel
+  admina/serwerowy PDF/dark mode/polityka haseł — wszystko z sesji 2026-07-07, patrz niżej).
+  README przepisany pod jedną aplikację, `.env.example` odtworzony (bez sekretów), wygenerowane
+  `oferta_*.pdf` dodane do `.gitignore`. Commit `4dbf702`, wypchnięty na `main`.
+- Kod wypchnięty na GitHub (czysta historia; sekrety `.env`/`.env.local`, `pgdata`, `Downloads`,
+  `Uploads` wykluczone przez `.gitignore`, dodane `.env.example`)
+- Dodana brakująca migracja `001_create_users_table.sql`
+- Przepisany `README.md`
+- **Dokumenty dla zarządu** (użytkownik przeniósł je do podfolderu `AMSteel_Quote\Historia wersji oraz md\`):
+  - `OPIS_APLIKACJI_AMSteel_Quote.docx` — opis działania (Word)
+  - `AMSteel_Quote_Raport_Wersji_SZABLON.docx` — szablon cotygodniowego raportu wersji (sekcje funkcjonalne: Ogólne / Kalkulator / Oferty / PDF / Interfejs). *Uwaga: kopia robocza może też leżeć w `repos\` root.*
+  - **Decyzja użytkownika:** ten folder jest wewnątrz publicznego repo i ma **pozostać publiczny** (materiał portfolio) — NIE dodawać do .gitignore, nie pytać ponownie.
+
+## Ważne szczegóły
+- **Logowanie:** e-mail + hasło (bcrypt), token JWT w cookie. Na wersji wdrożonej doszedł endpoint `/api/signup` (teraz za `requireRole(['admin'])` — patrz niżej, już nie otwarty).
+- **Role:** trzy role wdrożone (junior / senior / admin). Junior tworzy własne oferty i wysyła do weryfikacji; senior akceptuje/odrzuca oferty juniorów i wysyła własne bez weryfikacji; admin nie tworzy ofert, zarządza kontami i klientami oraz przegląda wszystkie oferty. Szczegóły w sekcji "Architektura v2" niżej.
+- **Budowa ceny:** cena wsadu (baza + dopłaty huty) → marża % (dom. 7%) → cena końcowa (+ekstra +transport +SSC) → wartość = cena × tony.
+
+## Architektura v2 — role i panel admina (WDROŻONE NA PRODUKCJI, 2026-07-07)
+Rozbudowa o role (junior/senior/admin), obieg akceptacji ofert i panel administracyjny
+została zaimplementowana ORAZ wdrożona przez Abacus (DeepAgent) na https://steelpricinghub.abacusai.app.
+Migracje uruchomione, aplikacja zbudowana i działa. Prompt wdrożeniowy sprawdził się bardzo dobrze.
+- Diagram: `Historia wersji oraz md\AMSteel_Quote_Architektura_role_i_panel_admina.drawio`
+- Plan wdrożenia (Opus 4.8): `Historia wersji oraz md\AMSteel_Quote_Plan_Rozbudowy_role_i_panel_admina.md`
+- Prompt wdrożeniowy: `Historia wersji oraz md\AMSteel_Quote_DeepAgent_Prompt_Wdrozenie_v2.md`
+
+### Co powstało w kodzie
+- **Migracje** `migrations/004..006`:
+  - 004: `users.role` (junior/senior/admin), `full_name`, `is_active` + bootstrap admina (komentarz)
+  - 005: `offers.status` (draft/pending_review/approved/rejected/sent), `reviewed_by/at`,
+    `rejection_reason`, `sent_at` oraz zmiana FK `offers.user_id` na **ON DELETE SET NULL**
+    (decyzja podjęta: soft-delete kont + zabezpieczenie historii przed kaskadą; `user_id` NULLable)
+  - 006: tabela `clients` + migracja danych z kolumn `client_*` (dedup po NIP/e-mailu) +
+    `offers.client_id`; stare kolumny `client_*` zostają (nie usunięte)
+- **Auth/RBAC:** `role` w tokenie JWT; `lib/rbac.ts` (`requireRole` dociąga świeżą rolę
+  i `is_active` z bazy); `middleware.ts` chroni `/admin/*`
+- **API workflow:** `POST /api/offers/[id]/{submit,approve,reject,send}`, widoczność ofert wg
+  roli w `GET /api/offers`, blokada edycji/usuwania oferty `sent`, `GET /api/auth/me`
+- **API admina:** `/api/admin/users` (+ `/[id]/offers`), `/api/admin/clients`, `/api/admin/offers`
+  (filtry status/handlowiec/data); "usuwanie" handlowca = `is_active=false`
+- **Frontend:** przebudowana `/offers` (badge statusu, przyciski zależne od roli i statusu);
+  4 strony pod `/admin` (pulpit, handlowcy, klienci, oferty) + `AdminLayout`; link w `Navigation`
+- **Kalkulator:** opis pakowania na hover dla kodów S01/S03/S12/S13/SB2/SB3 (`ToggleGroup` + tłumaczenia)
+- **Tłumaczenia:** komplet kluczy PL/EN dla ról, statusów, obiegu i ekranów admina
+
+### Nowości dodane podczas integracji przez Abacus (porządki + dodatki, 2026-07-07)
+Ponad zakres v2, przy okazji integracji:
+- **Panel Seniora `/senior`** — dedykowany dashboard recenzji z zakładkami (oczekujące /
+  zrecenzowane / wszystkie). Backend `/api/senior/offers`: cudze oferty w `pending_review`
+  + wszystkie zrecenzowane przez tego seniora (`reviewed_by = userId`), oczekujące na górze.
+  Link "Panel Seniora" w nawigacji tylko dla roli senior (nowy klucz tłumaczenia `panelSenior`).
+- **Rejestracja `/api/signup`** — od 2026-07-07 wieczorem zamknięta za `requireRole(['admin'])`,
+  patrz sesja niżej.
+- **Skrypty seed** (`scripts/seed.ts`, `safe-seed.ts`) — konta testowe ról: admin, senior
+  (`starszy@email.com`), junior (`mlodszy@email.com`) + junior "John Doe"; idempotentne (ON CONFLICT).
+- **Serwerowy PDF `/api/generate-pdf`** — endpoint po stronie serwera; od 2026-07-07 wieczorem
+  UI-jednolicony na ten endpoint (patrz sesja niżej), klientowy jsPDF już nieużywany.
+- **Porządki/scaffold:** przejście na `app/`, `components/ui` (shadcn), Prisma + NextAuth
+  zainstalowane ale UŚPIONE (aktywny auth to JWT/jose; brak modelu Client w Prisma), `types.ts`,
+  `utils.ts`, dwa pliki danych kalkulatora (`calc-data.ts` + `calculatorData.ts` — możliwa duplikacja).
+
+### Zrobione (było w planach, już zamknięte)
+- Migracje 004-006 uruchomione na bazie produkcyjnej (przez Abacus). ✔
+- Build/typecheck na środowisku dostawcy — aplikacja zbudowana i wdrożona. ✔
+- Konto admina istnieje (seed tworzy admina). ✔
+
+### Sesja 2026-07-07 wieczór — zmiany w `nextjs_space`, WYPCHNIĘTE NA GITHUB 2026-07-08
+Zbierane lokalnie 2026-07-07, potwierdzone i zacommitowane do repo 2026-07-08 (commit `4dbf702`).
+Deploy do Abacusa (v3) jeszcze nie zrobiony — patrz "Następne kroki".
+- **PDF ujednolicony na serwerowy** — UI (`offers`, `senior`, `admin/oferty`, kalkulator) woła
+  teraz `/api/generate-pdf` (bogaty HTML→PDF przez usługę Abacusa, wygląd jak `oferta_1783402244262.pdf`).
+  Nowy helper `lib/serverPdf.ts` mapuje pozycje. Klientowy jsPDF już nieużywany. Znany drobiazg:
+  powłoka (np. Z275) nie wchodzi do PDF, bo nie jest zapisywana per pozycja.
+- **Rejestracja zamknięta** — `/api/signup` za `requireRole(['admin'])`; tylko admin zakłada konta.
+- **Bug light mode naprawiony** — `lib/useDarkMode.ts` (trwałość w localStorage), podpięty w
+  `offers`, `senior`, `Calculator`, `AdminLayout`. Motyw nie resetuje się już przy zmianie podstrony.
+- **Hasła na czas testów** — `lib/passwordPolicy.ts` `MIN_PASSWORD_LENGTH = 4` (konta testowe mają
+  `1234`). TODO(BEZPIECZENSTWO): przywrócić 6 PRZED wdrożeniem do działu handlowego (jedna linijka).
+
+## Lokalne środowisko testowe (v2, 2026-07-08) — jeden skrypt, wszystko naraz
+Skrypt przepisany 2026-07-08, żeby faktycznie robić "wszystko" jednym uruchomieniem, nie tylko
+startować Postgresa. Przetestowany end-to-end (poza samym `npm run dev`, który już wcześniej
+był zweryfikowany ręcznie).
+
+- **Przenośny PostgreSQL 16.6** (bez admina, bez usługi): binaria w `C:\Users\mmazur\pgportable\pgsql`,
+  dane w `C:\Users\mmazur\pgdata`, nasłuch na **5432**, auth `trust` (localhost, bez hasła).
+  Baza **`steelquote`**. **NIE zamieniono na Dockera** — świadoma decyzja użytkownika 2026-07-08,
+  ten setup ma zostać jak jest.
+- **`C:\Users\mmazur\steelquote-start.ps1`** — jeden skrypt, jedno uruchomienie:
+  1. startuje Postgres, jeśli nie działa (czeka do ~15s na `pg_isready`)
+  2. tworzy bazę `steelquote`, jeśli jeszcze nie istnieje
+  3. wgrywa migracje `001..006` przez `psql` — **bezpieczne przy każdym uruchomieniu**, wszystkie
+     są `IF NOT EXISTS`/`ADD COLUMN IF NOT EXISTS`, więc re-run tylko loguje `NOTICE ... skipping`
+  4. `npm install --legacy-peer-deps`, ale tylko jeśli `node_modules` jeszcze nie istnieje
+  5. seeduje 4 konta testowe (`scripts/safe-seed.ts`) — **z zabezpieczeniem**, patrz niżej
+  6. `npm run dev` → http://localhost:3000
+  Zatrzymanie: `C:\Users\mmazur\steelquote-stop.ps1` (Postgres). Next dev — Ctrl+C.
+- **UWAGA/pułapka odkryta 2026-07-08 — seed vs `.env`:** `scripts/seed.ts` ładuje zmienne przez
+  zwykły `dotenv.config()`, który czyta **`.env`** (sekrety PRODUKCYJNE, baza hostowana przez
+  Abacusa), a NIE `.env.local` (to robi tylko `next dev` przez własny loader Next.js). Gdyby
+  odpalić seed bez wcześniejszego nadpisania `DATABASE_URL`, upsertowałby konta testowe **do
+  produkcyjnej bazy**. Skrypt `steelquote-start.ps1` obchodzi to świadomie: ustawia
+  `$env:DATABASE_URL` na localhost W TYM SAMYM procesie PRZED wywołaniem seeda (dotenv domyślnie
+  NIE nadpisuje już ustawionych zmiennych środowiskowych) + twardy `throw`, jeśli URL nie
+  zawiera `localhost`. **Nie odpalać `npx prisma db seed` ani `scripts/safe-seed.ts` ręcznie bez
+  wcześniejszego `$env:DATABASE_URL` ustawionego na lokalną bazę.**
+- Konta testowe (hasło w nawiasie): admin `example@gmail.com` (1234), senior `starszy@email.com`
+  (1234), junior `mlodszy@email.com` (1234), junior `john@doe.com` (johndoe123).
+- Uwaga: serwerowy PDF (`/api/generate-pdf`) woła usługę Abacusa przez `ABACUSAI_API_KEY` z `.env` —
+  lokalnie może nie zadziałać (osobny temat, nie blokuje testów UI/logiki/ról).
+- Stare, zagubione w repo `pgdata/`/`pgrun/` w `AMSteel_Quote\` (root) — pozostałość po
+  wcześniejszej, porzuconej próbie bind-mounta; gitignorowane, nieużywane, można kiedyś usunąć.
+
+## Sesja 2026-07-08 — poprawki po Abacusie + eksport do Excela (NIEWDROŻONE, w repo)
+Wszystko zacommitowane na `main`, ale JESZCZE NIE wdrożone na Abacusa (deploy v3 nadal otwarty).
+Commity: `42fef54` (poprawki), `5455e8d` + `a410127` (eksport Excel), + eksport w listach ofert.
+
+### Poprawki regresji po swapie Abacusa (commit `42fef54`)
+Abacus przy integracji 2026-07-07 podmienił komponenty i po cichu zgubił kilka rzeczy. Audyt
+(porównanie z `git show 4dbf702^:.../app/_components/*`) wykrył i naprawiono:
+- **Waga arkusza wróciła** — pod polami wymiarów, `(grubość×szerokość×długość×7.85)/1e9` [t] + kg
+  w nawiasie; tylko w trybie arkusza. Był w starym `calculator-panel.tsx`, nowy komponent go pominął.
+- **Edycja pozycji psuła cenę (POWAŻNE)** — `editItem` wołał `selectType()`, który resetował WSZYSTKIE
+  przełączniki dopłat do domyślnych; zapis pozycji nadpisywał ją błędną ceną. Naprawa: każda pozycja
+  zestawienia trzyma teraz pełny snapshot wejść (`ZestawienieItem.inputs` — gatunek, cert, powłoka,
+  wszystkie toggle CR/HDG/SSC, marża/extra/transport), a `editItem` go odtwarza. Działa też dla ofert
+  wczytanych z bazy (snapshot leci przez `collectOfferData`/`zestawienie`). Stare oferty bez snapshotu:
+  degradacja łagodna (odtworzenie samego gatunku).
+- **Kolor „€/t" w wierszu powłoki** — przyciemniony jak w pozostałych wierszach dopłat huty.
+- **Podgląd pozycji w „Moje Oferty"** — klik na liczbę pozycji rozwija pełną tabelę z cenami
+  (było: tylko 3 chipsy bez cen).
+- **E-mail zalogowanego** — pokazany w pasku `Navigation` (raz, na każdej stronie).
+- **Blокer builda naprawiony** — `serverPdf.ts` `offerId?: number` → `number | null`. Przy
+  `next.config.js` `ignoreBuildErrors: false` ten błąd typu WYWALIŁBY `next build` na Abacusie.
+  Teraz `npx tsc --noEmit` przechodzi czysto.
+- `.gitignore`: dodane pliki blokad MS Office `~$*`.
+
+### Eksport do Excela — format KTS/GPAO (commity `5455e8d`, `a410127`, + listy ofert)
+Cel użytkownika: system ma GENEROWAĆ i (później) IMPORTOWAĆ Excele w formacie eksportu z obecnego
+systemu (37 kolumn, nagłówki KTS ID / Spółka GPAO / … / Komentarz). Główny use-case docelowy:
+wysyłka do klienta e-mailem.
+- **`lib/excelExport.ts`** (SheetJS `xlsx@0.18.5`, dodane do `package.json`) — buduje `.xlsx`,
+  jeden wiersz na pozycję zestawienia, kolumny 1:1 z formatem KTS. Zweryfikowane w Node przeciw
+  dwóm przykładowym wierszom użytkownika — zgadza się.
+- **Przyciski „📊 Eksportuj Excel / 📊 Excel"** dodane: w kalkulatorze (na LEWO od eksportu PDF)
+  oraz per-oferta w `Moje Oferty`, `Panel Seniora`, `Admin → Oferty` (wrapper `exportOfferToExcel`).
+- **Kody bez zgadywania (decyzja użytkownika 2026-07-08):** „Grupa materiałowa" = surowy typ
+  (`HRS`/`CR`/`HDG`), kod kręgu = placeholder `COIL`. Prawdziwe kody ERP (w przykładzie HRS=`HRBL`)
+  zmapujemy PÓŹNIEJ. Płaskość — zostawione jak jest (OK wg użytkownika).
+- **Stałe z przykładu użytkownika** (aplikacja nie ma tych pól): Zabezpieczenie=`NIEOLIWIONE`,
+  Jakość=`1`, Zgrzew HRS=`ZGRZEW NIEDOZWOLONY` (dla CR/HDG mapowane z toggla zgrzewu).
+- **Puste kolumny metadanych ERP** (KTS ID, Spółka GPAO, Klient, Referencja Składu, Kategoria…) —
+  aplikacja ich nie przechowuje.
+- **Drobiazg:** liczby wychodzą jako `20`/`1500`/`3`, nie `20.000`/`1500.00`/`3.000` (tylko format
+  wyświetlania, wartości identyczne) — do dopieszczenia jeśli trzeba.
+- **NASTĘPNE: import** `.xlsx` → przeliczenie ceny → wczytanie do zestawienia; tonaż domyślnie 1 t
+  (edytowalny). Import potrzebuje słowników wartość→toggle dla kolumn kodowanych (Zgrzew,
+  Zabezpieczenie, Płaskość, Brzegowanie, Powierzchnia) — oraz realnych kodów CR/HDG/kręgu.
+
+## Następne kroki / otwarte tematy
+- **Import z Excela (KTS/GPAO) — PRZEANALIZOWANE I ODŁOŻONE (2026-07-08).** Rozpisana pełna
+  logika mapowania na podstawie DWÓCH prawdziwych eksportów (`exportfile1.xlsx` — 106w, arkusz
+  `KTS`; `EXPORT_20260522_134555 (1).xlsx` — **15 307w**, arkusz `Data`, wszystkie rodziny).
+  Szczegóły: **`Historia wersji oraz md\Opis aplikacji\AMSteel_Quote_Import_Excel_KTS_Mapowanie.md`**.
+  Kluczowy wniosek: prawdziwy eksport jest DUŻO bardziej zaśmiecony niż model kalkulatora
+  (72 warianty Pakowania, 21 Atestu, 12 Zabezpieczenia, literówki, francuski, zepsute kodowanie)
+  — wierny reverse-map nierealny; odzyskujemy PEWNIE rdzeń cenotwórczy (typ z Grupy: HRBL/HRB/HRPI→HRS,
+  CRAS→CR, HDZ/HDZM→HDG; gatunek ~13/17 przez normalizację + mała mapa aliasów; wymiary; powłoka HDG),
+  resztę best-effort + flaga w podglądzie. Budowa wstrzymana świadomie — user odkłada na inne plany.
+  Przy wznowieniu: refactor `computePrice` do `lib/`, `lib/excelImport.ts`, modal podglądu,
+  otwarte pytania w nocie (który `Kształt`=krąg: SS/SW/DIV?, wieloznaczne gatunki, realne kody eksportu).
+  Docelowy główny use-case: wysyłka ofert do klientów e-mailem.
+- **PUSH na GitHub: ~2026-07-17** (decyzja usera 2026-07-08 — czekamy kilka dni). Do tego czasu
+  zmiany zostają lokalnie w commitach; deploy na AbacusAI wokół tej daty.
+- **Prawdziwe kody ERP do eksportu** — Grupa materiałowa dla CR/HDG (HRS=`HRBL`), kod kręgu,
+  kody Płaskości laser/klient. Podmienić w `lib/excelExport.ts` (mapy na górze pliku).
+- **Hasła: `MIN_PASSWORD_LENGTH = 4` na stałe** (decyzja użytkownika — dział handlowy używa krótkich
+  haseł). NIE podnosić do 6. Kompensująco kiedyś: rate-limit/lockout na `/api/auth/login`.
+- **Deploy zbiorczy do Abacusa (v3)** — prompt robimy **pod koniec tygodnia**, nie teraz. Ma obejmować
+  WSZYSTKIE zmiany z sesji 2026-07-07 ORAZ 2026-07-08 (poprawki + eksport Excel; wszystko już w repo)
+  i egzekwować „push as-is" (Abacus buduje/deployuje, nie przepisuje). UWAGA: bez commita `42fef54`
+  (fix typu w `serverPdf.ts`) `next build` by się wywalił — ten commit jest warunkiem budowalności.
+  Nowa zależność do zainstalowania na Abacusie: `xlsx`.
+- Testy ręczne end-to-end trzech ról na wdrożonym środowisku (login, obieg oferty, panele).
+- Sprzątanie po integracji (pozostałe): uśpiony Prisma/NextAuth (dokończyć albo usunąć),
+  deduplikacja `calc-data.ts`/`calculatorData.ts`. (PDF i rejestracja — już rozstrzygnięte, patrz wyżej.)
+- Wybór klienta z bazy w kalkulatorze zamiast ręcznego wpisywania (wciąż otwarte).
+- Nowe plany użytkownika na kolejny tydzień — do potwierdzenia (patrz raport 1.1).
+- Zaktualizować `OPIS_APLIKACJI_AMSteel_Quote.docx` o role, panele i obieg oferty.

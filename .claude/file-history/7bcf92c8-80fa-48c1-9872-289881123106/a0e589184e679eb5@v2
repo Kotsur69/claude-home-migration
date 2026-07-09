@@ -1,0 +1,260 @@
+# SafetyHub BHP — Opis aplikacji
+
+### Grywalizacja bezpieczeństwa pracy dla pracowników magazynu
+
+*Dokument prezentacyjny dla kadry zarządzającej*
+
+---
+
+## 1. Wprowadzenie
+
+**SafetyHub BHP** to aplikacja mobilna (PWA — działa na każdym telefonie i komputerze, można ją dodać do ekranu głównego jak zwykłą aplikację, bez pobierania ze sklepu), która zamienia codzienne przestrzeganie zasad bezpieczeństwa i higieny pracy w angażującą, nagradzaną aktywność.
+
+**Problem, który rozwiązujemy:**
+Klasyczne szkolenia BHP są traktowane przez pracowników jak obowiązek „do odhaczenia". Wiedza ulatuje zaraz po szkoleniu okresowym, a bezpieczeństwo pozostaje czymś narzuconym z góry, a nie codziennym nawykiem.
+
+**Nasze podejście — grywalizacja zamiast przymusu:**
+Zamiast kolejnego obowiązkowego szkolenia, SafetyHub zamienia BHP w grę. Pracownik codziennie loguje się, rozwiązuje krótki quiz bezpieczeństwa, wykonuje misje i zdobywa punkty, rangi oraz kolory kasku, które odzwierciedlają jego zaangażowanie. Bezpieczeństwo przestaje być obowiązkiem — staje się czymś, w czym pracownik chce brać udział, bo widzi swoje postępy, rywalizuje z kolegami i jest za to doceniany.
+
+**Dla kogo:**
+Aplikacja została zaprojektowana dla środowiska produkcyjno-magazynowego. Pracownicy logują się swoim istniejącym **numerem pracownika**, więc wdrożenie nie wymaga zakładania kont ani podawania adresów e-mail.
+
+---
+
+## 2. Logowanie i role użytkowników
+
+### Sposób logowania
+
+Logowanie odbywa się przez **numer pracownika + kod PIN** — bez adresu e-mail, bez hasła. To celowa decyzja projektowa:
+
+- Aplikacja jest przeznaczona do użytku z telefonu **lub ze wspólnego terminala na hali** — pracownik podaje swój numer i PIN, korzysta, wylogowuje się, a kolejny robi to samo.
+- Numer pracownika to ten sam identyfikator, który firma już posiada — nie tworzymy nowej bazy tożsamości.
+- Kody PIN są przechowywane w formie zaszyfrowanej (nie da się ich odczytać nawet mając dostęp do bazy).
+- Sesja pozostaje aktywna przez 7 dni, więc na telefonie prywatnym pracownik nie musi logować się codziennie.
+
+W systemie funkcjonują **cztery role**, tworzące pełną hierarchię nadzoru: **pracownik → brygadzista → kierownik → administrator**.
+
+---
+
+### 👷 Pracownik (worker)
+
+**Kim jest:** Szeregowy pracownik magazynu — główny odbiorca aplikacji.
+
+**Co może robić:**
+- Codziennie się logować i zdobywać punkty za obecność
+- Rozwiązywać **codzienny quiz BHP** (kilka pytań dziennie)
+- Brać udział w **quizach/kampaniach miesięcznych** na wybrany temat bezpieczeństwa
+- Wykonywać **misje** przydzielone przez brygadzistę i zgłaszać je do zatwierdzenia
+- Uczestniczyć w **5-minutówkach** (odprawach przedzmianowych) i oceniać ich jakość
+- Czytać **aktualności / komunikaty bezpieczeństwa** (za przeczytanie również są punkty)
+- Zgłaszać **naruszenia zasad BHP** — również anonimowo, z możliwością dołączenia zdjęcia
+- Składać **wnioski o „dobre praktyki"** (zgłaszać własne pozytywne działania do nagrody punktowej)
+- Personalizować swój **awatar** (kolory, dodatki)
+- Przeglądać swoją **historię punktów** i aktualny poziom / kolor kasku
+- Widzieć swoje **uprawnienia/certyfikaty** (np. suwnicowy, wózek widłowy) i punkty z nimi związane
+- Otrzymywać **powiadomienia push** (np. przypomnienie o niezrobionym quizie)
+
+**Czego NIE może:**
+- Nie zatwierdza misji ani wniosków — może je tylko zgłaszać
+- Nie widzi wyników innych pracowników poza publicznymi rankingami
+- Nie zarządza zespołem, zmianami ani żadnymi ustawieniami
+- Nie przyznaje i nie odejmuje punktów
+
+---
+
+### 🔴 Brygadzista / Lider (leader)
+
+**Kim jest:** Bezpośredni przełożony grupy pracowników. W aplikacji oznaczony **czerwonym kaskiem**. Posiada wszystkie możliwości pracownika **plus** narzędzia zarządzania swoim zespołem.
+
+**Co może robić (dodatkowo):**
+- **Zarządzać swoim zespołem** — widzieć przypisanych pracowników, ich punkty i aktywność
+- **Tworzyć i przydzielać misje** pracownikom oraz **zatwierdzać lub odrzucać** ich wykonanie (z oceną gwiazdkową)
+- **Prowadzić 5-minutówki** — wyznaczać osobę prowadzącą, przypisywać uczestników, przyznawać za udział punkty (również ujemne, z podaniem powodu)
+- **Zarządzać zmianami** (składem osobowym zmian)
+- **Zgłaszać naruszenia BHP** dotyczące swojego zespołu
+- **Składać do kierownika wnioski o punkty dodatkowe** dla pracownika (dodatnie lub ujemne, z uzasadnieniem)
+- **Zatwierdzać/odrzucać wnioski o „dobre praktyki"** składane przez pracowników
+- **Odbierać zadania od kierownika** (zadania spływające z góry) i je realizować / przypisywać pracownikom
+- **Wymieniać wiadomości** z kierownikiem
+- Otrzymywać powiadomienia, gdy pracownik z zespołu osiągnie próg punktowy
+
+**Czego NIE może:**
+- Nie zatwierdza samodzielnie wniosków o punkty dodatkowe — te trafiają do kierownika
+- Nie widzi zespołów innych brygadzistów
+- Nie zmienia kolorów kasków ani ustawień systemu
+- Nie ma dostępu do panelu administracyjnego
+
+---
+
+### 🟠 Kierownik / Manager (manager)
+
+**Kim jest:** Przełożony nadzorujący **kilku brygadzistów i ich zespoły** — poziom nadzoru operacyjnego.
+
+**Co może robić:**
+- **Nadzorować przypisanych brygadzistów** i pośrednio wszystkich ich pracowników
+- Przeglądać **szczegółowe dane każdego brygadzisty** (jego zespół, wyniki, aktywność)
+- **Zatwierdzać lub odrzucać wnioski o punkty dodatkowe** składane przez brygadzistów (moment decyzyjny w przyznawaniu nagród)
+- **Tworzyć i przydzielać zadania** brygadzistom (z punktami za wykonanie)
+- **Przydzielać misje** w ramach nadzorowanych zespołów
+- Nadzorować **5-minutówki** w podległych zespołach
+- Obsługiwać **naruszenia BHP** skierowane na poziom kierowniczy
+- **Potwierdzać wykonanie ćwiczeń** z kampanii miesięcznych (ćwiczenia wymagające potwierdzenia przełożonego)
+- **Wymieniać wiadomości** z brygadzistami (z priorytetem: normalny / wysoki / pilny)
+- Otrzymywać powiadomienia o osiągnięciach i progach pracowników
+
+**Czego NIE może:**
+- Nie zarządza całą bazą użytkowników ani bankiem pytań
+- Nie konfiguruje reguł punktacji ani globalnych ustawień
+- Nie wykonuje resetów miesięcznych/awaryjnych
+- Widzi wyłącznie **przypisanych sobie** brygadzistów, nie całą organizację
+
+*(Kierownik może natomiast — podobnie jak administrator — zmieniać poziom/kolor kasku pracowników.)*
+
+---
+
+### ⚙️ Administrator (admin)
+
+**Kim jest:** Osoba odpowiedzialna za BHP i/lub administrację systemu — pełna kontrola nad aplikacją i danymi.
+
+**Co może robić:**
+- **Zarządzać wszystkimi użytkownikami** — dodawać pracowników, nadawać role, przypisywać numery i PIN-y
+- **Zarządzać kolorami kasków** i poziomami pracowników (awanse), ustawiać datę rozpoczęcia pracy
+- **Zarządzać bankiem pytań BHP** (dodawać, edytować, dezaktywować pytania — z opcją zdjęć)
+- **Tworzyć i konfigurować kampanie / quizy miesięczne** (pytania, instrukcje do przeczytania, ćwiczenia, zasady punktacji)
+- **Publikować aktualności i komunikaty bezpieczeństwa** (z załącznikami PDF/zdjęciami)
+- **Zarządzać katalogiem uprawnień/certyfikatów** (np. suwnicowy, wózek widłowy) i regułami przyznawania za nie punktów
+- **Konfigurować reguły punktacji** i parametry systemu (np. liczba punktów za logowanie, liczba pytań dziennie, górny próg punktowy)
+- Przeglądać pełną **analitykę** (patrz sekcja 6)
+- Nadzorować **wszystkie naruszenia BHP** w organizacji
+- **Wykonywać reset miesięczny** (zamknięcie miesiąca, zapis rankingu TOP 5, wyzerowanie punktów miesięcznych) oraz **reset awaryjny**
+
+**Czego NIE może:** Administrator ma pełnię uprawnień w systemie — jest to rola najwyższego poziomu.
+
+---
+
+## 3. Mechanizmy grywalizacji
+
+### Punkty
+
+Wszystkie aktywności przekładają się na punkty. Domyślne wartości (w pełni konfigurowalne przez administratora):
+
+| Aktywność | Punkty |
+|---|---|
+| Codzienne zalogowanie (raz dziennie) | **10 pkt** |
+| Codzienny quiz BHP — wynik 100% | **10 pkt** |
+| Codzienny quiz BHP — wynik ≥ 75% | **5 pkt** |
+| Codzienny quiz BHP — wynik ≥ 50% | **1 pkt** |
+| Codzienny quiz BHP — wynik < 50% | **0 pkt** |
+| Przeczytanie aktualności / komunikatu | **1 pkt** |
+| Przeczytanie instrukcji (kampania) | **1 pkt** |
+| Udział w 5-minutówce | **1 pkt** (możliwe ujemne, z podaniem powodu) |
+| Wykonanie misji | **10 pkt** (ustalane przez brygadzistę) |
+| Zadanie od kierownika | **4 pkt** dla pracownika |
+| Ćwiczenie z kampanii (potwierdzone przez kierownika) | **10 pkt** |
+| Quiz miesięczny (za wynik 100% / 80% / 50%) | np. **20 / 10 / 5 pkt** |
+| Uprawnienia/certyfikaty | cyklicznie (dziennie / tygodniowo / miesięcznie) |
+| Punkty dodatkowe / „dobre praktyki" | uznaniowo (za zgodą przełożonego) |
+
+System prowadzi **pełną historię transakcji punktowych** — przy każdym punkcie wiadomo, za co i kiedy został przyznany, oraz kto go nadał (jeśli był to przełożony).
+
+### Rangi i tytuły
+
+Punkty przekładają się na rangi: **Nowicjusz → Doświadczony → Specjalista → Starszy Specjalista → Mistrz**. Każda ranga ma swój próg punktowy i kolorystykę, dając pracownikowi poczucie awansu i postępu.
+
+### Kolory kasków
+
+Głównym wizualnym symbolem statusu jest **kolor kasku**:
+
+- 🟢 **Zielony** — Nowicjusz (pracownik zdobywa punkty na starcie)
+- 🔵 **Niebieski** — Doświadczony
+- 🟠 **Pomarańczowy** — Specjalista (najwyższy poziom dla szeregowego pracownika)
+- 🔴 **Czerwony** — zarezerwowany dla brygadzistów
+
+Awans kasku jest **decyzją przełożonego** (kierownika lub administratora) — nie następuje w pełni automatycznie. Dzięki temu awans zachowuje wartość i jest świadomym docenieniem pracownika, a nie tylko efektem „nabicia" punktów. Dla pracowników z niebieskim kaskiem system pilnuje **górnego progu punktów miesięcznych** — po jego przekroczeniu brygadzista i kierownik otrzymują powiadomienie, że pracownik jest gotowy do rozważenia awansu.
+
+### Awatary
+
+Każdy pracownik personalizuje swój **awatar** (kolor postaci, tło, dodatki), co buduje osobiste przywiązanie do profilu i dodatkowo motywuje do korzystania z aplikacji.
+
+---
+
+## 4. Codzienny cykl pracy w aplikacji
+
+### Dzień pracownika
+
+1. **Logowanie** — pracownik loguje się numerem i PIN-em; od razu otrzymuje punkty za obecność (raz dziennie).
+2. **Quiz BHP** — rozwiązuje krótki, kilkupytaniowy quiz bezpieczeństwa; im lepszy wynik, tym więcej punktów.
+3. **5-minutówka (odprawa przedzmianowa)** — jeśli brygadzista prowadzi odprawę, pracownik potwierdza udział i po jej zakończeniu może ją ocenić (1–5 gwiazdek + komentarz).
+4. **Misje i zadania** — pracownik sprawdza przydzielone misje, wykonuje je i zgłasza do zatwierdzenia.
+5. **Aktualności i kampanie** — czyta bieżące komunikaty bezpieczeństwa i uczestniczy w miesięcznej kampanii tematycznej.
+6. **Podgląd postępów** — widzi swój aktualny wynik, kolor kasku, rangę i pozycję.
+
+Wszystko zajmuje kilka minut dziennie i naturalnie wpisuje się w rytm zmiany.
+
+### Dzień brygadzisty
+
+- Przegląda **stan zespołu** — kto jest aktywny, kto zdobywa punkty, kto odstaje.
+- **Prowadzi 5-minutówkę**, przyznaje punkty za udział.
+- **Zatwierdza lub odrzuca** zgłoszone misje (z oceną jakości wykonania).
+- **Przydziela nowe misje** i realizuje zadania zlecone przez kierownika.
+- W razie potrzeby **składa wnioski o punkty dodatkowe** i **zatwierdza „dobre praktyki"** pracowników.
+- **Zgłasza naruszenia** i pozostaje w kontakcie z kierownikiem.
+
+### Dzień kierownika
+
+- **Nadzoruje wielu brygadzistów** — widzi wyniki i aktywność każdego z nich oraz ich zespołów.
+- **Zatwierdza lub odrzuca wnioski o punkty dodatkowe** — to on podejmuje ostateczne decyzje nagrodowe.
+- **Zleca zadania** brygadzistom i śledzi ich realizację.
+- **Potwierdza wykonanie ćwiczeń** z kampanii bezpieczeństwa.
+- Komunikuje się z brygadzistami (z oznaczeniem priorytetu) i reaguje na naruszenia wyższego szczebla.
+
+---
+
+## 5. Pozostałe funkcje
+
+- **Quiz / kampania miesięczna z rankingiem** — comiesięczna kampania tematyczna (np. „praca na wysokości"), łącząca pytania, instrukcje do przeczytania i ćwiczenia do potwierdzenia. Zwykle jedno podejście, punkty zależne od wyniku, z własnym rankingiem uczestników.
+
+- **Misje** — konkretne zadania BHP tworzone przez brygadzistów (np. „sprawdzenie gaśnic na hali"), z terminem, statusem i oceną gwiazdkową po zatwierdzeniu.
+
+- **Naruszenia BHP (zgłoszenia)** — pracownik może zgłosić naruszenie zasad bezpieczeństwa:
+  - **anonimowo** lub imiennie,
+  - dotyczące **konkretnej osoby** lub ogólne („inne / nieznana osoba"),
+  - z możliwością **dołączenia zdjęcia**,
+  - kierowane do **brygadzisty lub kierownika**, ze śledzeniem statusu rozwiązania.
+  To realne narzędzie budowania kultury reagowania na zagrożenia.
+
+- **Uprawnienia / certyfikaty** — ewidencja uprawnień pracowników (np. suwnicowy, wózek widłowy) z opcjonalną datą wygaśnięcia i cyklicznym przyznawaniem punktów za ich posiadanie (motywacja do utrzymywania ważnych uprawnień).
+
+- **Wnioski o punkty dodatkowe i „dobre praktyki"** — dwukierunkowy system uznaniowego nagradzania: brygadzista wnioskuje do kierownika o punkty dla pracownika, a pracownik może sam zgłosić swoje dobre praktyki do zatwierdzenia. Wszystko z uzasadnieniem i śladem decyzji.
+
+- **Aktualności / komunikaty bezpieczeństwa** — kanał informacyjny z rejestrowaniem, kto przeczytał dany komunikat (z punktem za lekturę) — mierzalny zasięg komunikacji BHP.
+
+- **Powiadomienia push** — aplikacja aktywnie przypomina (np. o nieukończonym quizie), informuje o zatwierdzeniu misji, przyznaniu punktów czy osiągnięciu progu — utrzymując codzienne zaangażowanie nawet poza terminalem na hali.
+
+---
+
+## 6. Panel administracyjny i analityka
+
+Administrator dysponuje pełnym zapleczem zarządczo-analitycznym:
+
+**Zarządzanie:**
+- **Użytkownicy** — pełna baza pracowników, role, PIN-y, przypisania do zespołów.
+- **Kaski i awanse** — ręczne ustawianie poziomów, z podglądem stażu pracy i punktów.
+- **Bank pytań BHP** — repozytorium pytań do codziennych quizów.
+- **Kampanie miesięczne** — pełny kreator kampanii tematycznych.
+- **Aktualności** — publikacja komunikatów bezpieczeństwa.
+- **Uprawnienia** — katalog certyfikatów i reguł punktowych.
+- **Konfiguracja** — globalne parametry (punktacja, progi, liczba pytań itp.).
+
+**Analityka:**
+- **Aktywność** — realny czas spędzony w aplikacji przez pracowników (mierzony w tle), pokazujący faktyczne zaangażowanie, a nie tylko sam fakt logowania.
+- **Statystyki per brygadzista** — jak radzi sobie każdy zespół i jego lider.
+- **Statystyki per kierownik** — zbiorczy obraz na poziomie kierowniczym.
+- **Ranking TOP 5** — najlepsi pracownicy każdego miesiąca; przy zamknięciu miesiąca wyniki są archiwizowane, a punkty miesięczne zerowane, co daje wszystkim równy start i utrzymuje rywalizację przez cały rok.
+- **Naruszenia** — pełny wgląd we wszystkie zgłoszenia w organizacji.
+
+---
+
+## 7. Wartość biznesowa
+
+SafetyHub BHP zamienia bezpieczeństwo pracy z corocznego obowiązku w **codzienny, mierzalny nawyk** — pracownicy sami, dzień po dniu, utrwalają wiedzę BHP i rywalizują o rangę oraz kolor kasku. Dla firmy oznacza to **wyższą świadomość zagrożeń, więcej zgłoszonych i rozwiązanych naruszeń, oraz realny spadek ryzyka wypadków**. Kadra zyskuje pełną, obiektywną **widoczność zaangażowania każdego pracownika i każdego zespołu** — od szeregowego magazyniera po kierownika — a także gotowe narzędzie do doceniania najlepszych i szybkiego reagowania tam, gdzie zaangażowanie spada. To inwestycja, która jednocześnie **buduje kulturę bezpieczeństwa i dostarcza twardych danych** do zarządzania nią.

@@ -1,0 +1,359 @@
+<title>ECC — ściągawka Mati</title>
+<style>
+  :root{
+    --bg:#f5f7fa; --surface:#ffffff; --surface-2:#eef1f6;
+    --ink:#161b26; --muted:#5b6575; --border:#e1e6ee;
+    --code-bg:#eef1f6; --code-ink:#1d2430;
+    --plan:#0891b2; --code:#2563eb; --review:#9333ea; --test:#15803d;
+    --fix:#c2660a; --ctx:#0d9488; --mem:#b45309; --design:#db2777;
+    --docs:#4f46e5; --danger:#dc2626;
+    --shadow:0 1px 2px rgba(20,30,50,.06),0 4px 16px rgba(20,30,50,.05);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0c0f16; --surface:#141926; --surface-2:#1b2130;
+      --ink:#e7ebf3; --muted:#8b94a6; --border:#242c3b;
+      --code-bg:#0e131d; --code-ink:#cfd6e4;
+      --plan:#22d3ee; --code:#60a5fa; --review:#c084fc; --test:#4ade80;
+      --fix:#fbbf24; --ctx:#2dd4bf; --mem:#fcd34d; --design:#f472b6;
+      --docs:#818cf8; --danger:#f87171;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#f5f7fa; --surface:#ffffff; --surface-2:#eef1f6;
+    --ink:#161b26; --muted:#5b6575; --border:#e1e6ee;
+    --code-bg:#eef1f6; --code-ink:#1d2430;
+    --plan:#0891b2; --code:#2563eb; --review:#9333ea; --test:#15803d;
+    --fix:#c2660a; --ctx:#0d9488; --mem:#b45309; --design:#db2777;
+    --docs:#4f46e5; --danger:#dc2626;
+  }
+  :root[data-theme="dark"]{
+    --bg:#0c0f16; --surface:#141926; --surface-2:#1b2130;
+    --ink:#e7ebf3; --muted:#8b94a6; --border:#242c3b;
+    --code-bg:#0e131d; --code-ink:#cfd6e4;
+    --plan:#22d3ee; --code:#60a5fa; --review:#c084fc; --test:#4ade80;
+    --fix:#fbbf24; --ctx:#2dd4bf; --mem:#fcd34d; --design:#f472b6;
+    --docs:#818cf8; --danger:#f87171;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:clamp(20px,4vw,52px) clamp(16px,4vw,28px) 80px}
+  code,.mono{font-family:ui-monospace,"SF Mono","Cascadia Code","Consolas",Menlo,monospace}
+
+  header.top{margin-bottom:32px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{font-size:clamp(28px,5vw,42px);line-height:1.08;margin:.28em 0 .3em;text-wrap:balance;letter-spacing:-.02em}
+  .lede{color:var(--muted);font-size:16px;max-width:60ch;margin:0}
+
+  /* legend */
+  .legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:26px 0 8px}
+  .legend .cell{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow)}
+  .legend .tag{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:13px}
+  .legend p{margin:6px 0 0;font-size:13px;color:var(--muted)}
+  .badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.03em;
+    padding:2px 8px;border-radius:999px;border:1px solid;white-space:nowrap}
+  .b-cmd{color:var(--code);border-color:color-mix(in oklab,var(--code),transparent 55%);background:color-mix(in oklab,var(--code),transparent 90%)}
+  .b-skill{color:var(--review);border-color:color-mix(in oklab,var(--review),transparent 55%);background:color-mix(in oklab,var(--review),transparent 90%)}
+  .b-hook{color:var(--test);border-color:color-mix(in oklab,var(--test),transparent 55%);background:color-mix(in oklab,var(--test),transparent 90%)}
+
+  section.grp{margin-top:34px}
+  .grp-h{display:flex;align-items:baseline;gap:11px;margin:0 0 4px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+  .dot{width:11px;height:11px;border-radius:50%;flex:none;transform:translateY(1px)}
+  .grp-h h2{font-size:19px;margin:0;letter-spacing:-.01em}
+  .grp-h .sub{color:var(--muted);font-size:13px;margin-left:auto;text-align:right}
+
+  .rows{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .row{background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:13px 15px;box-shadow:var(--shadow);
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:start}
+  .row .cmd{grid-column:1;font-size:13.5px;font-weight:600;color:var(--code-ink);
+    background:var(--code-bg);border:1px solid var(--border);border-radius:7px;padding:3px 8px;
+    display:inline-block;justify-self:start;max-width:100%;overflow-x:auto;white-space:nowrap}
+  .row .cmd .accent{color:var(--c)}
+  .row .badge{grid-column:2;grid-row:1;justify-self:end}
+  .row .desc{grid-column:1 / -1;font-size:14px;margin:0}
+  .row .when{grid-column:1 / -1;font-size:12.5px;color:var(--muted);margin:0}
+  .row .when b{color:var(--ink);font-weight:600}
+
+  .footer{margin-top:42px;background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:20px 22px;box-shadow:var(--shadow)}
+  .footer h3{margin:0 0 12px;font-size:16px}
+  .footer ol{margin:0;padding-left:20px}
+  .footer li{margin:7px 0;font-size:14px}
+  .footer li b{font-weight:700}
+  .kbd{font-size:12px;padding:1px 6px;border:1px solid var(--border);border-bottom-width:2px;border-radius:5px;background:var(--surface-2)}
+  a{color:var(--code)}
+  ::selection{background:color-mix(in oklab,var(--plan),transparent 70%)}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">ECC · Everything Claude Code — ściągawka</div>
+    <h1>Co wpisać, żeby coś się stało</h1>
+    <p class="lede">Wybrane komendy i skille ECC pod Twój stack (React / Next.js / TypeScript / Python / ML).
+      Ułożone tak, jak pracujesz — od pomysłu do commita. Przy każdej pozycji masz oznaczenie, <b>jak się zachować</b>.</p>
+
+    <div class="legend">
+      <div class="cell">
+        <span class="tag"><span class="badge b-cmd">/ KOMENDA</span></span>
+        <p>Wpisujesz sam, np. <code>/ecc:plan "..."</code>. Świadoma akcja.</p>
+      </div>
+      <div class="cell">
+        <span class="tag"><span class="badge b-skill">◆ SKILL</span></span>
+        <p>Mówisz nazwę („użyj tdd-workflow") albo Luna odpala auto, gdy pasuje kontekst.</p>
+      </div>
+      <div class="cell">
+        <span class="tag"><span class="badge b-hook">🤖 HOOK</span></span>
+        <p>Nic nie robisz — dzieje się samo w tle (format, testy, nauka).</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1 START -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--plan)"></span><h2>Start nowej funkcji</h2><span class="sub">pomysł → plan</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--plan)">
+        <span class="cmd"><span class="accent">/ecc:plan</span> "Dodaj logowanie OAuth"</span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Planner przekształca wymagania w blueprint krok-po-kroku i <b>czeka na Twój CONFIRM</b> zanim ruszy kod.</p>
+        <p class="when"><b>Kiedy:</b> zawsze na start większej roboty. Nie pisze kodu bez Twojej zgody.</p>
+      </div>
+      <div class="row" style="--c:var(--plan)">
+        <span class="cmd"><span class="accent">/ecc:plan-prd</span> · <span class="accent">/ecc:prp-prd</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Najpierw lekki, problem-first PRD (co i po co), potem przekazuje do planowania.</p>
+        <p class="when"><b>Kiedy:</b> nowy produkt/moduł, gdzie warto najpierw dopiąć „dlaczego".</p>
+      </div>
+      <div class="row" style="--c:var(--plan)">
+        <span class="cmd"><span class="accent">/ecc:orch-add-feature</span> "..."</span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Pełny pipeline end-to-end: research → plan → TDD → review → commit za bramką.</p>
+        <p class="when"><b>Kiedy:</b> duża funkcja, którą chcesz „od zera do commita" jednym ruchem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 KOD/TDD -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--code)"></span><h2>Pisanie kodu (TDD)</h2><span class="sub">testy first → implementacja</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--code)">
+        <span class="cmd"><span class="accent">/ecc:react-test</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Wymusza TDD dla Reacta: testy React Testing Library (behavior + a11y) najpierw, potem komponent. Wykrywa Vitest/Jest.</p>
+        <p class="when"><b>Kiedy:</b> nowy komponent/hook w React/Next.</p>
+      </div>
+      <div class="row" style="--c:var(--code)">
+        <span class="cmd">tdd-workflow · python-testing</span>
+        <span class="badge b-skill">◆ SKILL</span>
+        <p class="desc">TDD ogólne / dla Pythona: write-tests-first, cel 80%+ pokrycia.</p>
+        <p class="when"><b>Kiedy:</b> backend/ML w Pythonie albo logika bez frameworka.</p>
+      </div>
+      <div class="row" style="--c:var(--code)">
+        <span class="cmd">react-patterns · frontend-patterns · fastapi-patterns · pytorch-patterns</span>
+        <span class="badge b-skill">◆ SKILL</span>
+        <p class="desc">Gotowe wzorce architektoniczne dla danego stacka — zaciągane jako kontekst.</p>
+        <p class="when"><b>Kiedy:</b> chcesz, żeby kod trzymał się konwencji frameworka.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 BUILD -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--fix)"></span><h2>Build się sypie</h2><span class="sub">błędy kompilacji / typów</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--fix)">
+        <span class="cmd"><span class="accent">/ecc:react-build</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Naprawia błędy buildu React/Next (Vite, webpack, esbuild): JSX/TSX, hydration mismatch, granice server/client, brakujące typy. Minimalne, chirurgiczne zmiany.</p>
+        <p class="when"><b>Kiedy:</b> `npm run build` / dev sypie błędami frontendu.</p>
+      </div>
+      <div class="row" style="--c:var(--fix)">
+        <span class="cmd"><span class="accent">/ecc:build-fix</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Uniwersalny: wykrywa system build i przyrostowo naprawia błędy typów/kompilacji.</p>
+        <p class="when"><b>Kiedy:</b> nie-Reactowy projekt albo mieszany build.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 REVIEW -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--review)"></span><h2>Review przed commitem</h2><span class="sub">jakość · bezpieczeństwo</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--review)">
+        <span class="cmd"><span class="accent">/ecc:code-review</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Review lokalnych niescommitowanych zmian albo PR-a (podaj numer/URL).</p>
+        <p class="when"><b>Kiedy:</b> zanim zrobisz commit / otworzysz PR.</p>
+      </div>
+      <div class="row" style="--c:var(--review)">
+        <span class="cmd"><span class="accent">/ecc:react-review</span> · <span class="accent">/ecc:python-review</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Specjalistyczny reviewer: React (hooki, render perf, granice server/client, a11y) / Python (PEP8, typy, idiomy, security).</p>
+        <p class="when"><b>Kiedy:</b> chcesz głębszą ocenę dla konkretnego języka.</p>
+      </div>
+      <div class="row" style="--c:var(--review)">
+        <span class="cmd"><span class="accent">/ecc:security-scan</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">AgentShield skanuje sekrety, hooki, MCP, uprawnienia — powierzchnie ataku agenta.</p>
+        <p class="when"><b>Kiedy:</b> przed publikacją / gdy dodajesz nowe MCP lub klucze.</p>
+      </div>
+      <div class="row" style="--c:var(--review)">
+        <span class="cmd"><span class="accent">/ecc:test-coverage</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Analizuje pokrycie, wskazuje luki i dogenerowuje brakujące testy do progu.</p>
+        <p class="when"><b>Kiedy:</b> coverage spadło albo dopinasz moduł.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 FIX/REFACTOR -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--test)"></span><h2>Bug fix i refactor</h2><span class="sub">bezpieczne zmiany</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--test)">
+        <span class="cmd"><span class="accent">/ecc:orch-fix-defect</span> "..."</span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Repro buga jako <b>failing test</b> → fix do zielonego → review → commit za bramką.</p>
+        <p class="when"><b>Kiedy:</b> masz konkretny bug i chcesz go domknąć porządnie.</p>
+      </div>
+      <div class="row" style="--c:var(--test)">
+        <span class="cmd"><span class="accent">/ecc:orch-refine-code</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Refactor zachowujący zachowanie: testy zielone → przebudowa → dalej zielone → review.</p>
+        <p class="when"><b>Kiedy:</b> sprzątasz kod bez zmiany działania.</p>
+      </div>
+      <div class="row" style="--c:var(--test)">
+        <span class="cmd"><span class="accent">/ecc:refactor-clean</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Wykrywa i usuwa martwy kod, z weryfikacją po każdej zmianie.</p>
+        <p class="when"><b>Kiedy:</b> czyszczenie nieużywanego kodu.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 GIT -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--docs)"></span><h2>Git i PR</h2><span class="sub">commit · pull request</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--docs)">
+        <span class="cmd"><span class="accent">/ecc:prp-commit</span> "commituj zmiany w koszyku"</span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Commit z targetowaniem plików naturalnym językiem — opisujesz co, po polsku/angielsku.</p>
+        <p class="when"><b>Kiedy:</b> szybki, opisany commit bez ręcznego `git add`.</p>
+      </div>
+      <div class="row" style="--c:var(--docs)">
+        <span class="cmd"><span class="accent">/ecc:pr</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Tworzy PR z brancha: wykrywa template, analizuje zmiany, pushuje.</p>
+        <p class="when"><b>Kiedy:</b> gotowy do otwarcia PR-a na GitHubie.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 CONTEXT/COST -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--ctx)"></span><h2>Kontekst i koszt</h2><span class="sub">to, za czym tęskniłeś po ruflo</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--ctx)">
+        <span class="cmd">strategic-compact · context-budget · token-budget-advisor</span>
+        <span class="badge b-skill">◆ SKILL</span>
+        <p class="desc">Zarządzanie kontekstem: kiedy i co kompaktować, jak nie przepalać tokenów.</p>
+        <p class="when"><b>Kiedy:</b> pasek pokazuje wysoki <code>%ctx</code> (żółty/czerwony).</p>
+      </div>
+      <div class="row" style="--c:var(--ctx)">
+        <span class="cmd"><span class="accent">/ecc:model-route</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Podpowiada, który model (Haiku/Sonnet/Opus) pasuje do zadania wg złożoności i budżetu.</p>
+        <p class="when"><b>Kiedy:</b> ważysz koszt vs jakość dla danego kroku.</p>
+      </div>
+      <div class="row" style="--c:var(--ctx)">
+        <span class="cmd"><span class="accent">/ecc:cost-report</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Lokalny raport kosztów z metryk cost-trackera ECC.</p>
+        <p class="when"><b>Kiedy:</b> chcesz podsumowanie wydatków (pasek pokazuje bieżące <code>$</code>).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 SESSIONS/MEMORY -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--mem)"></span><h2>Sesje, pamięć, nauka</h2><span class="sub">zamiennik „pamięci" ruflo</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--mem)">
+        <span class="cmd"><span class="accent">/ecc:save-session</span> · <span class="accent">/ecc:resume-session</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Zapis stanu sesji do datowanego pliku i wznowienie z pełnym kontekstem następnego dnia.</p>
+        <p class="when"><b>Kiedy:</b> kończysz pracę / wracasz do wątku jutro.</p>
+      </div>
+      <div class="row" style="--c:var(--mem)">
+        <span class="cmd"><span class="accent">/ecc:instinct-status</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Pokazuje „instynkty", których ECC się nauczył (z poziomem pewności).</p>
+        <p class="when"><b>Kiedy:</b> chcesz zobaczyć, co system zapamiętał o Twoim stylu.</p>
+      </div>
+      <div class="row" style="--c:var(--mem)">
+        <span class="cmd"><span class="accent">/ecc:learn</span> · <span class="accent">/ecc:learn-eval</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Wyciąga wielokrotnego użytku wzorce z sesji i zapisuje (z samooceną jakości + wyborem: projekt vs globalnie).</p>
+        <p class="when"><b>Kiedy:</b> właśnie rozwiązałeś coś nietrywialnego, warto to utrwalić.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 DESIGN -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--design)"></span><h2>Design (Twój lane)</h2><span class="sub">teraz odpala się AUTO</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--design)">
+        <span class="cmd">ui-ux-pro-max · impeccable · frontend-design · design-motion-principles</span>
+        <span class="badge b-skill">◆ SKILL</span>
+        <p class="desc">Twój zestaw designowy. <b>Ustawiłam auto-routing</b> w CLAUDE.md — przy UI/landing/komponencie Luna sięga po nie sama, bez pisania „użyj skilla".</p>
+        <p class="when"><b>Kiedy:</b> cokolwiek wizualnego. Możesz też wymusić jawnie nazwą.</p>
+      </div>
+      <div class="row" style="--c:var(--design)">
+        <span class="cmd"><span class="accent">/ecc:gan-design</span></span>
+        <span class="badge b-cmd">/ KOMENDA</span>
+        <p class="desc">Pętla generator/ewaluator dla frontendu — iteruje warianty i ocenia je punktowo.</p>
+        <p class="when"><b>Kiedy:</b> chcesz kilka wariantów UI i wybór najlepszego.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 DOCS -->
+  <section class="grp">
+    <div class="grp-h"><span class="dot" style="background:var(--docs)"></span><h2>Raporty dla CEO i dokumenty</h2><span class="sub">po polsku</span></div>
+    <div class="rows">
+      <div class="row" style="--c:var(--docs)">
+        <span class="cmd">document-skills:docx · xlsx · pptx · pdf</span>
+        <span class="badge b-skill">◆ SKILL</span>
+        <p class="desc">Generowanie Worda / Excela / PowerPointa / PDF-a — gotowe dokumenty biznesowe.</p>
+        <p class="when"><b>Kiedy:</b> raport/opis dla firmy. Piszesz po polsku → dokument po polsku.</p>
+      </div>
+      <div class="row" style="--c:var(--docs)">
+        <span class="cmd">deep-research · market-research · article-writing</span>
+        <span class="badge b-skill">◆ SKILL</span>
+        <p class="desc">Research wieloźródłowy z atrybucją, badanie rynku, długie formy tekstu.</p>
+        <p class="when"><b>Kiedy:</b> materiały, analizy, treści dłuższe niż notatka.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <h3>Jak się zachować — 4 zasady</h3>
+    <ol>
+      <li><b><span class="badge b-cmd">/ KOMENDA</span></b> — piszesz sam, np. <code>/ecc:plan "..."</code>. To Twoja świadoma decyzja „zrób to teraz".</li>
+      <li><b><span class="badge b-skill">◆ SKILL</span></b> — powiesz nazwę („użyj <code>tdd-workflow</code>") albo Luna odpali go automatycznie, gdy zadanie pasuje. Design-skille masz już na auto.</li>
+      <li><b><span class="badge b-hook">🤖 HOOK</span></b> — nie robisz nic. Sam się odpala: auto-format po edycji, TS-check, ostrzeżenie o <code>console.log</code>, nauka instynktów, podsumowanie sesji.</li>
+      <li><b>Skala zadania</b> — duże/end-to-end → <code>orch-*</code>. Pojedynczy krok → jedna komenda (np. <code>/ecc:react-build</code>). W wątpliwości: zacznij od <code>/ecc:plan</code>.</li>
+    </ol>
+  </div>
+</div>

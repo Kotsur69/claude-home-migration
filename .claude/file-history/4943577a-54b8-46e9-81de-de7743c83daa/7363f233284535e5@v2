@@ -1,0 +1,20 @@
+---
+name: steelquote-sprint-plan
+description: SteelQuote — push wstrzymany do ~2026-07-17; deploy na AbacusAI wokół tej daty
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 4943577a-54b8-46e9-81de-de7743c83daa
+---
+
+**Plan ustalony 2026-07-08 (user):** wstrzymujemy `git push` na SteelQuote o kilka dni —
+push zaplanowany na **2026-07-17** (przyszły tydzień). Do tego czasu zmiany zbieramy lokalnie
+w commitach na `main`, bez wypychania na GitHub (repo publiczne — `github.com/Kotsur69/SteelQuote`).
+
+Plan: wdrożyć wersję z GitHuba na **AbacusAI** i dalej pracować na tej wersji, żeby wypchnąć
+komplet 17.07. Deploy przez AbacusAI DeepAgent wg jego zasad — patrz [[steelquote-hosting]].
+
+Stan na 2026-07-08: na GitHubie jest commit `4dbf702`; lokalnie czekają niewypchnięte commity
+(poprawki regresji + eksport do Excela KTS/GPAO). Prompt wdrożeniowy v3 do zrobienia przed pushem
+i musi objąć WSZYSTKO (w tym fix typu `serverPdf.ts` — warunek budowalności — oraz zależność `xlsx`).
+Szczegóły postępu: `AMSteel_Quote/STAN_PROJEKTU.md`. Zob. [[steelquote-project]].

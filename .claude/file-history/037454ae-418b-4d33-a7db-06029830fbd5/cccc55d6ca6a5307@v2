@@ -1,0 +1,544 @@
+<title>SteelQuote — Architektura v2: role i panel admina</title>
+
+<style>
+  :root{
+    --bg:#f4f6f9;
+    --panel:#ffffff;
+    --panel-2:#eef1f6;
+    --border:#d7dee8;
+    --ink:#131a26;
+    --ink-dim:#5b6b82;
+    --ink-faint:#8a97ab;
+    --accent:#2f5fd6;
+    --accent-ink:#1c3e94;
+    --frontend:#1f8a5f;
+    --frontend-bg:#e6f5ee;
+    --frontend-bd:#a9dcc4;
+    --mw:#b4650c;
+    --mw-bg:#fbedde;
+    --mw-bd:#eec293;
+    --api:#96780a;
+    --api-bg:#fbf3d9;
+    --api-bd:#e8d38b;
+    --db:#b3392f;
+    --db-bg:#fbe8e5;
+    --db-bd:#eebab3;
+    --lc:#6a3fae;
+    --lc-bg:#f0e9fb;
+    --lc-bd:#d3bff0;
+    --mono: ui-monospace, "Cascadia Mono", "Consolas", "SFMono-Regular", Menlo, monospace;
+    --sans: "Segoe UI", ui-sans-serif, system-ui, -apple-system, "Inter", Arial, sans-serif;
+    --shadow: 0 1px 2px rgba(20,30,50,0.06), 0 8px 24px -12px rgba(20,30,50,0.15);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e1420;
+      --panel:#141c2b;
+      --panel-2:#101724;
+      --border:#263449;
+      --ink:#e8edf5;
+      --ink-dim:#9fb0c7;
+      --ink-faint:#6d7c93;
+      --accent:#6d93ff;
+      --accent-ink:#a9c0ff;
+      --frontend:#4fd394;
+      --frontend-bg:#12261e;
+      --frontend-bd:#20493a;
+      --mw:#f0a153;
+      --mw-bg:#2a1d10;
+      --mw-bd:#4d3620;
+      --api:#e6c95a;
+      --api-bg:#2a2412;
+      --api-bd:#4d4322;
+      --db:#f0796a;
+      --db-bg:#2a1614;
+      --db-bd:#4d2622;
+      --lc:#c19bf5;
+      --lc-bg:#211a2e;
+      --lc-bd:#3c2e57;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e1420;
+    --panel:#141c2b;
+    --panel-2:#101724;
+    --border:#263449;
+    --ink:#e8edf5;
+    --ink-dim:#9fb0c7;
+    --ink-faint:#6d7c93;
+    --accent:#6d93ff;
+    --accent-ink:#a9c0ff;
+    --frontend:#4fd394;
+    --frontend-bg:#12261e;
+    --frontend-bd:#20493a;
+    --mw:#f0a153;
+    --mw-bg:#2a1d10;
+    --mw-bd:#4d3620;
+    --api:#e6c95a;
+    --api-bg:#2a2412;
+    --api-bd:#4d4322;
+    --db:#f0796a;
+    --db-bg:#2a1614;
+    --db-bd:#4d2622;
+    --lc:#c19bf5;
+    --lc-bg:#211a2e;
+    --lc-bd:#3c2e57;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f6f9;
+    --panel:#ffffff;
+    --panel-2:#eef1f6;
+    --border:#d7dee8;
+    --ink:#131a26;
+    --ink-dim:#5b6b82;
+    --ink-faint:#8a97ab;
+    --accent:#2f5fd6;
+    --accent-ink:#1c3e94;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 24px 80px;
+    display:flex;
+    flex-direction:column;
+    gap:36px;
+  }
+  header.page{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--border);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+  }
+  h1{
+    font-size:28px;
+    margin:0;
+    letter-spacing:-0.01em;
+    text-wrap:balance;
+    font-weight:700;
+  }
+  .sub{
+    color:var(--ink-dim);
+    font-size:14.5px;
+    max-width:68ch;
+  }
+
+  h2.section-title{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:700;
+    color:var(--ink-faint);
+    margin:0 0 14px 0;
+  }
+
+  /* ---- Actors row ---- */
+  .actors{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .actor{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:14px 16px;
+    box-shadow:var(--shadow);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .actor .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);
+    flex-shrink:0;
+  }
+  .actor strong{font-size:14px;}
+  .actor span.role-tag{
+    display:block;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-faint);
+    margin-top:2px;
+  }
+
+  .flow-arrow{
+    display:flex;
+    justify-content:center;
+    color:var(--ink-faint);
+    font-size:13px;
+    font-family:var(--mono);
+    padding:2px 0;
+  }
+
+  /* ---- Layer blocks ---- */
+  .layer{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px;
+    box-shadow:var(--shadow);
+  }
+  .layer-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .layer-head .tag{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:2px 8px;
+    border-radius:5px;
+    font-weight:700;
+  }
+  .layer-head h3{
+    margin:0;
+    font-size:15px;
+  }
+  .cards{
+    display:grid;
+    gap:10px;
+  }
+  .cards.cols-3{grid-template-columns:repeat(3,1fr);}
+  .cards.cols-4{grid-template-columns:repeat(4,1fr);}
+  .cards.cols-5{grid-template-columns:repeat(5,1fr);}
+
+  .card{
+    border-radius:8px;
+    padding:11px 12px;
+    font-size:12.5px;
+    border:1px solid;
+  }
+  .card .path{
+    display:block;
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .card ul{
+    margin:0;
+    padding-left:15px;
+    font-family:var(--mono);
+    font-size:10.8px;
+    color:var(--ink-dim);
+  }
+  .card ul li{margin:2px 0;}
+  .card p{margin:0;color:var(--ink-dim);font-size:11.5px;}
+  .card .badge{
+    font-family:var(--mono);
+    font-size:9.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    opacity:0.85;
+  }
+
+  .frontend .card{background:var(--frontend-bg);border-color:var(--frontend-bd);}
+  .frontend .card .path{color:var(--frontend);}
+  .layer-head.frontend-tag .tag{background:var(--frontend-bg);color:var(--frontend);border:1px solid var(--frontend-bd);}
+
+  .mw-block{
+    background:var(--mw-bg);
+    border:1px solid var(--mw-bd);
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:12.5px;
+    color:var(--ink);
+  }
+  .mw-block strong{color:var(--mw);font-family:var(--mono);font-size:12px;}
+  .layer-head.mw-tag .tag{background:var(--mw-bg);color:var(--mw);border:1px solid var(--mw-bd);}
+
+  .api .card{background:var(--api-bg);border-color:var(--api-bd);}
+  .api .card .path{color:var(--api-ink,#7a6103);}
+  .layer-head.api-tag .tag{background:var(--api-bg);color:var(--api);border:1px solid var(--api-bd);}
+
+  .db .card{background:var(--db-bg);border-color:var(--db-bd);}
+  .db .card .path{color:var(--db);}
+  .layer-head.db-tag .tag{background:var(--db-bg);color:var(--db);border:1px solid var(--db-bd);}
+
+  /* ---- Permissions matrix ---- */
+  .matrix-wrap{overflow-x:auto;}
+  table.matrix{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    min-width:640px;
+  }
+  table.matrix th, table.matrix td{
+    padding:10px 12px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+  }
+  table.matrix thead th{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-faint);
+    font-weight:600;
+  }
+  table.matrix td:first-child{color:var(--ink-dim);}
+  table.matrix tbody tr:hover{background:var(--panel-2);}
+  .yn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:20px;height:20px;
+    border-radius:50%;
+    font-size:12px;
+    font-weight:700;
+  }
+  .yn.yes{background:var(--frontend-bg);color:var(--frontend);}
+  .yn.no{background:var(--panel-2);color:var(--ink-faint);}
+
+  /* ---- Lifecycle stepper ---- */
+  .lifecycle{
+    display:flex;
+    align-items:stretch;
+    gap:0;
+    flex-wrap:wrap;
+  }
+  .lc-node{
+    background:var(--lc-bg);
+    border:1px solid var(--lc-bd);
+    color:var(--lc);
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:700;
+    padding:10px 14px;
+    border-radius:8px;
+    white-space:nowrap;
+  }
+  .lc-edge{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:0 10px;
+    font-size:10.5px;
+    color:var(--ink-dim);
+    text-align:center;
+    min-width:110px;
+  }
+  .lc-edge .arrow{color:var(--ink-faint);font-size:14px;}
+  .lc-edge .who{
+    font-family:var(--mono);
+    font-size:9.5px;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+  }
+  .lc-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px 0;}
+  .lc-branch{
+    margin-top:10px;
+    padding:10px 14px;
+    border-left:2px dashed var(--lc-bd);
+    font-size:11.5px;
+    color:var(--ink-dim);
+  }
+
+  footer.note{
+    font-size:11.5px;
+    color:var(--ink-faint);
+    text-align:center;
+    padding-top:8px;
+  }
+  footer.note a{color:var(--ink-faint);}
+
+  @media (max-width:820px){
+    .actors{grid-template-columns:1fr;}
+    .cards.cols-3, .cards.cols-4, .cards.cols-5{grid-template-columns:1fr;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="page">
+    <div class="eyebrow">AMSteel Quote &middot; finance_calculator &middot; wersja 1.1 (planowana)</div>
+    <h1>Architektura v2 — role handlowców i panel admina</h1>
+    <p class="sub">Rozszerzenie obecnej aplikacji (Next.js 14 + PostgreSQL) o rolę starszego/młodszego handlowca, obieg akceptacji ofert i panel administracyjny. Pełny diagram edytowalny: <code style="font-family:var(--mono);font-size:12px;">AMSteel_Quote_Architektura_role_i_panel_admina.drawio</code>.</p>
+  </header>
+
+  <section>
+    <h2 class="section-title">Aktorzy</h2>
+    <div class="actors">
+      <div class="actor"><span class="dot"></span><div><strong>Młodszy Handlowiec</strong><span class="role-tag">role: junior</span></div></div>
+      <div class="actor"><span class="dot"></span><div><strong>Starszy Handlowiec</strong><span class="role-tag">role: senior — pełne uprawnienia juniora + akceptacja</span></div></div>
+      <div class="actor"><span class="dot"></span><div><strong>Admin</strong><span class="role-tag">role: admin — zarządzanie danymi, bez kalkulatora</span></div></div>
+    </div>
+  </section>
+
+  <div class="flow-arrow">▼</div>
+
+  <section class="layer frontend">
+    <div class="layer-head frontend-tag"><span class="tag">Frontend</span><h3>Next.js 14 — App Router</h3></div>
+    <div class="cards cols-4">
+      <div class="card">
+        <span class="path">/ (Login)</span>
+        <p>e-mail + hasło, bez rejestracji</p>
+      </div>
+      <div class="card">
+        <span class="path">/calculator</span>
+        <p>kalkulator HRS/CR/HDG — bez zmian</p>
+      </div>
+      <div class="card">
+        <span class="path">/offers</span>
+        <p>Moje oferty. Przycisk zależny od roli:</p>
+        <ul>
+          <li>junior → „Wyślij do weryfikacji”</li>
+          <li>senior → „Wyślij do klienta” + „Zatwierdź / Odrzuć” na ofertach juniorów</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="path">/admin/*</span>
+        <p>tylko role=admin (dashboard, handlowcy, klienci, wszystkie oferty)</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="flow-arrow">▼</div>
+
+  <section class="mw-block">
+    <strong>middleware.ts</strong> — weryfikacja JWT z cookie <code style="font-family:var(--mono)">auth-token</code> + RBAC guard: <code style="font-family:var(--mono);font-size:11.5px">/admin/*</code> tylko dla <code style="font-family:var(--mono);font-size:11.5px">admin</code>, <code style="font-family:var(--mono);font-size:11.5px">/calculator</code> i <code style="font-family:var(--mono);font-size:11.5px">/offers</code> dla zalogowanych, każdy route handler dodatkowo sprawdza rolę.
+  </section>
+
+  <div class="flow-arrow">▼</div>
+
+  <section class="layer api">
+    <div class="layer-head api-tag"><span class="tag">API</span><h3>Route Handlers</h3></div>
+    <div class="cards cols-5">
+      <div class="card">
+        <span class="path">/api/auth</span>
+        <ul><li>login</li><li>logout</li></ul>
+      </div>
+      <div class="card">
+        <span class="path">/api/offers</span>
+        <ul>
+          <li>GET, POST</li>
+          <li>[id] GET/PATCH/DELETE</li>
+          <li>[id]/duplicate</li>
+          <li>[id]/submit</li>
+          <li>[id]/approve (senior)</li>
+          <li>[id]/reject (senior)</li>
+          <li>[id]/send (senior)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="path">/api/admin/users</span>
+        <ul><li>GET/POST/PATCH/DELETE</li></ul>
+        <span class="badge">tylko admin</span>
+      </div>
+      <div class="card">
+        <span class="path">/api/admin/clients</span>
+        <ul><li>GET/POST/PATCH/DELETE</li></ul>
+        <span class="badge">tylko admin</span>
+      </div>
+      <div class="card">
+        <span class="path">/api/admin/offers</span>
+        <ul><li>GET — wszystkie + filtry</li><li>status / handlowiec / data</li></ul>
+        <span class="badge">tylko admin</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="flow-arrow">▼</div>
+
+  <section class="layer db">
+    <div class="layer-head db-tag"><span class="tag">Baza danych</span><h3>PostgreSQL</h3></div>
+    <div class="cards cols-3">
+      <div class="card">
+        <span class="path">users</span>
+        <ul>
+          <li>id PK</li>
+          <li>email, password_hash</li>
+          <li>role: junior | senior | admin</li>
+          <li>full_name</li>
+          <li>is_active (soft delete)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="path">offers</span>
+        <ul>
+          <li>id PK, user_id FK→users</li>
+          <li>client_id FK→clients</li>
+          <li>offer_data JSONB</li>
+          <li>status: draft | pending_review |<br>approved | rejected | sent</li>
+          <li>reviewed_by FK→users, reviewed_at</li>
+          <li>rejection_reason, sent_at</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="path">clients</span>
+        <ul>
+          <li>id PK</li>
+          <li>first_name, last_name, company</li>
+          <li>nip, address, phone, email</li>
+          <li>created_by FK→users</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Macierz uprawnień</h2>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr><th>Akcja</th><th>Junior</th><th>Senior</th><th>Admin</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tworzenie / edycja własnych ofert</td><td><span class="yn yes">✓</span></td><td><span class="yn yes">✓</span></td><td><span class="yn no">—</span></td></tr>
+          <tr><td>Wysłanie oferty do weryfikacji</td><td><span class="yn yes">✓</span></td><td><span class="yn yes">✓</span></td><td><span class="yn no">—</span></td></tr>
+          <tr><td>Wysłanie oferty bezpośrednio do klienta</td><td><span class="yn no">—</span></td><td><span class="yn yes">✓</span></td><td><span class="yn no">—</span></td></tr>
+          <tr><td>Zatwierdzenie / odrzucenie oferty juniora</td><td><span class="yn no">—</span></td><td><span class="yn yes">✓</span></td><td><span class="yn no">—</span></td></tr>
+          <tr><td>Zarządzanie kontami handlowców</td><td><span class="yn no">—</span></td><td><span class="yn no">—</span></td><td><span class="yn yes">✓</span></td></tr>
+          <tr><td>Zarządzanie bazą klientów</td><td><span class="yn no">—</span></td><td><span class="yn no">—</span></td><td><span class="yn yes">✓</span></td></tr>
+          <tr><td>Podgląd wszystkich ofert i historii</td><td><span class="yn no">—</span></td><td><span class="yn no">częściowo</span></td><td><span class="yn yes">✓</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Cykl życia oferty (status)</h2>
+    <div class="lifecycle">
+      <div class="lc-row">
+        <div class="lc-node">DRAFT</div>
+        <div class="lc-edge"><span class="arrow">→</span><span class="who">junior</span>wyślij do weryfikacji</div>
+        <div class="lc-node">PENDING_REVIEW</div>
+        <div class="lc-edge"><span class="arrow">→</span><span class="who">senior</span>zatwierdź</div>
+        <div class="lc-node">APPROVED</div>
+        <div class="lc-edge"><span class="arrow">→</span><span class="who">senior</span>wyślij do klienta</div>
+        <div class="lc-node">SENT</div>
+      </div>
+    </div>
+    <div class="lc-branch">
+      PENDING_REVIEW → <strong style="color:var(--lc)">REJECTED</strong> (senior, z powodem) → junior poprawia → z powrotem do DRAFT.<br>
+      DRAFT → <strong style="color:var(--lc)">SENT</strong> bezpośrednio, gdy ofertę tworzy senior (nie wymaga akceptacji).
+    </div>
+  </section>
+
+  <footer class="note">Pełny diagram (węzły + połączenia) w pliku .drawio obok tego dokumentu — otwórz w app.diagrams.net lub VS Code (rozszerzenie Draw.io Integration).</footer>
+
+</div>

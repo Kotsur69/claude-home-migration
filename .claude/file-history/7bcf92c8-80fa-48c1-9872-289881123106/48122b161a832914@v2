@@ -1,0 +1,244 @@
+#!/usr/bin/env python3
+"""Generates a business-level Word (.docx) functional description of the
+AMSteel Quote application (finance_calculator) for management."""
+
+from docx import Document
+from docx.shared import Pt, RGBColor, Cm
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+import sys
+
+NAVY = RGBColor(0x1F, 0x2A, 0x44)
+BLUE = RGBColor(0x2B, 0x57, 0xA6)
+GREY = RGBColor(0x66, 0x66, 0x66)
+WHITE = RGBColor(0xFF, 0xFF, 0xFF)
+HEADER_FILL = "2B57A6"
+LIGHT_FILL = "EEF2F8"
+
+doc = Document()
+normal = doc.styles['Normal']
+normal.font.name = 'Calibri'
+normal.font.size = Pt(11)
+
+def set_cell_bg(cell, hex_color):
+    tcPr = cell._tc.get_or_add_tcPr()
+    shd = OxmlElement('w:shd')
+    shd.set(qn('w:val'), 'clear'); shd.set(qn('w:color'), 'auto'); shd.set(qn('w:fill'), hex_color)
+    tcPr.append(shd)
+
+def set_cell_text(cell, text, bold=False, color=None, size=11, align=None):
+    cell.text = ''
+    p = cell.paragraphs[0]
+    if align: p.alignment = align
+    run = p.add_run(text)
+    run.bold = bold
+    run.font.size = Pt(size)
+    if color: run.font.color.rgb = color
+    return p
+
+def add_bottom_border(paragraph, color="2B57A6", size="12"):
+    pPr = paragraph._p.get_or_add_pPr()
+    pbdr = OxmlElement('w:pBdr'); bottom = OxmlElement('w:bottom')
+    bottom.set(qn('w:val'), 'single'); bottom.set(qn('w:sz'), size)
+    bottom.set(qn('w:space'), '4'); bottom.set(qn('w:color'), color)
+    pbdr.append(bottom); pPr.append(pbdr)
+
+def h1(text):
+    p = doc.add_paragraph()
+    p.paragraph_format.space_before = Pt(16); p.paragraph_format.space_after = Pt(4)
+    r = p.add_run(text); r.bold = True; r.font.size = Pt(15); r.font.color.rgb = NAVY
+    add_bottom_border(p, size="6")
+    return p
+
+def h2(text):
+    p = doc.add_paragraph()
+    p.paragraph_format.space_before = Pt(10); p.paragraph_format.space_after = Pt(2)
+    r = p.add_run(text); r.bold = True; r.font.size = Pt(12.5); r.font.color.rgb = BLUE
+    return p
+
+def para(text, size=11, color=None, space_after=6, italic=False):
+    p = doc.add_paragraph()
+    p.paragraph_format.space_after = Pt(space_after)
+    r = p.add_run(text); r.font.size = Pt(size); r.italic = italic
+    if color: r.font.color.rgb = color
+    return p
+
+def bullet(text, bold_prefix=None):
+    p = doc.add_paragraph(style='List Bullet')
+    if bold_prefix:
+        rb = p.add_run(bold_prefix); rb.bold = True; rb.font.color.rgb = NAVY
+        p.add_run(text)
+    else:
+        p.add_run(text)
+    return p
+
+# ============================================================
+# TITLE
+# ============================================================
+t = doc.add_paragraph()
+r = t.add_run('AMSteel Quote'); r.bold = True; r.font.size = Pt(28); r.font.color.rgb = NAVY
+
+s = doc.add_paragraph()
+r = s.add_run('Kalkulator wyceny stali — opis działania aplikacji')
+r.font.size = Pt(15); r.font.color.rgb = BLUE
+add_bottom_border(s); s.paragraph_format.space_after = Pt(12)
+
+meta = doc.add_table(rows=2, cols=2)
+for i, (label, value) in enumerate([("Programista:", "Mateusz Mazur"),
+                                    ("Dokument dla:", "Zarządu")]):
+    set_cell_text(meta.rows[i].cells[0], label, bold=True, color=NAVY)
+    set_cell_text(meta.rows[i].cells[1], value, color=NAVY)
+    meta.rows[i].cells[0].width = Cm(4.5); meta.rows[i].cells[1].width = Cm(11)
+doc.add_paragraph()
+
+# ============================================================
+# 1. WPROWADZENIE
+# ============================================================
+h1('1. Wprowadzenie')
+para('AMSteel Quote to aplikacja webowa wspierająca dział handlowy w szybkiej, '
+     'spójnej i powtarzalnej wycenie wyrobów stalowych. Zastępuje ręczne arkusze '
+     'kalkulacyjne jednym, uporządkowanym narzędziem, w którym handlowiec w kilka '
+     'chwil składa kompletną wycenę i generuje gotową ofertę PDF dla klienta.')
+h2('Problem, który rozwiązujemy')
+para('Wycena stali to złożony proces: cena zależy od typu wyrobu, gatunku stali, '
+     'wymiarów, powłoki, tolerancji, dodatkowych usług przetwórczych, marży i transportu. '
+     'Liczona ręcznie w arkuszach jest czasochłonna, podatna na błędy i niespójna między '
+     'handlowcami. AMSteel Quote zamyka całą tę logikę w jednym narzędziu — ceny liczą się '
+     'automatycznie i według tych samych reguł dla każdego użytkownika.')
+h2('Na czym polega wartość')
+bullet(' wycena w minuty zamiast w kwadranse', bold_prefix='Szybkość:')
+bullet(' te same tabele i reguły cenowe dla całego zespołu', bold_prefix='Spójność:')
+bullet(' mniej pomyłek dzięki automatycznym przeliczeniom', bold_prefix='Dokładność:')
+bullet(' natychmiastowa, profesjonalna oferta dla klienta', bold_prefix='Gotowy dokument:')
+
+# ============================================================
+# 2. LOGOWANIE I DOSTĘP
+# ============================================================
+h1('2. Logowanie i dostęp')
+para('Dostęp do aplikacji odbywa się przez indywidualne konto handlowca '
+     '(adres e-mail i hasło). Hasła są przechowywane w formie zaszyfrowanej — '
+     'nie da się ich odczytać nawet mając dostęp do bazy. Po zalogowaniu sesja '
+     'pozostaje aktywna, więc praca jest płynna.')
+bullet(' każdy handlowiec loguje się własnym kontem', bold_prefix='Konto osobiste:')
+bullet(' zapisane wyceny są przypisane do konkretnego użytkownika, '
+       'co daje pełen ślad, kto i kiedy przygotował daną ofertę', bold_prefix='Oferty per handlowiec:')
+bullet(' aplikacja przeznaczona jest dla jednej grupy użytkowników — '
+       'handlowców przygotowujących wyceny', bold_prefix='Jedna rola:')
+
+# ============================================================
+# 3. KALKULATOR — SERCE APLIKACJI
+# ============================================================
+h1('3. Kalkulator wyceny — serce aplikacji')
+para('Kalkulator prowadzi handlowca przez wszystkie elementy wpływające na cenę '
+     'i na bieżąco pokazuje wynik. Obsługuje trzy główne typy wyrobów stalowych:')
+bullet(' stal gorącowalcowana', bold_prefix='HRS:')
+bullet(' stal zimnowalcowana', bold_prefix='CR:')
+bullet(' stal ocynkowana ogniowo', bold_prefix='HDG:')
+para('Dla każdego typu handlowiec wybiera gatunek stali z rozbudowanego katalogu '
+     '(ponad 200 gatunków z przypisanymi dopłatami), podaje wymiary (grubość, szerokość, '
+     'długość) oraz — zależnie od typu — powłokę cynku, tolerancje i parametry wykończenia. '
+     'Aplikacja obsługuje zarówno arkusze, jak i tryb kręgu (coil).', space_after=8)
+
+h2('Dwie grupy dopłat')
+para('Cena budowana jest z dwóch wyraźnie rozdzielonych grup dopłat, co odzwierciedla '
+     'realny łańcuch kosztowy:')
+bullet(' dopłaty wynikające z materiału i jego parametrów — dopłata wymiarowa '
+       '(za kombinację grubości i szerokości), dopłata gatunkowa, tolerancja grubości, '
+       'certyfikat, dopłata za powłokę (dla stali ocynkowanej).', bold_prefix='Dopłaty huty:')
+bullet(' dopłaty za usługi przetwórcze i wykończeniowe centrum serwisowego — '
+       'tolerancja długości, płaskość, stan powierzchni, waga kręgu, znakowanie, '
+       'obróbka krawędzi, granica plastyczności, pakowanie i etykietowanie.',
+       bold_prefix='Dopłaty przetwórcze (SSC):')
+
+h2('Jak składana jest cena końcowa')
+para('Aplikacja przelicza cenę krok po kroku, w sposób przejrzysty dla handlowca '
+     'i audytowalny dla przełożonego:')
+
+calc = doc.add_table(rows=1, cols=2)
+calc.style = 'Table Grid'
+calc.alignment = WD_TABLE_ALIGNMENT.LEFT
+for j, htext in enumerate(["Krok", "Co się dzieje"]):
+    c = calc.rows[0].cells[j]; set_cell_bg(c, HEADER_FILL)
+    set_cell_text(c, htext, bold=True, color=WHITE)
+calc_rows = [
+    ("Cena wsadu", "Bazowa cena stali powiększona o wszystkie dopłaty huty."),
+    ("Marża netto", "Ustalony procent narzucany na cenę wsadu (domyślnie 7%)."),
+    ("Cena końcowa (za tonę)", "Cena wsadu + marża + koszty dodatkowe + transport + dopłaty przetwórcze (SSC)."),
+    ("Wartość pozycji", "Cena końcowa za tonę pomnożona przez zamawiany tonaż."),
+]
+wcol = [Cm(5.0), Cm(11.0)]
+for step, desc in calc_rows:
+    row = calc.add_row()
+    set_cell_text(row.cells[0], step, bold=True, color=NAVY)
+    set_cell_text(row.cells[1], desc, color=NAVY)
+    for j in range(2): row.cells[j].width = wcol[j]
+para('Wszystkie parametry bazowe (cena bazowa, marża, transport, koszty dodatkowe) '
+     'są edytowalne, dzięki czemu handlowiec może dopasować wycenę do konkretnej '
+     'sytuacji, a mimo to całość liczy się według jednej, spójnej mechaniki.',
+     space_after=8, italic=True, color=GREY)
+
+# ============================================================
+# 4. ZARZĄDZANIE OFERTAMI
+# ============================================================
+h1('4. Zarządzanie ofertami')
+para('Pojedyncza wycena może zawierać wiele pozycji (różne gatunki, wymiary, tonaże) '
+     'zebranych w jedno zestawienie. Całość zapisywana jest jako nazwana oferta, '
+     'do której można wrócić w dowolnym momencie.')
+bullet(' złożenie wielopozycyjnej wyceny i zapisanie jej pod własną nazwą',
+       bold_prefix='Tworzenie i zapis:')
+bullet(' przegląd wszystkich swoich zapisanych ofert', bold_prefix='Lista ofert:')
+bullet(' powrót do oferty i zmiana dowolnej pozycji', bold_prefix='Edycja:')
+bullet(' utworzenie kopii istniejącej oferty jako punktu wyjścia dla nowej',
+       bold_prefix='Duplikowanie:')
+bullet(' usunięcie nieaktualnych wycen', bold_prefix='Usuwanie:')
+
+# ============================================================
+# 5. EKSPORT PDF
+# ============================================================
+h1('5. Eksport oferty do PDF')
+para('Z gotowego zestawienia aplikacja generuje profesjonalną ofertę w formacie PDF, '
+     'gotową do wysłania klientowi. Dokument tworzony jest lokalnie, bez zależności od '
+     'zewnętrznych usług.')
+bullet(' numer oferty, data, nagłówek firmowy', bold_prefix='Nagłówek:')
+bullet(' tabela pozycji — gatunek, wymiary (lub oznaczenie COIL), tonaż, '
+       'cena za tonę i wartość', bold_prefix='Pozycje:')
+bullet(' imię i nazwisko, firma, adres, NIP, telefon, e-mail',
+       bold_prefix='Dane klienta:')
+
+# ============================================================
+# 6. DWUJĘZYCZNOŚĆ
+# ============================================================
+h1('6. Dwujęzyczność')
+para('Interfejs aplikacji dostępny jest w dwóch językach — polskim i angielskim — '
+     'co umożliwia obsługę zarówno klientów krajowych, jak i zagranicznych. '
+     'Architektura jest przygotowana na łatwe dodanie kolejnych języków w przyszłości.')
+
+# ============================================================
+# 7. PODSUMOWANIE WARTOŚCI BIZNESOWEJ
+# ============================================================
+h1('7. Podsumowanie wartości biznesowej')
+para('AMSteel Quote skraca czas przygotowania wyceny z kilkunastu minut do kilku, '
+     'jednocześnie eliminując rozbieżności cenowe między handlowcami — wszyscy liczą '
+     'według tych samych, zaszytych w systemie reguł i tabel. Automatyczne przeliczenia '
+     'ograniczają ryzyko kosztownych pomyłek, a natychmiastowy eksport do PDF daje '
+     'klientowi profesjonalną ofertę „od ręki". Ponieważ każda oferta jest przypisana '
+     'do konkretnego handlowca, firma zyskuje pełną przejrzystość i historię wycen — '
+     'to narzędzie, które jednocześnie przyspiesza sprzedaż i porządkuje politykę cenową.')
+
+# ---- footer ----
+section = doc.sections[0]
+fp = section.footer.paragraphs[0]
+fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+run = fp.add_run("AMSteel Quote — Opis działania  |  Mateusz Mazur  |  Strona ")
+run.font.size = Pt(8); run.font.color.rgb = GREY
+fld = OxmlElement('w:fldSimple'); fld.set(qn('w:instr'), 'PAGE')
+r_el = OxmlElement('w:r'); rpr = OxmlElement('w:rPr')
+sz = OxmlElement('w:sz'); sz.set(qn('w:val'), '16'); rpr.append(sz); r_el.append(rpr)
+t_el = OxmlElement('w:t'); t_el.text = "1"; r_el.append(t_el); fld.append(r_el)
+fp._p.append(fld)
+
+out = sys.argv[1] if len(sys.argv) > 1 else "OPIS_APLIKACJI_AMSteel_Quote.docx"
+doc.save(out)
+print(f"Saved: {out}")

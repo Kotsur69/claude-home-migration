@@ -1,0 +1,14 @@
+Please execute the following system cleanup and migration task immediately using your terminal tools. Follow your strict rules: do not overwrite arbitrary configuration files without verification, and do not include sensitive credentials.
+
+1. CLEAN UP RUFLO:
+- Inspect my global MCP configuration file at `C:\Users\mmazur\.claude.json`.
+- Safely remove the "ruflo" server entry from the "mcpServers" object to purge the 300+ phantom tools cluttering my session. Keep all other MCP settings intact.
+
+2. PACK EVERYTHING FOR MY HOME PC:
+- Create a clean migration ZIP file directly on my Desktop named `Claude_Home_Migration.zip`.
+- Include everything inside my `C:\Users\mmazur\.claude\` folder (including my ECC setup, rules, 300+ skills, project memories, and the luna-statusline helper).
+- EXCLUDE the global plugin cache directory (`.claude/plugins/cache`) to keep the file size small.
+- EXCLUDE my sensitive `.credentials.json` session token for security (I will log in fresh at home).
+- Include the updated `.claude.json` config file in the zip payload.
+
+Run these terminal actions using safe PowerShell commands and confirm when the ZIP is ready on my desktop.

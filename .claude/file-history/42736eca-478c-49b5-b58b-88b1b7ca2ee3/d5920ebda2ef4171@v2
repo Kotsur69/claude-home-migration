@@ -1,0 +1,39 @@
+{
+  "t2period": "6.07.2026 - 10.07.2026",
+  "t2date": "13.07.2026",
+  "t2summary": "Role użytkowników (młodszy/starszy handlowiec, administrator), obieg akceptacji ofert, panel administratora i panel seniora, migracje bazy danych, tłumaczenia PL/EN. Wdrożone na środowisko produkcyjne.",
+  "t3": [
+    ["Nowy typ użytkownika", "Administrator"],
+    ["Nowy typ użytkownika", "Starszy handlowiec"],
+    ["Nowy typ użytkownika", "Młodszy handlowiec"],
+    ["Baza danych", "Nowe migracje 004-006: kolumny roli i statusu oferty, pola recenzji, nowa tabela clients wraz z migracją istniejących danych klientów"],
+    ["Bezpieczeństwo i dostęp", "Kontrola uprawnień po stronie serwera (RBAC), rola zapisana w tokenie sesji, natychmiastowa blokada logowania po dezaktywacji konta"],
+    ["Baza klientów", "Wydzielenie danych klienta z ofert do osobnej tabeli, z zachowaniem historii dotychczasowych ofert"],
+    ["Wdrożenie na produkcję", "Aplikacja zbudowana i wdrożona na środowisko produkcyjne, migracje uruchomione na bazie danych"],
+    ["Rejestracja konta", "Dodano zakładanie konta (na razie tylko dla młodszego handlowca, jeszcze bez formularza w interfejsie)"],
+    ["Konta testowe", "Skrypt tworzący konta wszystkich ról do testów pełnego obiegu oferty"]
+  ],
+  "t4": [
+    ["Dodanie funkcjonalności", "Po najechaniu na kod pakowania (S01, S03, S12, S13, SB2, SB3) widoczny jest opis rodzaju pakowania. Opisy są dwujęzyczne PL/EN i można je w każdej chwili zmienić wedle zaleceń działu handlowego."]
+  ],
+  "t5": [
+    ["Obieg akceptacji", "Nowe statusy oferty: szkic, do weryfikacji, zatwierdzona, odrzucona, wysłana, z kolorowym oznaczeniem na liście ofert"],
+    ["Młodszy handlowiec", "Zamiast wysyłki do klienta ma przycisk Wyślij do weryfikacji, a jego oferty trafiają do akceptacji starszego handlowca"],
+    ["Starszy handlowiec", "Może zatwierdzić lub odrzucić z podaniem powodu oferty oczekujące na weryfikację oraz wysyłać własne oferty bez weryfikacji"],
+    ["Blokada edycji", "Oferta wysłana do klienta staje się tylko do odczytu, z blokadą po stronie serwera, nie tylko interfejsu"]
+  ],
+  "t6": [
+    ["Dodanie funkcjonalności", "Dodano generowanie PDF po stronie serwera obok dotychczasowego po stronie przeglądarki (docelowo jedna droga zostanie ujednolicona)"]
+  ],
+  "t7": [
+    ["Panel seniora", "Nowy ekran do recenzji ofert dla starszego handlowca, z zakładkami: oczekujące, zrecenzowane, wszystkie"],
+    ["Panel administratora", "Panel z pulpitem podsumowania, zarządzaniem handlowcami, bazą klientów oraz przeglądem wszystkich ofert z filtrami"],
+    ["Nawigacja", "Linki Panel Seniora i Panel Admina widoczne zależnie od roli zalogowanego użytkownika"],
+    ["Oznaczenia statusów", "Kolorowe plakietki statusu oferty spójne z jasnym i ciemnym motywem aplikacji"],
+    ["Dwujęzyczność PL/EN", "Tłumaczenia wszystkich nowych ekranów, statusów, przycisków obiegu oferty i komunikatów walidacji"]
+  ],
+  "plany_append": [
+    "Rejestracja konta: podłączenie zakładania konta do ekranu logowania z walidacją, albo zabezpieczenie/wyłączenie, jeśli rejestracja ma pozostać zamknięta",
+    "Ujednolicenie generowania PDF: wybór jednej drogi (przeglądarka albo serwer) i usunięcie zbędnej"
+  ]
+}

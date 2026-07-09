@@ -1,0 +1,19 @@
+---
+name: steelquote-hosting
+description: SteelQuote hosting/deploy jest przez AbacusAI DeepAgent; wdrożenie = prompt podmieniający pliki
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 42736eca-478c-49b5-b58b-88b1b7ca2ee3
+---
+
+SteelQuote (AMSteel Quote) jest hostowany przez **AbacusAI DeepAgent**, który zarządza też
+sekretami (DATABASE_URL, JWT_SECRET) i bazą Postgres. Aplikacja live: https://steelpricinghub.abacusai.app
+
+Wdrożenie zmian z lokalnego repo (`finance_calculator`) NIE idzie przez zwykły git deploy —
+robi się to **promptem do DeepAgent**, który podmienia pliki aplikacji na wersje z repo i
+uruchamia migracje SQL. Wzorcowy prompt: `AMSteel_Quote/Historia wersji oraz md/
+AMSteel_Quote_DeepAgent_Prompt_Wdrozenie_v2.md`.
+
+Lokalnie repo **nie ma `node_modules`** — `tsc`/`next build` nie odpalą się bez `npm install`;
+weryfikację typów/buildu robi się na środowisku DeepAgent. Zob. [[steelquote-project]].

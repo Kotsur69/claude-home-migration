@@ -1,0 +1,261 @@
+#!/usr/bin/env node
+/**
+ * LunaCore — statusline / mini-dashboard for Claude Code.
+ *
+ * Standalone, zero-dependency, cross-platform. Reads the JSON Claude Code pipes
+ * to a statusLine command on stdin and renders (matching the "LunaCore // dash"
+ * design — dark mono, cyan→magenta):
+ *
+ *   line 0  <model> • <ctx%> • <elapsed> • <mcp> • $<cost>     ┐
+ *   line 1  ● <60 send it   ● 60-85 compact maybe?  ● >85 …    │  big "LunaCore"
+ *   line 2  cheat → Ctrl+]  ·  LunaCore // dash                │  block wordmark
+ *   line 3  solo · lean · v1                                   │  on the right
+ *   line 4  (spacer)                                           ┘
+ *
+ * The three context LEDs are a legend: the CURRENT zone is bright, the others
+ * dimmed. Zones: green <60%, amber 60–85%, red >85% (the "compact this shit"
+ * zone). It never shells out to a CLI — ctx% is computed from the transcript,
+ * MCP count from local config.
+ *
+ * Env overrides:
+ *   LUNA_SL_ART=0            hide the big LunaCore wordmark (compact mode)
+ *   LUNA_SL_HIDE_COST=1      hide the cost segment
+ *   LUNA_SL_COST_SYMBOL=$    change the cost symbol (e.g. ⚡, €)
+ *   LUNA_SL_CTX_LIMIT=200000 context window size used for the % (default 200000)
+ *   LUNA_SL_CTX_WARN=60      amber threshold (default 60)
+ *   LUNA_SL_CTX_DANGER=85    red / "compact this shit" threshold (default 85)
+ *   LUNA_SL_CHEAT_URL=...    cheatsheet link shown on the hint line
+ *   LUNA_SL_NOCOLOR=1        disable ANSI colors
+ */
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+
+// ── config ──────────────────────────────────────────────────────
+const CTX_LIMIT = Number(process.env.LUNA_SL_CTX_LIMIT || 200000);
+const CTX_WARN = Number(process.env.LUNA_SL_CTX_WARN || 60);
+const CTX_DANGER = Number(process.env.LUNA_SL_CTX_DANGER || 85);
+const SHOW_ART = !/^(0|false|no|off)$/i.test(process.env.LUNA_SL_ART || '');
+const CHEAT_URL =
+  process.env.LUNA_SL_CHEAT_URL ||
+  'https://claude.ai/code/artifact/f3981a16-0794-4fd7-8a62-fd1f2f08d4fa';
+
+// ── ANSI helpers ────────────────────────────────────────────────
+const NOCOLOR = /^(1|true|yes|on)$/i.test(process.env.LUNA_SL_NOCOLOR || '');
+const c = (code, s) => (NOCOLOR ? s : `\x1b[${code}m${s}\x1b[0m`);
+const cyan = (s) => c('96', s);    // Luna / model — bright cyan
+const magenta = (s) => c('95', s); // Core / elapsed — bright magenta
+const green = (s) => c('92', s);   // ctx ok / cost
+const yellow = (s) => c('93', s);  // ctx warn
+const red = (s) => c('91', s);     // ctx danger
+const blue = (s) => c('94', s);    // mcp
+const gray = (s) => c('90', s);    // separators / dimmed
+const bold = (s) => c('1', s);
+const sep = gray('  •  ');
+const stripAnsi = (s) => s.replace(/\x1b\[[0-9;]*m/g, '');
+const padTo = (s, w) => s + ' '.repeat(Math.max(0, w - stripAnsi(s).length));
+
+// ── read stdin JSON (best-effort) ───────────────────────────────
+function readStdin() {
+  try {
+    const raw = fs.readFileSync(0, 'utf8');
+    return raw ? JSON.parse(raw) : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+// ── ctx% from the session transcript ────────────────────────────
+// Claude Code writes the session as JSONL at data.transcript_path. The last
+// message carrying a usage block tells us how many tokens are currently in the
+// context window. We tail the file so large sessions stay cheap. Returns 0 when
+// the session is fresh (no usage yet) so the green LED still shows.
+function contextPct(data) {
+  const tp = data.transcript_path;
+  try {
+    if (!tp || !fs.existsSync(tp)) {
+      if (data.exceeds_200k_tokens) return 100;
+      return 0;
+    }
+    const stat = fs.statSync(tp);
+    const readBytes = Math.min(stat.size, 262144); // last 256 KB
+    const fd = fs.openSync(tp, 'r');
+    const buf = Buffer.alloc(readBytes);
+    fs.readSync(fd, buf, 0, readBytes, stat.size - readBytes);
+    fs.closeSync(fd);
+    const lines = buf.toString('utf8').split('\n').filter(Boolean);
+    for (let i = lines.length - 1; i >= 0; i--) {
+      let obj;
+      try { obj = JSON.parse(lines[i]); } catch (_) { continue; }
+      const u = (obj.message && obj.message.usage) || obj.usage;
+      if (u && (u.input_tokens != null || u.cache_read_input_tokens != null)) {
+        const used =
+          (u.input_tokens || 0) +
+          (u.cache_read_input_tokens || 0) +
+          (u.cache_creation_input_tokens || 0);
+        return Math.min(100, Math.round((used / CTX_LIMIT) * 100));
+      }
+    }
+  } catch (_) { /* ignore */ }
+  return 0;
+}
+
+// ── MCP status from local config ────────────────────────────────
+// Native stdin carries no live MCP handshake state, so we report the number of
+// MCP servers actually wired up: user (~/.claude.json) + project (.mcp.json) +
+// every ENABLED plugin's own .mcp.json (disabled plugins skipped, so a turned-
+// off ruflo no longer counts). Deduped by name, cached 30s.
+function readJSON(p) {
+  try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (_) { return null; }
+}
+function mcpStatus() {
+  const cacheFile = path.join(os.tmpdir(), 'luna-sl-mcp.json');
+  try {
+    const st = fs.statSync(cacheFile);
+    if (Date.now() - st.mtimeMs < 30000) return readJSON(cacheFile).count;
+  } catch (_) { /* stale/missing → recompute */ }
+
+  const home = os.homedir();
+  const names = new Set();
+  const add = (o) => { if (o && typeof o === 'object') Object.keys(o).forEach((k) => names.add(k)); };
+
+  const uj = readJSON(path.join(home, '.claude.json'));
+  if (uj) add(uj.mcpServers);
+  const pj = readJSON(path.join(process.cwd(), '.mcp.json'));
+  if (pj) add(pj.mcpServers);
+
+  const settings = readJSON(path.join(home, '.claude', 'settings.json')) || {};
+  const enabled = settings.enabledPlugins || {};
+  const installed = readJSON(path.join(home, '.claude', 'plugins', 'installed_plugins.json'));
+  if (installed && installed.plugins) {
+    for (const pname of Object.keys(installed.plugins)) {
+      if (enabled[pname] === false) continue; // skip disabled plugins (e.g. ruflo)
+      for (const inst of installed.plugins[pname]) {
+        if (!inst || !inst.installPath) continue;
+        const mj = readJSON(path.join(inst.installPath, '.mcp.json'));
+        if (mj) add(mj.mcpServers);
+      }
+    }
+  }
+
+  const count = names.size;
+  try { fs.writeFileSync(cacheFile, JSON.stringify({ count, names: [...names] })); } catch (_) {}
+  return count;
+}
+
+// ── formatting ──────────────────────────────────────────────────
+function fmtDuration(ms) {
+  if (!ms || ms < 0) return null;
+  const s = Math.floor(ms / 1000);
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  if (h) return `${h}h${String(m).padStart(2, '0')}m`;
+  if (m) return `${m}m${String(sec).padStart(2, '0')}s`;
+  return `${sec}s`;
+}
+
+function ctxZone(pct) {
+  if (pct > CTX_DANGER) return 'r';
+  if (pct >= CTX_WARN) return 'y';
+  return 'g';
+}
+const ZONE_COLOR = { g: green, y: yellow, r: red };
+
+// ── big "LunaCore" block wordmark (5 rows) ──────────────────────
+// LUNA is tinted cyan, CORE magenta — matching the LunaCore // dash gradient.
+const GLYPHS = {
+  L: ['█    ', '█    ', '█    ', '█    ', '█████'],
+  U: ['█   █', '█   █', '█   █', '█   █', ' ███ '],
+  N: ['█   █', '██  █', '█ █ █', '█  ██', '█   █'],
+  A: [' ███ ', '█   █', '█████', '█   █', '█   █'],
+  C: [' ████', '█    ', '█    ', '█    ', ' ████'],
+  O: [' ███ ', '█   █', '█   █', '█   █', ' ███ '],
+  R: ['████ ', '█   █', '████ ', '█  █ ', '█   █'],
+  E: ['█████', '█    ', '████ ', '█    ', '█████'],
+};
+function wordRows(word) {
+  const rows = ['', '', '', '', ''];
+  for (const ch of word) {
+    const g = GLYPHS[ch];
+    for (let r = 0; r < 5; r++) rows[r] += g[r] + ' ';
+  }
+  return rows.map((r) => r.replace(/\s+$/, ''));
+}
+function artRows() {
+  const luna = wordRows('LUNA');
+  const core = wordRows('CORE');
+  return luna.map((r, i) => cyan(r) + '  ' + magenta(core[i]));
+}
+
+// ── main ────────────────────────────────────────────────────────
+function main() {
+  const data = readStdin();
+
+  // ── left column ──
+  const model =
+    (data.model && (data.model.display_name || data.model.id)) || 'claude';
+  const pct = contextPct(data);
+  const zone = ctxZone(pct);
+  const dur = fmtDuration(data.cost && data.cost.total_duration_ms);
+  const mcp = mcpStatus();
+
+  // line 0 — mini dashboard
+  const d0 = [];
+  d0.push(cyan(model));
+  d0.push(ZONE_COLOR[zone](`● ${pct}% ctx`));
+  if (dur) d0.push(magenta(dur));
+  d0.push((mcp > 0 ? green('●') : gray('●')) + blue(` mcp ${mcp}`));
+  const hideCost = /^(1|true|yes|on)$/i.test(process.env.LUNA_SL_HIDE_COST || '');
+  if (!hideCost && data.cost && typeof data.cost.total_cost_usd === 'number') {
+    const sym = process.env.LUNA_SL_COST_SYMBOL ?? '$';
+    d0.push(green(`${sym}${data.cost.total_cost_usd.toFixed(2)}`));
+  }
+  const line0 = d0.join(sep);
+
+  // line 1 — context LED legend (current zone bright, others dimmed)
+  const led = (z, label, color) => {
+    const txt = z === zone ? bold(color(label)) : gray(label);
+    return (z === zone ? color('●') : gray('●')) + ' ' + txt;
+  };
+  const line1 =
+    led('g', `<${CTX_WARN} send it`, green) + '   ' +
+    led('y', `${CTX_WARN}-${CTX_DANGER} compact maybe?`, yellow) + '   ' +
+    led('r', `>${CTX_DANGER} compact this shit`, red);
+
+  // line 2 — cheatsheet hint (local file — opens without Zscaler CSP)
+  const line2 = gray('cheat → ') + cyan('~/.claude/helpers/ecc-sciagawka-mati.html');
+
+  // line 3 — tagline
+  const line3 = gray('solo · lean · ') + cyan('v1');
+
+  const left = [line0, line1, line2, line3, ''];
+
+  if (!SHOW_ART) {
+    process.stdout.write(left.slice(0, 4).join('\n'));
+    return;
+  }
+
+  const art = artRows();
+  const artW = Math.max(...art.map((a) => stripAnsi(a).length));
+  // process.stdout.columns is undefined here (Claude Code pipes stdout, it's
+  // not a TTY), so the old `|| 120` fallback overshot narrower panels and
+  // Claude Code's own renderer wrapped the line mid-glyph — that's what broke
+  // the wordmark into garbled fragments. COLUMNS (if the shell exports it) is
+  // the real panel width; otherwise assume a conservative 100 and keep a
+  // 2-col safety margin so the line can never wrap.
+  const MARGIN = 2;
+  const cols = Number(process.env.COLUMNS) || process.stdout.columns || 100;
+  // gutter = push the wordmark to the panel's right edge; fall back to
+  // "widest left line + 3" if the panel is too narrow for that to fit
+  const LEFTW = Math.max(
+    Math.max(...left.map((s) => stripAnsi(s).length)) + 3,
+    cols - artW - MARGIN
+  );
+  const out = art.map((a, i) => padTo(left[i] || '', LEFTW) + a);
+  process.stdout.write(out.join('\n'));
+}
+
+main();

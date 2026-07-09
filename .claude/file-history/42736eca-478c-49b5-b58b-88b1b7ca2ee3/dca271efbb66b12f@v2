@@ -1,0 +1,21 @@
+const b = require('C:/Users/mmazur/source/repos/AMSteel_Quote/finance_calculator_deployed/nextjs_space/node_modules/bcryptjs');
+const fs = require('fs');
+
+const users = [
+  ['example@gmail.com', '1234', 'admin', 'Admin User'],
+  ['john@doe.com', 'johndoe123', 'junior', 'John Doe'],
+  ['starszy@email.com', '1234', 'senior', 'Starszy Użytkownik'],
+  ['mlodszy@email.com', '1234', 'junior', 'Młodszy Użytkownik'],
+];
+
+let sql = '';
+for (const [email, pw, role, name] of users) {
+  const h = b.hashSync(pw, 10);
+  sql += `INSERT INTO users (email, password, role, full_name, is_active) ` +
+         `VALUES ('${email}', '${h}', '${role}', '${name}', true) ` +
+         `ON CONFLICT (email) DO UPDATE SET password='${h}', role='${role}', full_name='${name}', is_active=true;\n`;
+}
+
+const out = 'C:/Users/mmazur/AppData/Local/Temp/claude/C--Users-mmazur--local-bin/42736eca-478c-49b5-b58b-88b1b7ca2ee3/scratchpad/seed.sql';
+fs.writeFileSync(out, sql, 'utf8');
+console.log('seed.sql zapisany, kont: ' + users.length);

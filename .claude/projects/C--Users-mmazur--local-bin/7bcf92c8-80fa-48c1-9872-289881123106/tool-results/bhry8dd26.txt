@@ -1,0 +1,274 @@
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/.env.example', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/.eslintrc.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/migrations/001_create_users_table.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/migrations/002_create_offers_table.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/migrations/003_add_client_info_to_offers.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/next-env.d.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/next.config.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/postcss.config.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/public/calculator.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/api/auth/login/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/api/auth/logout/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/api/offers/[id]/duplicate/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/api/offers/[id]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/api/offers/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/calculator/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/globals.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/offers/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/app/providers.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/components/Calculator.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/components/Navigation.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/contexts/LanguageContext.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/lib/auth.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/lib/calculatorData.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/lib/db.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/lib/pdfGenerator.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/lib/translations.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/src/middleware.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/tailwind.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator/tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/.env.example', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/.yarnrc.yml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/_components/calculator-panel.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/_components/header.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/_components/main-client.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/_components/offers-panel.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/api/auth/[...nextauth]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/api/auth/login/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/api/generate-pdf/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/api/offers/[id]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/api/offers/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/api/signup/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/globals.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/login/layout.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/login/login-client.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/login/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/offers/offers-client.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/offers/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/app/providers.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/theme-provider.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/accordion.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/alert-dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/alert.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/aspect-ratio.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/avatar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/badge.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/breadcrumb.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/button.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/calendar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/carousel.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/checkbox.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/collapsible.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/command.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/context-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/date-range-picker.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/drawer.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/dropdown-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/form.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/hover-card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/input-otp.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/input.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/label.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/menubar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/navigation-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/pagination.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/popover.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/progress.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/radio-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/resizable.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/scroll-area.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/select.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/separator.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/sheet.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/skeleton.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/slider.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/sonner.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/switch.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/table.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/tabs.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/task-card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/textarea.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/toast.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/toaster.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/toggle-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/toggle.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/tooltip.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/components/ui/use-toast.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/hooks/use-toast.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/auth-options.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/calc-data.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/db.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/lang-context.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/prisma.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/theme-context.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/translations.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/types.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/lib/utils.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/middleware.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/next-env.d.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/next.config.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/postcss.config.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/prisma/schema.prisma', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/public/favicon.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/public/robots.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/scripts/safe-seed.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/scripts/seed.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/tailwind.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'finance_calculator_deployed/nextjs_space/tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'steel_calculator_standalone.html', LF will be replaced by CRLF the next time Git touches it
+[master (root-commit) b4e96a8] Add finance_calculator and finance_calculator_deployed apps, rewrite README
+ 140 files changed, 27100 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 README.md
+ create mode 100644 finance_calculator/.env.example
+ create mode 100644 finance_calculator/.eslintrc.json
+ create mode 100644 finance_calculator/README.md
+ create mode 100644 finance_calculator/migrations/001_create_users_table.sql
+ create mode 100644 finance_calculator/migrations/002_create_offers_table.sql
+ create mode 100644 finance_calculator/migrations/003_add_client_info_to_offers.sql
+ create mode 100644 finance_calculator/next-env.d.ts
+ create mode 100644 finance_calculator/next.config.mjs
+ create mode 100644 finance_calculator/package-lock.json
+ create mode 100644 finance_calculator/package.json
+ create mode 100644 finance_calculator/postcss.config.mjs
+ create mode 100644 finance_calculator/public/calculator.html
+ create mode 100644 finance_calculator/src/app/api/auth/login/route.ts
+ create mode 100644 finance_calculator/src/app/api/auth/logout/route.ts
+ create mode 100644 finance_calculator/src/app/api/offers/[id]/duplicate/route.ts
+ create mode 100644 finance_calculator/src/app/api/offers/[id]/route.ts
+ create mode 100644 finance_calculator/src/app/api/offers/route.ts
+ create mode 100644 finance_calculator/src/app/calculator/page.tsx
+ create mode 100644 finance_calculator/src/app/favicon.ico
+ create mode 100644 finance_calculator/src/app/fonts/GeistMonoVF.woff
+ create mode 100644 finance_calculator/src/app/fonts/GeistVF.woff
+ create mode 100644 finance_calculator/src/app/globals.css
+ create mode 100644 finance_calculator/src/app/layout.tsx
+ create mode 100644 finance_calculator/src/app/offers/page.tsx
+ create mode 100644 finance_calculator/src/app/page.tsx
+ create mode 100644 finance_calculator/src/app/providers.tsx
+ create mode 100644 finance_calculator/src/components/Calculator.tsx
+ create mode 100644 finance_calculator/src/components/Navigation.tsx
+ create mode 100644 finance_calculator/src/contexts/LanguageContext.tsx
+ create mode 100644 finance_calculator/src/lib/auth.ts
+ create mode 100644 finance_calculator/src/lib/calculatorData.ts
+ create mode 100644 finance_calculator/src/lib/db.ts
+ create mode 100644 finance_calculator/src/lib/pdfGenerator.ts
+ create mode 100644 finance_calculator/src/lib/translations.ts
+ create mode 100644 finance_calculator/src/middleware.ts
+ create mode 100644 finance_calculator/tailwind.config.ts
+ create mode 100644 finance_calculator/tsconfig.json
+ create mode 100644 finance_calculator_deployed/nextjs_space/.env.example
+ create mode 100644 finance_calculator_deployed/nextjs_space/.yarnrc.yml
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/_components/calculator-panel.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/_components/header.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/_components/main-client.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/_components/offers-panel.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/api/auth/[...nextauth]/route.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/api/auth/login/route.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/api/generate-pdf/route.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/api/offers/[id]/route.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/api/offers/route.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/api/signup/route.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/globals.css
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/layout.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/login/layout.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/login/login-client.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/login/page.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/offers/offers-client.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/offers/page.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/page.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/app/providers.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components.json
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/theme-provider.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/accordion.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/alert-dialog.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/alert.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/aspect-ratio.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/avatar.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/badge.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/breadcrumb.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/button.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/calendar.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/card.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/carousel.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/checkbox.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/collapsible.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/command.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/context-menu.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/date-range-picker.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/dialog.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/drawer.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/dropdown-menu.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/form.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/hover-card.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/input-otp.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/input.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/label.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/menubar.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/navigation-menu.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/pagination.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/popover.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/progress.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/radio-group.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/resizable.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/scroll-area.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/select.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/separator.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/sheet.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/skeleton.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/slider.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/sonner.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/switch.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/table.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/tabs.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/task-card.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/textarea.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/toast.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/toaster.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/toggle-group.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/toggle.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/tooltip.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/components/ui/use-toast.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/hooks/use-toast.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/auth-options.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/calc-data.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/db.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/lang-context.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/prisma.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/theme-context.tsx
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/translations.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/types.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/lib/utils.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/middleware.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/next-env.d.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/next.config.js
+ create mode 100644 finance_calculator_deployed/nextjs_space/package.json
+ create mode 100644 finance_calculator_deployed/nextjs_space/postcss.config.js
+ create mode 100644 finance_calculator_deployed/nextjs_space/prisma/schema.prisma
+ create mode 100644 finance_calculator_deployed/nextjs_space/public/favicon.svg
+ create mode 100644 finance_calculator_deployed/nextjs_space/public/logo.jpg
+ create mode 100644 finance_calculator_deployed/nextjs_space/public/og-image.png
+ create mode 100644 finance_calculator_deployed/nextjs_space/public/robots.txt
+ create mode 100644 finance_calculator_deployed/nextjs_space/scripts/safe-seed.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/scripts/seed.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/tailwind.config.ts
+ create mode 100644 finance_calculator_deployed/nextjs_space/tsconfig.json
+ create mode 100644 index.html
+ create mode 100644 screenshot_cr_defaults.png
+ create mode 100644 screenshot_hdg_defaults.png
+ create mode 100644 screenshot_hrs_defaults.png
+ create mode 100644 steel_calculator_standalone.html

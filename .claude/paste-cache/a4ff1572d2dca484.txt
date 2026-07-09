@@ -1,0 +1,15 @@
+ 1. Confirmed, high severity — editing a saved item corrupts its price.
+  components/Calculator.tsx:469-482. The ZestawienieItem type only stores aggregated totals (sumaHuta, sumaSSC, marza, finalPrice) — it never snapshots the individual toggle selections a row was actually
+  configured with, unlike the old component which restored ~25 fields on edit. So: open any saved item for editing → every surcharge toggle silently reverts to whatever's currently on-screen → click "UPDATE
+  ITEM" → the row gets overwritten with a price computed from the wrong inputs. There's also no "editing in progress" banner anymore, so there's no visual cue this is happening.
+
+  2. Confirmed, medium severity — offer list lost row-expand preview.
+  Old offers-panel.tsx let you click a saved offer to expand and preview its line items inline. The new app/offers/page.tsx only shows an item count — no way to see what's in an offer without opening it in the
+  editor or exporting the PDF.
+
+  3. Low severity, cosmetic — logged-in user's email no longer displayed anywhere in the header/nav (was in the old header next to logout).
+
+  4. Not a bug, flagging for awareness — the login screen lost its dark/light toggle, but it also switched to hardcoded dark colors throughout, so that reads as an intentional "login is dark-only" decision
+  rather than an accident.
+
+  Ruled out as false alarms: open signup tab removed (matches your admin-only decision), the tab-based SPA → real routes restructure (intentional), duplicate-item (unaffected, clones the stored row directly).

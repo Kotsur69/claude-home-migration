@@ -1,0 +1,68 @@
+# STAN PROJEKTU — SteelQuote / AMSteel Quote
+
+> Plik roboczy „na czym stoimy". Luna czyta go, gdy zaczynamy pracę nad tym projektem.
+> Aktualizujemy po każdej większej zmianie. **Nie jest wypychany na GitHub** (jest w .gitignore).
+
+## Co to za projekt
+Aplikacja webowa do wyceny stali dla handlowców (Next.js 14 + PostgreSQL).
+Kalkulator HRS/CR/HDG, 200+ gatunków, dopłaty huty + przetwórcze (SSC), marża, transport,
+tryb coil/arkusz, zarządzanie ofertami, eksport PDF, dwujęzyczność PL/EN.
+
+## Lokalizacje
+- **Folder projektu:** `C:\Users\mmazur\source\repos\AMSteel_Quote`
+- **Kod źródłowy (nasze repo):** podfolder `finance_calculator` (Next.js `src/app`, zwykły `pg`, JWT/bcrypt, PDF lokalnie przez jsPDF). Tu piszemy zmiany.
+- **WERSJA WDROŻONA (produkcja):** `finance_calculator_deployed\nextjs_space` — to jest realny stan aplikacji na https://steelpricinghub.abacusai.app po integracji przez Abacus (2026-07-07). UWAGA: to NIE jest już stary szkielet — Abacus wziął nasze pliki v2 i wpiął je we własny scaffold. Różni się od `finance_calculator`: układ `app/` (nie `src/app/`), zainstalowane (ale uśpione) Prisma + NextAuth, `components/ui` (shadcn), rozdzielone konteksty, skrypty seed. Aktywny auth to nadal nasz JWT (jose), a klienci żyją w `pg` (migracja 006), nie w Prisma. **Traktować jako źródło prawdy o tym, co jest LIVE.**
+- **GitHub:** https://github.com/Kotsur69/SteelQuote — **publiczne**
+
+## Co już zrobione
+- Kod wypchnięty na GitHub (czysta historia; sekrety `.env`/`.env.local`, `pgdata`, `Downloads`, `Uploads` wykluczone przez `.gitignore`, dodane `.env.example`)
+- Dodana brakująca migracja `001_create_users_table.sql`
+- Przepisany `README.md`
+- **Dokumenty dla zarządu** (użytkownik przeniósł je do podfolderu `AMSteel_Quote\Historia wersji oraz md\`):
+  - `OPIS_APLIKACJI_AMSteel_Quote.docx` — opis działania (Word)
+  - `AMSteel_Quote_Raport_Wersji_SZABLON.docx` — szablon cotygodniowego raportu wersji (sekcje funkcjonalne: Ogólne / Kalkulator / Oferty / PDF / Interfejs). *Uwaga: kopia robocza może też leżeć w `repos\` root.*
+  - **Decyzja użytkownika:** ten folder jest wewnątrz publicznego repo i ma **pozostać publiczny** (materiał portfolio) — NIE dodawać do .gitignore, nie pytać ponownie.
+
+## Ważne szczegóły
+- **Logowanie:** e-mail + hasło (bcrypt), token JWT w cookie. Na wersji wdrożonej doszedł endpoint `/api/signup` (otwarty, tworzy wyłącznie konta `junior`, na razie NIE podlinkowany z ekranu logowania). Uwaga bezpieczeństwa: na publicznym URL każdy może samodzielnie założyć konto juniora — do podłączenia w UI z walidacją albo zabezpieczenia/wyłączenia.
+- **Role:** trzy role wdrożone (junior / senior / admin). Junior tworzy własne oferty i wysyła do weryfikacji; senior akceptuje/odrzuca oferty juniorów i wysyła własne bez weryfikacji; admin nie tworzy ofert, zarządza kontami i klientami oraz przegląda wszystkie oferty. Szczegóły w sekcji "Architektura v2" niżej.
+- **Budowa ceny:** cena wsadu (baza + dopłaty huty) → marża % (dom. 7%) → cena końcowa (+ekstra +transport +SSC) → wartość = cena × tony.
+
+## Architektura v2 — role i panel admina (WDROŻONE, 2026-07-07)
+Rozbudowa o role (junior/senior/admin), obieg akceptacji ofert i panel administracyjny
+została zaimplementowana. Kod czeka na uruchomienie migracji i weryfikację na hostingu.
+- Diagram: `Historia wersji oraz md\AMSteel_Quote_Architektura_role_i_panel_admina.drawio`
+- Plan wdrożenia (Opus 4.8): `Historia wersji oraz md\AMSteel_Quote_Plan_Rozbudowy_role_i_panel_admina.md`
+
+### Co powstało w kodzie
+- **Migracje** `migrations/004..006`:
+  - 004: `users.role` (junior/senior/admin), `full_name`, `is_active` + bootstrap admina (komentarz)
+  - 005: `offers.status` (draft/pending_review/approved/rejected/sent), `reviewed_by/at`,
+    `rejection_reason`, `sent_at` oraz zmiana FK `offers.user_id` na **ON DELETE SET NULL**
+    (decyzja podjęta: soft-delete kont + zabezpieczenie historii przed kaskadą; `user_id` NULLable)
+  - 006: tabela `clients` + migracja danych z kolumn `client_*` (dedup po NIP/e-mailu) +
+    `offers.client_id`; stare kolumny `client_*` zostają (nie usunięte)
+- **Auth/RBAC:** `role` w tokenie JWT; `src/lib/rbac.ts` (`requireRole` dociąga świeżą rolę
+  i `is_active` z bazy); `middleware.ts` chroni `/admin/*`
+- **API workflow:** `POST /api/offers/[id]/{submit,approve,reject,send}`, widoczność ofert wg
+  roli w `GET /api/offers`, blokada edycji/usuwania oferty `sent`, `GET /api/auth/me`
+- **API admina:** `/api/admin/users` (+ `/[id]/offers`), `/api/admin/clients`, `/api/admin/offers`
+  (filtry status/handlowiec/data); "usuwanie" handlowca = `is_active=false`
+- **Frontend:** przebudowana `/offers` (badge statusu, przyciski zależne od roli i statusu);
+  4 strony pod `/admin` (pulpit, handlowcy, klienci, oferty) + `AdminLayout`; link w `Navigation`
+- **Kalkulator:** opis pakowania na hover dla kodów S01/S03/S12/S13/SB2/SB3 (`ToggleGroup` + tłumaczenia)
+- **Tłumaczenia:** komplet kluczy PL/EN dla ról, statusów, obiegu i ekranów admina
+
+### Zostało do zrobienia
+- Uruchomienie migracji 004-006 na bazie (u dostawcy hostingu) + wskazanie konta admina
+- `npm install` i `next build` / typecheck na środowisku dostawcy (lokalnie brak `node_modules`)
+- Testy ręczne end-to-end trzech ról i pełnego obiegu oferty
+- Wybór klienta z bazy w kalkulatorze (świadomie poza zakresem tej tury)
+
+## Następne kroki / otwarte tematy
+- Wdrożenie v2 przez DeepAgent (AbacusAI, hosting + sekrety): podmiana plików aplikacji na
+  wersje z tego repo + uruchomienie migracji 004-006. Gotowy prompt: `Historia wersji oraz md\
+  AMSteel_Quote_DeepAgent_Prompt_Wdrozenie_v2.md`. Aplikacja: https://steelpricinghub.abacusai.app
+- Weryfikacja end-to-end na hostingu (3 role, cały obieg oferty) po migracjach.
+- Raport wersji 1.1 uzupełniony (`AMSteel_Quote_Raport_Wersji_1.1.docx`); zaktualizować jeszcze
+  `OPIS_APLIKACJI_AMSteel_Quote.docx` o role i panel admina.

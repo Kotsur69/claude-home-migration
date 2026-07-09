@@ -1,0 +1,32 @@
+# STAN PROJEKTU — SteelQuote / AMSteel Quote
+
+> Plik roboczy „na czym stoimy". Luna czyta go, gdy zaczynamy pracę nad tym projektem.
+> Aktualizujemy po każdej większej zmianie. **Nie jest wypychany na GitHub** (jest w .gitignore).
+
+## Co to za projekt
+Aplikacja webowa do wyceny stali dla handlowców (Next.js 14 + PostgreSQL).
+Kalkulator HRS/CR/HDG, 200+ gatunków, dopłaty huty + przetwórcze (SSC), marża, transport,
+tryb coil/arkusz, zarządzanie ofertami, eksport PDF, dwujęzyczność PL/EN.
+
+## Lokalizacje
+- **Folder projektu:** `C:\Users\mmazur\source\repos\AMSteel_Quote`
+- **Właściwa aplikacja:** podfolder `finance_calculator` (Next.js + zwykły `pg`, JWT/bcrypt, PDF lokalnie przez jsPDF)
+- **Ignorujemy:** `finance_calculator_deployed` — przestarzały szkielet (55 gatunków zamiast 200+, PDF przez zewnętrzną usługę Abacus.ai)
+- **GitHub:** https://github.com/Kotsur69/SteelQuote — **publiczne**
+
+## Co już zrobione
+- Kod wypchnięty na GitHub (czysta historia; sekrety `.env`/`.env.local`, `pgdata`, `Downloads`, `Uploads` wykluczone przez `.gitignore`, dodane `.env.example`)
+- Dodana brakująca migracja `001_create_users_table.sql`
+- Przepisany `README.md`
+- **Dokumenty dla zarządu** (użytkownik przeniósł je do podfolderu `AMSteel_Quote\Historia wersji oraz md\`):
+  - `OPIS_APLIKACJI_AMSteel_Quote.docx` — opis działania (Word)
+  - `AMSteel_Quote_Raport_Wersji_SZABLON.docx` — szablon cotygodniowego raportu wersji (sekcje funkcjonalne: Ogólne / Kalkulator / Oferty / PDF / Interfejs). *Uwaga: kopia robocza może też leżeć w `repos\` root.*
+  - **Decyzja użytkownika:** ten folder jest wewnątrz publicznego repo i ma **pozostać publiczny** (materiał portfolio) — NIE dodawać do .gitignore, nie pytać ponownie.
+
+## Ważne szczegóły
+- **Logowanie:** e-mail + hasło (bcrypt), token w cookie. Brak trasy rejestracji — użytkownicy zakładani ręcznie.
+- **Role:** obecnie jedna rola (handlowiec). **Planowany podział na starszy / młodszy handlowiec** — wtedy zaktualizujemy szablon raportu (dodać sekcje/uprawnienia) i opis.
+- **Budowa ceny:** cena wsadu (baza + dopłaty huty) → marża % (dom. 7%) → cena końcowa (+ekstra +transport +SSC) → wartość = cena × tony.
+
+## Następne kroki / otwarte tematy
+- (do uzupełnienia) — kolejna wersja raportu będzie 1.1

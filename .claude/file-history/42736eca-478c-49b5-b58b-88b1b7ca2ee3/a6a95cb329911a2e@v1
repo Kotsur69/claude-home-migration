@@ -1,0 +1,43 @@
+# STAN PROJEKTU — SteelQuote / AMSteel Quote
+
+> Plik roboczy „na czym stoimy". Luna czyta go, gdy zaczynamy pracę nad tym projektem.
+> Aktualizujemy po każdej większej zmianie. **Nie jest wypychany na GitHub** (jest w .gitignore).
+
+## Co to za projekt
+Aplikacja webowa do wyceny stali dla handlowców (Next.js 14 + PostgreSQL).
+Kalkulator HRS/CR/HDG, 200+ gatunków, dopłaty huty + przetwórcze (SSC), marża, transport,
+tryb coil/arkusz, zarządzanie ofertami, eksport PDF, dwujęzyczność PL/EN.
+
+## Lokalizacje
+- **Folder projektu:** `C:\Users\mmazur\source\repos\AMSteel_Quote`
+- **Właściwa aplikacja:** podfolder `finance_calculator` (Next.js + zwykły `pg`, JWT/bcrypt, PDF lokalnie przez jsPDF)
+- **Ignorujemy:** `finance_calculator_deployed` — przestarzały szkielet (55 gatunków zamiast 200+, PDF przez zewnętrzną usługę Abacus.ai)
+- **GitHub:** https://github.com/Kotsur69/SteelQuote — **publiczne**
+
+## Co już zrobione
+- Kod wypchnięty na GitHub (czysta historia; sekrety `.env`/`.env.local`, `pgdata`, `Downloads`, `Uploads` wykluczone przez `.gitignore`, dodane `.env.example`)
+- Dodana brakująca migracja `001_create_users_table.sql`
+- Przepisany `README.md`
+- **Dokumenty dla zarządu** (użytkownik przeniósł je do podfolderu `AMSteel_Quote\Historia wersji oraz md\`):
+  - `OPIS_APLIKACJI_AMSteel_Quote.docx` — opis działania (Word)
+  - `AMSteel_Quote_Raport_Wersji_SZABLON.docx` — szablon cotygodniowego raportu wersji (sekcje funkcjonalne: Ogólne / Kalkulator / Oferty / PDF / Interfejs). *Uwaga: kopia robocza może też leżeć w `repos\` root.*
+  - **Decyzja użytkownika:** ten folder jest wewnątrz publicznego repo i ma **pozostać publiczny** (materiał portfolio) — NIE dodawać do .gitignore, nie pytać ponownie.
+
+## Ważne szczegóły
+- **Logowanie:** e-mail + hasło (bcrypt), token w cookie. Brak trasy rejestracji — użytkownicy zakładani ręcznie.
+- **Role:** obecnie jedna rola (handlowiec). **Zaplanowany podział na starszy / młodszy handlowiec + panel admina** — zobacz sekcję niżej.
+- **Budowa ceny:** cena wsadu (baza + dopłaty huty) → marża % (dom. 7%) → cena końcowa (+ekstra +transport +SSC) → wartość = cena × tony.
+
+## Architektura v2 — role i panel admina (zaplanowane, 2026-07-07)
+Zaprojektowana rozbudowa o role (junior/senior/admin), obieg akceptacji ofert i panel
+administracyjny. Jeszcze nie zaimplementowana.
+- Diagram: `Historia wersji oraz md\AMSteel_Quote_Architektura_role_i_panel_admina.drawio`
+- Plan + prompt do wdrożenia (Opus 4.8): `Historia wersji oraz md\AMSteel_Quote_Plan_Rozbudowy_role_i_panel_admina.md`
+- Szacowany czas wdrożenia: ~14–18 h (bez opcjonalnego wyboru klienta z bazy w kalkulatorze)
+- Kluczowa decyzja do podjęcia przed startem: zmiana `ON DELETE CASCADE` na `offers.user_id`
+  (dziś usunięcie usera kasowałoby jego oferty) + wydzielenie tabeli `clients` z danych
+  wpisywanych dziś ręcznie w każdej ofercie.
+
+## Następne kroki / otwarte tematy
+- Wdrożenie architektury v2 (patrz wyżej) — start od migracji DB, potem RBAC, potem workflow ofert, potem panel admina.
+- Po wdrożeniu: zaktualizować szablon raportu wersji (dodać sekcje/uprawnienia ról) i `OPIS_APLIKACJI_AMSteel_Quote.docx` — kolejna wersja raportu będzie 1.1

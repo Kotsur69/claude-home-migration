@@ -1,0 +1,92 @@
+Add-Type -AssemblyName System.IO.Compression
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+
+$scratch = "C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\42736eca-478c-49b5-b58b-88b1b7ca2ee3\scratchpad"
+$orig = "C:\Users\mmazur\source\repos\AMSteel_Quote\Historia wersji oraz md\AMSteel_Quote_Raport_Wersji_1.1.docx"
+$work = Join-Path $scratch "work.docx"
+$jsonPath = Join-Path $scratch "report_content.json"
+
+Copy-Item -LiteralPath $orig -Destination $work -Force
+
+# --- read document.xml from work ---
+$fs = New-Object System.IO.FileStream($work,[System.IO.FileMode]::Open,[System.IO.FileAccess]::Read,[System.IO.FileShare]::ReadWrite)
+$zip = New-Object System.IO.Compression.ZipArchive($fs,[System.IO.Compression.ZipArchiveMode]::Read)
+$entry = $zip.Entries | Where-Object { $_.FullName -eq "word/document.xml" }
+$reader = New-Object System.IO.StreamReader($entry.Open())
+$xml = $reader.ReadToEnd()
+$reader.Close(); $zip.Dispose(); $fs.Close()
+
+# --- load content (UTF-8) ---
+$json = [System.IO.File]::ReadAllText($jsonPath, [System.Text.Encoding]::UTF8) | ConvertFrom-Json
+
+function Esc($s){ return ($s -replace '&','&amp;' -replace '<','&lt;' -replace '>','&gt;') }
+
+$row2tpl = '<w:tr><w:tc><w:tcPr><w:tcW w:w="1948" w:type="dxa"/></w:tcPr><w:p><w:r><w:t xml:space="preserve">{0}</w:t></w:r></w:p></w:tc><w:tc><w:tcPr><w:tcW w:w="6908" w:type="dxa"/></w:tcPr><w:p><w:r><w:t xml:space="preserve">{1}</w:t></w:r></w:p></w:tc></w:tr>'
+$t2r2tpl = '<w:tr><w:tc><w:tcPr><w:tcW w:w="1247" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:b/><w:color w:val="1F2A44"/></w:rPr><w:t>1.1</w:t></w:r></w:p></w:tc><w:tc><w:tcPr><w:tcW w:w="2551" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:color w:val="666666"/></w:rPr><w:t xml:space="preserve">{0}</w:t></w:r></w:p></w:tc><w:tc><w:tcPr><w:tcW w:w="1587" w:type="dxa"/></w:tcPr><w:p><w:r><w:rPr><w:color w:val="666666"/></w:rPr><w:t>{1}</w:t></w:r></w:p></w:tc><w:tc><w:tcPr><w:tcW w:w="3685" w:type="dxa"/></w:tcPr><w:p><w:r><w:t xml:space="preserve">{2}</w:t></w:r></w:p></w:tc></w:tr>'
+$bultpl  = '<w:p><w:pPr><w:pStyle w:val="Listapunktowana"/></w:pPr><w:r><w:t xml:space="preserve">{0}</w:t></w:r></w:p>'
+
+$tbls = [regex]::Matches($xml,'(?s)<w:tbl>.*?</w:tbl>')
+$T = @{}
+for($i=0;$i -lt $tbls.Count;$i++){ $T[$i] = $tbls[$i].Value }
+
+function Rebuild-TwoCol($tbl, $rows){
+  $idx = $tbl.IndexOf('<w:tr')
+  $prefix = $tbl.Substring(0,$idx)
+  $hdr = [regex]::Match($tbl,'(?s)<w:tr[ >].*?</w:tr>').Value
+  $body = ''
+  foreach($r in $rows){ $body += ($row2tpl -f (Esc $r[0]),(Esc $r[1])) }
+  return $prefix + $hdr + $body + '</w:tbl>'
+}
+
+# T3 (index 2) systemic, T4 (3) calculator, T5 (4) offers, T7 (6) UI
+$newT3 = Rebuild-TwoCol $T[2] $json.t3
+$newT4 = Rebuild-TwoCol $T[3] $json.t4
+$newT5 = Rebuild-TwoCol $T[4] $json.t5
+$newT7 = Rebuild-TwoCol $T[6] $json.t7
+
+# T2 (index 1): keep header + row3 (1.0), rebuild row2 (1.1)
+$t2 = $T[1]
+$idx = $t2.IndexOf('<w:tr'); $prefix = $t2.Substring(0,$idx)
+$trs = [regex]::Matches($t2,'(?s)<w:tr[ >].*?</w:tr>')
+$newR11 = $t2r2tpl -f (Esc $json.t2period),(Esc $json.t2date),(Esc $json.t2summary)
+$newT2 = $prefix + $trs[0].Value + $newR11 + $trs[2].Value + '</w:tbl>'
+
+$xml = $xml.Replace($T[1],$newT2).Replace($T[2],$newT3).Replace($T[3],$newT4).Replace($T[4],$newT5).Replace($T[6],$newT7)
+
+# --- plans bullets ---
+$planIdx = $xml.IndexOf('Plany na kolejny')
+$firstList = $xml.IndexOf('Listapunktowana',$planIdx)
+$startBul = $xml.LastIndexOf('<w:p',$firstList)
+$lastList = $xml.LastIndexOf('Listapunktowana')
+$endTag = $xml.IndexOf('</w:p>',$lastList)
+$endBul = $endTag + 6
+$newBlock = ''
+foreach($b in $json.plany){ $newBlock += ($bultpl -f (Esc $b)) }
+$xml = $xml.Substring(0,$startBul) + $newBlock + $xml.Substring($endBul)
+
+# --- global: long dashes -> hyphen ---
+$xml = $xml.Replace([char]0x2014,'-').Replace([char]0x2013,'-')
+
+# --- write document.xml back ---
+$fs2 = New-Object System.IO.FileStream($work,[System.IO.FileMode]::Open,[System.IO.FileAccess]::ReadWrite,[System.IO.FileShare]::None)
+$zip2 = New-Object System.IO.Compression.ZipArchive($fs2,[System.IO.Compression.ZipArchiveMode]::Update)
+$e2 = $zip2.GetEntry('word/document.xml'); $e2.Delete()
+$ne = $zip2.CreateEntry('word/document.xml')
+$enc = New-Object System.Text.UTF8Encoding($false)
+$sw = New-Object System.IO.StreamWriter($ne.Open(), $enc)
+$sw.Write($xml); $sw.Close()
+$zip2.Dispose(); $fs2.Close()
+
+Write-Output "OK work.docx zapisany. Weryfikacja tresci:"
+Write-Output "============================================"
+
+# --- verify ---
+$fs3 = New-Object System.IO.FileStream($work,[System.IO.FileMode]::Open,[System.IO.FileAccess]::Read,[System.IO.FileShare]::ReadWrite)
+$zip3 = New-Object System.IO.Compression.ZipArchive($fs3,[System.IO.Compression.ZipArchiveMode]::Read)
+$entry3 = $zip3.Entries | Where-Object { $_.FullName -eq "word/document.xml" }
+$reader3 = New-Object System.IO.StreamReader($entry3.Open())
+$vx = $reader3.ReadToEnd()
+$reader3.Close(); $zip3.Dispose(); $fs3.Close()
+$text = $vx -replace '</w:p>', "`n" -replace '<[^>]+>',''
+Add-Type -AssemblyName System.Web
+[System.Web.HttpUtility]::HtmlDecode($text)

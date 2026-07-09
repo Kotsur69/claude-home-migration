@@ -1,0 +1,7 @@
+# Lokalne testy przed deployem na Abacusa.
+# Nadpisuje DATABASE_URL na lokalnego przenośnego Postgresa (C:\Users\mmazur\pgportable + pgdata).
+# .env.local ma priorytet nad .env w Next.js. NIE wypychać na GitHub.
+DATABASE_URL=postgresql://postgres@localhost:5432/steelquote
+
+# Sekret JWT dla lokalnych sesji (dowolny, byle stały).
+JWT_SECRET=local-dev-jwt-secret-do-testow-2026

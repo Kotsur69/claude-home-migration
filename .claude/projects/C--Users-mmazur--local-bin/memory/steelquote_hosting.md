@@ -1,0 +1,35 @@
+---
+name: steelquote-hosting
+description: "SteelQuote — lokalnie dev/testy, AbacusAI DeepAgent = deploy wg zasad Abacusa"
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 42736eca-478c-49b5-b58b-88b1b7ca2ee3
+---
+
+SteelQuote (AMSteel Quote) ma **dwa światy** i nie wolno ich mieszać:
+
+1. **Lokalnie = development i testy.** Kod produkcyjny to `finance_calculator_deployed/nextjs_space`.
+   Postawione lokalne środowisko: przenośny Postgres 16.6 (`C:\Users\mmazur\pgportable`, dane
+   `pgdata`, port 5432), baza `steelquote`, migracje + konta testowe, `.env.local` na lokalną bazę,
+   `next dev` na http://localhost:3000. Start: `C:\Users\mmazur\steelquote-start.ps1`. Szczegóły w
+   `AMSteel_Quote/STAN_PROJEKTU.md`.
+
+2. **AbacusAI (DeepAgent) = hosting/deploy.** Produkcja: https://steelpricinghub.abacusai.app.
+   Abacus zarządza sekretami (DATABASE_URL, JWT_SECRET, ABACUSAI_API_KEY) i bazą.
+
+**Reguła użytkownika (WAŻNE):** gdy user prosi o **prompt** albo mówi „dobra wrzucamy do abacusAI",
+**oddaję prowadzenie deployu Abacusowi** — deploy MUSI działać wedle zasad AbacusAI. Nie replikuję
+deployu lokalnie, nie walczę z konwencjami Abacusa; lokalne środowisko służy tylko do dev/testów
+przed wypchnięciem. Wzorcowy prompt wdrożeniowy: `AMSteel_Quote/Historia wersji oraz md/
+AMSteel_Quote_DeepAgent_Prompt_Wdrozenie_v2.md`. Zbieramy zmiany lokalnie, deploy dopiero na wyraźną
+zgodę. Zob. [[steelquote-project]].
+
+**Zachowanie kodu + push as-is (user, WAŻNE):** wdrożony kod produkcyjny jest zachowany lokalnie w
+`nextjs_space` (nie zniknie, Abacus NIE buduje od zera — ma projekt, nasze zmiany to edycje na wierzchu).
+User chce wypychać na Abacusa **bez naprawiania wewnątrz Abacusa**: push = Abacus bierze nasz kod
+as-is i deployuje wg swoich zasad. Prompt wdrożeniowy ma to egzekwować („honoruj moje pliki, nie
+przepisuj, tylko zbuduj i wdróż"). Przed realnym pushem prompt trzeba zaktualizować o WSZYSTKIE
+dzisiejsze zmiany (PDF serwerowy, zamknięta rejestracja, fix light mode, `MIN_PASSWORD_LENGTH`=4
+NA STAŁE (decyzja usera — dział handlowy, krótkie hasła; NIE podnosić do 6), powłoka w PDF + layout,
+podpowiedzi pakowania) — poprzedni prompt v2 jest sprzed nich. Prompt v3 robimy pod koniec tygodnia.

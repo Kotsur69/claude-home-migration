@@ -1,0 +1,32 @@
+The fix
+Three small components, one per failure, laid out in the diagram below.
+
+clip-listener.exe — runs on Windows and encodes each clipboard image as a real PNG via Windows’ own GDI+. Sidesteps the BMP problem (#1).
+wsl-clip-bridge — runs in WSL, pushes the PNG onto the Linux clipboard with wl-copy, and re-asserts once half a second later if WSLg has overwritten our PNG with the broken BMP. Handles the silent clobber (#2).
+Alt+V keybinding in ~/.claude/keybindings.json — triggers Claude Code’s chat:imagePaste handler without going through Ctrl+V, which Windows Terminal would eat. Routes around #3.
+End-to-end flow: Snipping Tool → clip-listener.exe (Windows) → wsl-clip-bridge (WSL) → Linux clipboard → Claude Code
+
+What changes when the bridge is installed. Without it (top), images flow straight to Claude Code as broken BMP and the paste fails. With it (bottom), a Windows listener encodes a real PNG and a Linux script puts it on the Linux clipboard, re-asserting once after WSLg's overwrite. The user presses Alt+V instead of Ctrl+V to bypass Windows Terminal.
+
+End to end: snip an image in Windows, press Alt+V in Claude Code, image attaches.
+
+The full source — the Go listener, the bash bridge, the install script, and a more detailed walkthrough — lives at github.com/rajveerb/wsl-clip-bridge.
+
+Try it yourself
+Prerequisites: WSL2 with WSLg (Windows 11, or a recent Windows 10 + WSL update), Go 1.20+ on the Linux side for cross-compiling the Windows binary.
+
+git clone https://github.com/rajveerb/wsl-clip-bridge.git
+cd wsl-clip-bridge
+sudo apt install wl-clipboard
+./install.sh --with-autostart --with-keybinding
+Copy
+That last command does four things: cross-compiles the Windows-side listener (GOOS=windows GOARCH=amd64), drops the binaries into ~/.local/share/wsl-clip-bridge/ and ~/.local/bin/, appends a snippet to ~/.bashrc that starts the bridge on every new WSL shell, and writes ~/.claude/keybindings.json with alt+v → chat:imagePaste.
+
+Open a fresh WSL terminal. The bridge starts in the background. Verify:
+
+# copy any image in Windows (Win+Shift+S)
+wl-paste -l   # should print image/png
+Copy
+Then in Claude Code, press Alt+V. The image attaches.
+
+The repo README walks through each step in more detail (running without the install script, stopping or uninstalling the bridge, debugging via the log).

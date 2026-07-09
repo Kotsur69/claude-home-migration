@@ -1,0 +1,34 @@
+# Session: 2026-07-09
+**Date:** 2026-07-09
+**Started:** 09:36
+**Last Updated:** 09:42
+**Project:** bin
+**Branch:** unknown
+**Worktree:** C:\Users\mmazur\.local\bin
+
+---
+<!-- ECC:SUMMARY:START -->
+## Session Summary
+
+### Tasks
+- hi we were working on the dashboard i wanted to have LUNACORE writing on the right of the screen.  Stop talking about opacity, acrylic layers, or visual styles. I don't want to change the look of the 
+- [Image: source: C:\Users\mmazur\AppData\Local\Temp\winclipshot\clip-20260709-092811.118.png]
+- placement is good we did it but lunacore wiritng is still broken. The placement is perfect now, but the ASCII art for "LUNACORE" is broken. It looks like it got split into two separate HTML elements o
+
+### Files Modified
+- C:\Users\mmazur\.claude\helpers\luna-statusline.cjs
+
+### Tools Used
+Grep, Read, Bash, Edit
+
+### Stats
+- Total user messages: 3
+<!-- ECC:SUMMARY:END -->
+
+### Notes for Next Session
+-
+
+### Context to Load
+```
+[relevant files]
+```

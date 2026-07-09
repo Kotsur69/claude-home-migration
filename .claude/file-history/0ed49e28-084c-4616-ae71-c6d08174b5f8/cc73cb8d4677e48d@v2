@@ -1,0 +1,22 @@
+---
+name: ecc-vs-ruflo-decision
+description: "Rozstrzygnięcie ECC vs ruflo — ruflo wyłączony, ECC (Everything Claude Code) wchodzi"
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 0ed49e28-084c-4616-ae71-c6d08174b5f8
+---
+
+Decyzja z 2026-07-09: **ruflo OUT, ECC IN.**
+
+**Why:** ruflo (fork claude-flow, ruvnet/ruflo) to orkiestrator rojów agentów; jego hooki są POSIX-only i na Windowsie użytkownika były martwe (brak node-owego override w settings.json, wszystko exit 0/ciche). Zero realnych wywołań w historii. Sprzeczny z filozofią lean solo-dev. ECC (affaan-m/ECC, "Everything Claude Code") to warstwa optymalizacji harnessa: skille + reguły per-język + hooki automatyzacji, node-owe = działają na Windowsie natywnie.
+
+**How to apply:**
+- ruflo-core@ruflo ustawiony na `false` w `~/.claude/settings.json`.
+- ECC instaluje się jako plugin: `/plugin marketplace add https://github.com/affaan-m/ECC` + `/plugin install ecc@ecc` (te komendy musi wpisać użytkownik — agent nie odpala /plugin). Plugin ładuje skille+komendy+HOOKI.
+- NIE odpalać potem `install.ps1 --profile full` (duplikaty + zepsute hooki).
+- Reguły wgrane ręcznie do `~/.claude/rules/ecc/`: common, typescript, react, web, python (całe katalogi).
+- Statusline: własny `~/.claude/helpers/luna-statusline.cjs` (niezależny od ruflo/ECC) — pokazuje model, %ctx, czas, mcp N, $koszt. Wpięty w settings.json.
+- Auto-routing design-skilli (ui-ux-pro-max/impeccable/frontend-design) w `~/.claude/CLAUDE.md`.
+
+Powiązane: [[claude-tooling-setup]] [[user-preferences]]

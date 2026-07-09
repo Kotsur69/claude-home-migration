@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "plugins": {
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\mmazur\\.claude\\plugins\\cache\\claude-plugins-official\\frontend-design\\unknown",
+        "version": "unknown",
+        "installedAt": "2026-07-07T05:25:40.817Z",
+        "lastUpdated": "2026-07-09T12:32:56.569Z"
+      }
+    ],
+    "ui-ux-pro-max@ui-ux-pro-max-skill": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\mmazur\\.claude\\plugins\\cache\\ui-ux-pro-max-skill\\ui-ux-pro-max\\2.6.2",
+        "version": "2.6.2",
+        "installedAt": "2026-07-08T13:12:20.597Z",
+        "lastUpdated": "2026-07-08T13:12:20.597Z",
+        "gitCommitSha": "12b486b22e67f5d887962ef8351c1ac863bfaeb9"
+      }
+    ],
+    "impeccable@impeccable": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\mmazur\\.claude\\plugins\\cache\\impeccable\\impeccable\\3.9.1",
+        "version": "3.9.1",
+        "installedAt": "2026-07-08T13:25:33.419Z",
+        "lastUpdated": "2026-07-08T13:25:33.419Z",
+        "gitCommitSha": "a5310c9cdae4df011ad9b56de807484250977e9a"
+      }
+    ],
+    "document-skills@anthropic-agent-skills": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\mmazur\\.claude\\plugins\\cache\\anthropic-agent-skills\\document-skills\\9d2f1ae18723",
+        "version": "9d2f1ae18723",
+        "installedAt": "2026-07-08T13:25:55.722Z",
+        "lastUpdated": "2026-07-08T13:25:55.722Z",
+        "gitCommitSha": "9d2f1ae187231d8199c64b5b762e1bdf2244733d"
+      }
+    ],
+    "ecc@ecc": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\mmazur\\.claude\\plugins\\cache\\ecc\\ecc\\2.0.0",
+        "version": "2.0.0",
+        "installedAt": "2026-07-09T06:08:37.516Z",
+        "lastUpdated": "2026-07-09T06:08:37.516Z",
+        "gitCommitSha": "38a7ebbe3294be9bfda5612c6d696742ade6fbb2"
+      }
+    ]
+  }
+}

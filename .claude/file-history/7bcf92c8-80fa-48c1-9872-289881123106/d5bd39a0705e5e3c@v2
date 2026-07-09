@@ -1,0 +1,251 @@
+#!/usr/bin/env python3
+"""Generates a reusable Word (.docx) weekly version-report template for
+SafetyHub BHP, for presentation to management."""
+
+from docx import Document
+from docx.shared import Pt, RGBColor, Cm
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+
+# Brand colors
+NAVY = RGBColor(0x1F, 0x2A, 0x44)      # dark navy for headings
+BLUE = RGBColor(0x2B, 0x57, 0xA6)      # accent blue
+GREY = RGBColor(0x66, 0x66, 0x66)      # muted grey
+WHITE = RGBColor(0xFF, 0xFF, 0xFF)
+HEADER_FILL = "2B57A6"                   # table header cell fill
+LIGHT_FILL = "EEF2F8"                     # light row fill
+
+doc = Document()
+
+# ---- base style ----
+normal = doc.styles['Normal']
+normal.font.name = 'Calibri'
+normal.font.size = Pt(11)
+
+def set_cell_bg(cell, hex_color):
+    tcPr = cell._tc.get_or_add_tcPr()
+    shd = OxmlElement('w:shd')
+    shd.set(qn('w:val'), 'clear')
+    shd.set(qn('w:color'), 'auto')
+    shd.set(qn('w:fill'), hex_color)
+    tcPr.append(shd)
+
+def set_cell_text(cell, text, bold=False, color=None, size=11, align=None):
+    cell.text = ''
+    p = cell.paragraphs[0]
+    if align:
+        p.alignment = align
+    run = p.add_run(text)
+    run.bold = bold
+    run.font.size = Pt(size)
+    if color:
+        run.font.color.rgb = color
+    return p
+
+def add_heading(text, size=14, color=NAVY, space_before=14, space_after=6):
+    p = doc.add_paragraph()
+    p.paragraph_format.space_before = Pt(space_before)
+    p.paragraph_format.space_after = Pt(space_after)
+    run = p.add_run(text)
+    run.bold = True
+    run.font.size = Pt(size)
+    run.font.color.rgb = color
+    return p
+
+def add_bottom_border(paragraph, color="2B57A6", size="12"):
+    pPr = paragraph._p.get_or_add_pPr()
+    pbdr = OxmlElement('w:pBdr')
+    bottom = OxmlElement('w:bottom')
+    bottom.set(qn('w:val'), 'single')
+    bottom.set(qn('w:sz'), size)
+    bottom.set(qn('w:space'), '4')
+    bottom.set(qn('w:color'), color)
+    pbdr.append(bottom)
+    pPr.append(pbdr)
+
+# ============================================================
+# TITLE BLOCK
+# ============================================================
+title = doc.add_paragraph()
+title.alignment = WD_ALIGN_PARAGRAPH.LEFT
+r = title.add_run('SafetyHub BHP')
+r.bold = True
+r.font.size = Pt(28)
+r.font.color.rgb = NAVY
+
+sub = doc.add_paragraph()
+r = sub.add_run('Raport wersji / Dziennik zmian')
+r.font.size = Pt(15)
+r.font.color.rgb = BLUE
+add_bottom_border(sub)
+sub.paragraph_format.space_after = Pt(14)
+
+# metadata table (2 columns: label | value)
+meta = doc.add_table(rows=4, cols=2)
+meta.alignment = WD_TABLE_ALIGNMENT.LEFT
+meta.autofit = False
+meta_rows = [
+    ("Programista:", "Mateusz Mazur"),
+    ("Wersja:", "1.1"),
+    ("Okres developmentu:", "__.__.____  –  __.__.____"),
+    ("Data raportu:", "__.__.____"),
+]
+for i, (label, value) in enumerate(meta_rows):
+    c0 = meta.rows[i].cells[0]
+    c1 = meta.rows[i].cells[1]
+    set_cell_text(c0, label, bold=True, color=NAVY)
+    set_cell_text(c1, value, color=GREY if "__" in value else NAVY)
+    c0.width = Cm(5.5)
+    c1.width = Cm(10)
+
+doc.add_paragraph()
+
+# ============================================================
+# VERSION HISTORY TABLE
+# ============================================================
+add_heading('Historia wersji', size=14)
+note = doc.add_paragraph()
+rn = note.add_run('Pełny rejestr wszystkich wydanych wersji — najnowsza na górze.')
+rn.italic = True
+rn.font.size = Pt(9.5)
+rn.font.color.rgb = GREY
+
+hist = doc.add_table(rows=1, cols=4)
+hist.style = 'Table Grid'
+hist.alignment = WD_TABLE_ALIGNMENT.LEFT
+hist_headers = ["Wersja", "Okres", "Data", "Krótkie podsumowanie zmian"]
+hist_widths = [Cm(2.2), Cm(4.5), Cm(2.8), Cm(6.5)]
+for j, h in enumerate(hist_headers):
+    cell = hist.rows[0].cells[j]
+    set_cell_bg(cell, HEADER_FILL)
+    set_cell_text(cell, h, bold=True, color=WHITE, align=WD_ALIGN_PARAGRAPH.LEFT)
+    cell.width = hist_widths[j]
+
+# seed rows: v1.0 (baseline) + empty v1.1 to fill in
+seed_history = [
+    ("1.1", "__.__.____ – __.__.____", "__.__.____", ""),
+    ("1.0", "do dnia __.__.____", "__.__.____", "Wersja bazowa — stan wyjściowy aplikacji."),
+]
+for ver, okres, data, summary in seed_history:
+    row = hist.add_row()
+    set_cell_text(row.cells[0], ver, bold=True, color=NAVY)
+    set_cell_text(row.cells[1], okres, color=GREY if "__" in okres else NAVY)
+    set_cell_text(row.cells[2], data, color=GREY if "__" in data else NAVY)
+    set_cell_text(row.cells[3], summary, color=NAVY)
+    for j in range(4):
+        row.cells[j].width = hist_widths[j]
+
+doc.add_paragraph()
+
+# ============================================================
+# PER-ROLE CHANGE SECTIONS
+# ============================================================
+intro = doc.add_paragraph()
+ri = intro.add_run('Zmiany w wersji 1.1')
+ri.bold = True
+ri.font.size = Pt(16)
+ri.font.color.rgb = NAVY
+add_bottom_border(intro)
+intro.paragraph_format.space_before = Pt(10)
+intro.paragraph_format.space_after = Pt(4)
+
+hint = doc.add_paragraph()
+rh = hint.add_run('W każdej sekcji wpisz zmiany (np. „Nowa funkcja: możliwość sprawdzenia rankingu", '
+                  '„Poprawka: …") lub pozostaw „Brak zmian".')
+rh.italic = True
+rh.font.size = Pt(9.5)
+rh.font.color.rgb = GREY
+
+role_sections = [
+    ("Zmiany ogólne / systemowe", "Zmiany niezależne od roli — np. wydajność, PWA, powiadomienia, bezpieczeństwo."),
+    ("Pracownik", "Zmiany widoczne dla szeregowego pracownika magazynu."),
+    ("Brygadzista", "Zmiany w narzędziach zarządzania zespołem i zatwierdzania."),
+    ("Kierownik", "Zmiany w nadzorze nad brygadzistami i decyzjach nagrodowych."),
+    ("Administrator", "Zmiany w panelu administracyjnym, konfiguracji i analityce."),
+]
+
+for name, desc in role_sections:
+    add_heading(name, size=13, color=BLUE, space_before=12, space_after=2)
+    d = doc.add_paragraph()
+    rd = d.add_run(desc)
+    rd.italic = True
+    rd.font.size = Pt(9)
+    rd.font.color.rgb = GREY
+    d.paragraph_format.space_after = Pt(4)
+
+    t = doc.add_table(rows=2, cols=2)
+    t.style = 'Table Grid'
+    t.alignment = WD_TABLE_ALIGNMENT.LEFT
+    # header
+    h0 = t.rows[0].cells[0]
+    h1 = t.rows[0].cells[1]
+    set_cell_bg(h0, LIGHT_FILL)
+    set_cell_bg(h1, LIGHT_FILL)
+    set_cell_text(h0, "Typ", bold=True, color=NAVY)
+    set_cell_text(h1, "Opis zmiany", bold=True, color=NAVY)
+    h0.width = Cm(3.5)
+    h1.width = Cm(12.5)
+    # one empty row prefilled with "Brak zmian"
+    set_cell_text(t.rows[1].cells[0], "—", color=GREY)
+    set_cell_text(t.rows[1].cells[1], "Brak zmian", color=GREY)
+    t.rows[1].cells[0].width = Cm(3.5)
+    t.rows[1].cells[1].width = Cm(12.5)
+
+# ============================================================
+# KNOWN ISSUES / IN PROGRESS
+# ============================================================
+add_heading('Znane problemy / prace w toku', size=13, color=NAVY, space_before=16)
+ki = doc.add_paragraph(style='List Bullet')
+ki.add_run('—').font.color.rgb = GREY
+
+# ============================================================
+# NEXT WEEK PLANS
+# ============================================================
+add_heading('Plany na kolejny tydzień', size=13, color=NAVY, space_before=10)
+for _ in range(2):
+    p = doc.add_paragraph(style='List Bullet')
+    p.add_run('—').font.color.rgb = GREY
+
+# ============================================================
+# SIGN-OFF
+# ============================================================
+doc.add_paragraph()
+sign = doc.add_paragraph()
+add_bottom_border(sign)
+sign.paragraph_format.space_before = Pt(20)
+
+st = doc.add_table(rows=1, cols=2)
+st.alignment = WD_TABLE_ALIGNMENT.LEFT
+set_cell_text(st.rows[0].cells[0], "Sporządził:  Mateusz Mazur", color=NAVY)
+set_cell_text(st.rows[0].cells[1], "Zatwierdził:  ______________________", color=GREY,
+              align=WD_ALIGN_PARAGRAPH.RIGHT)
+
+# ============================================================
+# FOOTER with page numbers
+# ============================================================
+section = doc.sections[0]
+footer = section.footer
+fp = footer.paragraphs[0]
+fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+run = fp.add_run("SafetyHub BHP — Raport wersji  |  Mateusz Mazur  |  Strona ")
+run.font.size = Pt(8)
+run.font.color.rgb = GREY
+# page number field
+fldSimple = OxmlElement('w:fldSimple')
+fldSimple.set(qn('w:instr'), 'PAGE')
+r_el = OxmlElement('w:r')
+rpr = OxmlElement('w:rPr')
+sz = OxmlElement('w:sz'); sz.set(qn('w:val'), '16')
+rpr.append(sz)
+r_el.append(rpr)
+t_el = OxmlElement('w:t'); t_el.text = "1"
+r_el.append(t_el)
+fldSimple.append(r_el)
+fp._p.append(fldSimple)
+
+import sys
+out = sys.argv[1] if len(sys.argv) > 1 else "SafetyHub_BHP_Raport_Wersji_SZABLON.docx"
+doc.save(out)
+print(f"Saved: {out}")

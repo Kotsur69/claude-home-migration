@@ -1,0 +1,42 @@
+# Session: 2026-07-09
+**Date:** 2026-07-09
+**Started:** 09:05
+**Last Updated:** 09:16
+**Project:** helpers
+**Branch:** unknown
+**Worktree:** C:\Users\mmazur\.claude\helpers
+
+---
+<!-- ECC:SUMMARY:START -->
+## Session Summary
+
+### Tasks
+- hi i have upgraded you by adding ecc. we also worked on new dashboard when we had ruflo. i wanted to have context balls, cheetsheet thing etc but after i restarted claude as you wanted me to it seems 
+- [Image: source: C:\Users\mmazur\AppData\Local\Temp\winclipshot\clip-20260709-083950.376.png]
+- no no, after i told you to delete ruflo i said that i will be missing a lot of stuff that ruflo had so you rebuited that for me. Also i wanted to have the cheetsheet about rules and good habits that y
+- [Image: source: C:\Users\mmazur\AppData\Local\Temp\winclipshot\clip-20260709-084806.068.png]
+- and this will be same as https://claude.ai/code/artifact/5c3f7079-0816-4e0d-b08d-45cd1ae9633b?org=4d72d501-0afb-4966-90c7-08e417f981cd i dont know what is exactly in this web file because i cannot ope
+- give me the ecc ściagawka mati because this is the most important thing for me and after i click ctrl ] give me full command to paste it like in powershell or full path to file so i can copy it to bro
+
+### Files Modified
+- C:\Users\mmazur\.claude\helpers\luna-statusline.cjs
+- C:\Users\mmazur\.claude\projects\C--Users-mmazur--local-bin\memory\lunacore_statusline.md
+- C:\Users\mmazur\.claude\projects\C--Users-mmazur--local-bin\memory\MEMORY.md
+- C:\Users\mmazur\.claude\helpers\lunacore-cheatsheet.html
+- C:\Users\mmazur\Desktop\LunaCore cheatsheet.url
+- C:\Users\mmazur\.claude\helpers\ecc-sciagawka-mati.html
+
+### Tools Used
+Bash, Read, ToolSearch, WebFetch, Write, Edit, AskUserQuestion
+
+### Stats
+- Total user messages: 6
+<!-- ECC:SUMMARY:END -->
+
+### Notes for Next Session
+-
+
+### Context to Load
+```
+[relevant files]
+```

@@ -1,0 +1,19 @@
+---
+name: User preferences
+description: How the user likes to interact and personal preferences
+type: user
+originSessionId: d111ea3c-0914-4cb7-af80-96a9b5a69b60
+---
+User prefers to call the assistant "Luna" and wants this name used in future conversations.
+
+User is a fullstack engineer working on: mobile apps, websites, big data analysis — "basically everything."
+
+Tech stack across projects:
+- Frontend: React 19, Next.js 14 App Router, Vite, TypeScript, Tailwind CSS, Leaflet.js
+- Backend: Python (Flask), Node.js/Next.js, Prisma ORM
+- Data/ML: pandas, numpy, scikit-learn, XGBoost, matplotlib, openpyxl, pandas-ta
+- Databases: PostgreSQL, SQLite
+- APIs: Binance, Google Drive, OpenAI, now Anthropic
+- Local LLMs: LM Studio (Mistral 3B) — being replaced with Claude API
+
+Projects in C:\Users\Kotsur69\source\repos: crypto_trading_bot, kalkulator ofertownik (Next.js SaaS), logistics_analyzer5, mm_vite, mm_software_solutions(v1), pdf_aggregator, steel_analysis, CV.

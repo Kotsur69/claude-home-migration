@@ -1,0 +1,869 @@
+Get-ChildItem : Nie można odnaleźć części ścieżki „C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins
+\marketplaces\claude-plugins-official\plugins\claude-code-setup\skills\claude-automation-recommender\references”.
+At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psm1:675 char:20
++     $dirContents = Get-ChildItem -LiteralPath $sourceDirPath -Recurse
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ReadError: (C:\Users\mmazur...nder\references:String) [Get-ChildItem], DirectoryNotFoundException
+    + FullyQualifiedErrorId : DirIOError,Microsoft.PowerShell.Commands.GetChildItemCommand
+ 
+Get-ChildItem : Nie można odnaleźć części ścieżki „C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins
+\marketplaces\claude-plugins-official\plugins\claude-md-management\skills\claude-md-improver\references”.
+At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psm1:675 char:20
++     $dirContents = Get-ChildItem -LiteralPath $sourceDirPath -Recurse
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ReadError: (C:\Users\mmazur...over\references:String) [Get-ChildItem], DirectoryNotFoundException
+    + FullyQualifiedErrorId : DirIOError,Microsoft.PowerShell.Commands.GetChildItemCommand
+ 
+Get-ChildItem : Nie można odnaleźć części ścieżki „C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins
+\marketplaces\impeccable\tests\framework-fixtures\nextjs-turborepo\files\packages\shared\src\next-config”.
+At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psm1:675 char:20
++     $dirContents = Get-ChildItem -LiteralPath $sourceDirPath -Recurse
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ReadError: (C:\Users\mmazur...src\next-config:String) [Get-ChildItem], DirectoryNotFoundException
+    + FullyQualifiedErrorId : DirIOError,Microsoft.PowerShell.Commands.GetChildItemCommand
+ 
+Get-ChildItem : Nie można odnaleźć części ścieżki „C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins
+\marketplaces\impeccable\tests\framework-fixtures\nextjs-turborepo\files\packages\shared\src\security”.
+At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psm1:675 char:20
++     $dirContents = Get-ChildItem -LiteralPath $sourceDirPath -Recurse
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ReadError: (C:\Users\mmazur...ed\src\security:String) [Get-ChildItem], DirectoryNotFoundException
+    + FullyQualifiedErrorId : DirIOError,Microsoft.PowerShell.Commands.GetChildItemCommand
+ 
+Get-ChildItem : Nie można odnaleźć części ścieżki „C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins
+\marketplaces\ruflo\plugins\ruflo-workflows\scripts\fixtures\gaia-audit\planted-repo\v3\@claude-flow\cli”.
+At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psm1:675 char:20
++     $dirContents = Get-ChildItem -LiteralPath $sourceDirPath -Recurse
++                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ReadError: (C:\Users\mmazur...claude-flow\cli:String) [Get-ChildItem], DirectoryNotFoundException
+    + FullyQualifiedErrorId : DirIOError,Microsoft.PowerShell.Commands.GetChildItemCommand
+ 
+Exception calling "GetFiles" with "0" argument(s): "Nie można odnaleźć części ścieżki „C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\clau
+de-migration-staging\.claude\plugins\marketplaces\claude-plugins-official\plugins\claude-code-setup\skills\claude-automation-recommender\references”."
+At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psm1:689 char:13
++             $files = $currentContent.GetFiles()
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : DirectoryNotFoundException
+ 
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\.git\objects\pack\pack-6b6079a8726e15dcfd9fa9bb3aafd18bd30999b4.idx: Nie można odnaleźć części ścieżki „pack-6b6079a8726e15dcfd9fa9bb3aafd18bd30999b4.idx”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (pack-6b6079a872...18bd30999b4.idx:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\.git\objects\pack\pack-6b6079a8726e15dcfd9fa9bb3aafd18bd30999b4.pack: Nie można odnaleźć części ścieżki „pack-6b6079a8726e15dcfd9fa9bb3aafd18bd30999b4.pack”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (pack-6b6079a872...8bd30999b4.pack:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\.git\objects\pack\pack-6b6079a8726e15dcfd9fa9bb3aafd18bd30999b4.rev: Nie można odnaleźć części ścieżki „pack-6b6079a8726e15dcfd9fa9bb3aafd18bd30999b4.rev”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (pack-6b6079a872...18bd30999b4.rev:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\.git\objects\pack: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (pack:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\.git\objects: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (objects:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\.git: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (.git:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ecma\fouth-edition\opc-contentTypes.xsd: Nie można odnaleźć części ścieżki „opc-contentTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-contentTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ecma\fouth-edition\opc-coreProperties.xsd: Nie można odnaleźć części ścieżki „opc-coreProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-coreProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ecma\fouth-edition\opc-digSig.xsd: Nie można odnaleźć części ścieżki „opc-digSig.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-digSig.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ecma\fouth-edition\opc-relationships.xsd: Nie można odnaleźć części ścieżki „opc-relationships.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-relationships.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ecma\fouth-edition: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (fouth-edition:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ecma: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (ecma:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-chart.xsd: Nie można odnaleźć części ścieżki „dml-chart.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-chart.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-chartDrawing.xsd: Nie można odnaleźć części ścieżki „dml-chartDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-chartDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-diagram.xsd: Nie można odnaleźć części ścieżki „dml-diagram.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-diagram.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-lockedCanvas.xsd: Nie można odnaleźć części ścieżki „dml-lockedCanvas.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-lockedCanvas.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-main.xsd: Nie można odnaleźć części ścieżki „dml-main.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-main.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-picture.xsd: Nie można odnaleźć części ścieżki „dml-picture.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-picture.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-spreadsheetDrawing.xsd: Nie można odnaleźć części ścieżki „dml-spreadsheetDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-spreadsheetDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-wordprocessingDrawing.xsd: Nie można odnaleźć części ścieżki „dml-wordprocessingDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-wordprocessingDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-additionalCharacteristics.xsd: Nie można odnaleźć części ścieżki „shared-additionalCharacteristics.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-additionalCharacteristics.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-bibliography.xsd: Nie można odnaleźć części ścieżki „shared-bibliography.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-bibliography.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-commonSimpleTypes.xsd: Nie można odnaleźć części ścieżki „shared-commonSimpleTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-commonSimpleTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-customXmlDataProperties.xsd: Nie można odnaleźć części ścieżki „shared-customXmlDataProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-customXmlDataProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-customXmlSchemaProperties.xsd: Nie można odnaleźć części ścieżki „shared-customXmlSchemaProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-customXmlSchemaProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesCustom.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesCustom.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-documentPropertiesCustom.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesExtended.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesExtended.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-documentPropertiesExtended.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesVariantTypes.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesVariantTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-document...ariantTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-math.xsd: Nie można odnaleźć części ścieżki „shared-math.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-math.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-relationshipReference.xsd: Nie można odnaleźć części ścieżki „shared-relationshipReference.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-relationshipReference.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-main.xsd: Nie można odnaleźć części ścieżki „vml-main.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-main.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-officeDrawing.xsd: Nie można odnaleźć części ścieżki „vml-officeDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-officeDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-presentationDrawing.xsd: Nie można odnaleźć części ścieżki „vml-presentationDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-presentationDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-spreadsheetDrawing.xsd: Nie można odnaleźć części ścieżki „vml-spreadsheetDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-spreadsheetDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-wordprocessingDrawing.xsd: Nie można odnaleźć części ścieżki „vml-wordprocessingDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-wordprocessingDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\ISO-IEC29500-4_2016: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (ISO-IEC29500-4_2016:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\microsoft\wml-sdtdatahash-2020.xsd: Nie można odnaleźć części ścieżki „wml-sdtdatahash-2020.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (wml-sdtdatahash-2020.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas\microsoft: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (microsoft:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office\schemas: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (schemas:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts\office: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (office:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx\scripts: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (scripts:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\docx: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (docx:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ecma\fouth-edition\opc-contentTypes.xsd: Nie można odnaleźć części ścieżki „opc-contentTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-contentTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ecma\fouth-edition\opc-coreProperties.xsd: Nie można odnaleźć części ścieżki „opc-coreProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-coreProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ecma\fouth-edition\opc-digSig.xsd: Nie można odnaleźć części ścieżki „opc-digSig.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-digSig.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ecma\fouth-edition\opc-relationships.xsd: Nie można odnaleźć części ścieżki „opc-relationships.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-relationships.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ecma\fouth-edition: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (fouth-edition:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ecma: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (ecma:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-chart.xsd: Nie można odnaleźć części ścieżki „dml-chart.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-chart.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-chartDrawing.xsd: Nie można odnaleźć części ścieżki „dml-chartDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-chartDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-diagram.xsd: Nie można odnaleźć części ścieżki „dml-diagram.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-diagram.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-lockedCanvas.xsd: Nie można odnaleźć części ścieżki „dml-lockedCanvas.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-lockedCanvas.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-main.xsd: Nie można odnaleźć części ścieżki „dml-main.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-main.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-picture.xsd: Nie można odnaleźć części ścieżki „dml-picture.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-picture.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-spreadsheetDrawing.xsd: Nie można odnaleźć części ścieżki „dml-spreadsheetDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-spreadsheetDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-wordprocessingDrawing.xsd: Nie można odnaleźć części ścieżki „dml-wordprocessingDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-wordprocessingDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-additionalCharacteristics.xsd: Nie można odnaleźć części ścieżki „shared-additionalCharacteristics.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-additionalCharacteristics.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-bibliography.xsd: Nie można odnaleźć części ścieżki „shared-bibliography.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-bibliography.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-commonSimpleTypes.xsd: Nie można odnaleźć części ścieżki „shared-commonSimpleTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-commonSimpleTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-customXmlDataProperties.xsd: Nie można odnaleźć części ścieżki „shared-customXmlDataProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-customXmlDataProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-customXmlSchemaProperties.xsd: Nie można odnaleźć części ścieżki „shared-customXmlSchemaProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-customXmlSchemaProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesCustom.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesCustom.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-documentPropertiesCustom.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesExtended.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesExtended.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-documentPropertiesExtended.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesVariantTypes.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesVariantTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-document...ariantTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-math.xsd: Nie można odnaleźć części ścieżki „shared-math.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-math.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-relationshipReference.xsd: Nie można odnaleźć części ścieżki „shared-relationshipReference.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-relationshipReference.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-main.xsd: Nie można odnaleźć części ścieżki „vml-main.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-main.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-officeDrawing.xsd: Nie można odnaleźć części ścieżki „vml-officeDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-officeDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-presentationDrawing.xsd: Nie można odnaleźć części ścieżki „vml-presentationDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-presentationDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-spreadsheetDrawing.xsd: Nie można odnaleźć części ścieżki „vml-spreadsheetDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-spreadsheetDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-wordprocessingDrawing.xsd: Nie można odnaleźć części ścieżki „vml-wordprocessingDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-wordprocessingDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\ISO-IEC29500-4_2016: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (ISO-IEC29500-4_2016:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\microsoft\wml-sdtdatahash-2020.xsd: Nie można odnaleźć części ścieżki „wml-sdtdatahash-2020.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (wml-sdtdatahash-2020.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas\microsoft: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (microsoft:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office\schemas: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (schemas:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts\office: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (office:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx\scripts: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (scripts:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\pptx: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (pptx:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ecma\fouth-edition\opc-contentTypes.xsd: Nie można odnaleźć części ścieżki „opc-contentTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-contentTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ecma\fouth-edition\opc-coreProperties.xsd: Nie można odnaleźć części ścieżki „opc-coreProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-coreProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ecma\fouth-edition\opc-digSig.xsd: Nie można odnaleźć części ścieżki „opc-digSig.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-digSig.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ecma\fouth-edition\opc-relationships.xsd: Nie można odnaleźć części ścieżki „opc-relationships.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (opc-relationships.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ecma\fouth-edition: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (fouth-edition:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ecma: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (ecma:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-chart.xsd: Nie można odnaleźć części ścieżki „dml-chart.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-chart.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-chartDrawing.xsd: Nie można odnaleźć części ścieżki „dml-chartDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-chartDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-diagram.xsd: Nie można odnaleźć części ścieżki „dml-diagram.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-diagram.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-lockedCanvas.xsd: Nie można odnaleźć części ścieżki „dml-lockedCanvas.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-lockedCanvas.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-main.xsd: Nie można odnaleźć części ścieżki „dml-main.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-main.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-picture.xsd: Nie można odnaleźć części ścieżki „dml-picture.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-picture.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-spreadsheetDrawing.xsd: Nie można odnaleźć części ścieżki „dml-spreadsheetDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-spreadsheetDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\dml-wordprocessingDrawing.xsd: Nie można odnaleźć części ścieżki „dml-wordprocessingDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (dml-wordprocessingDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-additionalCharacteristics.xsd: Nie można odnaleźć części ścieżki „shared-additionalCharacteristics.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-additionalCharacteristics.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-bibliography.xsd: Nie można odnaleźć części ścieżki „shared-bibliography.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-bibliography.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-commonSimpleTypes.xsd: Nie można odnaleźć części ścieżki „shared-commonSimpleTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-commonSimpleTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-customXmlDataProperties.xsd: Nie można odnaleźć części ścieżki „shared-customXmlDataProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-customXmlDataProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-customXmlSchemaProperties.xsd: Nie można odnaleźć części ścieżki „shared-customXmlSchemaProperties.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-customXmlSchemaProperties.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesCustom.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesCustom.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-documentPropertiesCustom.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesExtended.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesExtended.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-documentPropertiesExtended.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-documentPropertiesVariantTypes.xsd: Nie można odnaleźć części ścieżki „shared-documentPropertiesVariantTypes.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-document...ariantTypes.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-math.xsd: Nie można odnaleźć części ścieżki „shared-math.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-math.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\shared-relationshipReference.xsd: Nie można odnaleźć części ścieżki „shared-relationshipReference.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (shared-relationshipReference.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-main.xsd: Nie można odnaleźć części ścieżki „vml-main.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-main.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-officeDrawing.xsd: Nie można odnaleźć części ścieżki „vml-officeDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-officeDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-presentationDrawing.xsd: Nie można odnaleźć części ścieżki „vml-presentationDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-presentationDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-spreadsheetDrawing.xsd: Nie można odnaleźć części ścieżki „vml-spreadsheetDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-spreadsheetDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016\vml-wordprocessingDrawing.xsd: Nie można odnaleźć części ścieżki „vml-wordprocessingDrawing.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (vml-wordprocessingDrawing.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\ISO-IEC29500-4_2016: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (ISO-IEC29500-4_2016:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\microsoft\wml-sdtdatahash-2020.xsd: Nie można odnaleźć części ścieżki „wml-sdtdatahash-2020.xsd”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (wml-sdtdatahash-2020.xsd:FileInfo) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas\microsoft: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (microsoft:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office\schemas: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (schemas:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts\office: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (office:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx\scripts: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (scripts:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills\xlsx: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (xlsx:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills\skills: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (skills:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Cannot remove item C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\marketplaces\anth
+ropic-agent-skills: Katalog nie jest pusty.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (anthropic-agent-skills:DirectoryInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+Remove-Item : Nie można odnaleźć części ścieżki „C:\Users\mmazur\AppData\Local\Temp\claude\C--Users-mmazur--local-bin\0017b058-2ae1-4e86-a9d3-ba8d30d6871f\scratchpad\claude-migration-staging\.claude\plugins\m
+arketplaces\claude-plugins-official\plugins\claude-code-setup\skills\claude-automation-recommender\references”.
+At line:5 char:1
++ Remove-Item -Recurse -Force $staging -Confirm:$false
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\Users\mmazur...gration-staging:String) [Remove-Item], DirectoryNotFoundException
+    + FullyQualifiedErrorId : RemoveItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand
+ 
+ZIP creation FAILED

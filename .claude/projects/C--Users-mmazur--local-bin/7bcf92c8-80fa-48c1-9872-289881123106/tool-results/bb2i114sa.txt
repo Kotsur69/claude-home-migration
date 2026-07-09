@@ -1,0 +1,424 @@
+--- C:/Users/mmazur/source/repos/safetyhub_bhp/Uploads/user_message_2026-01-16_11-20-44.txt ---
+Last User messages: Jesteś doświadczonym seniorem full‑stack (frontend + backend + baza danych), który ma zaprojektować i zaimplementować od podstaw prostą, ale ładną aplikację webową (PWA) dla pracowników magazynu firmy produkcyjnej (np. ArcelorMittal).
+
+CEL APLIKACJI
+Aplikacja ma:
+
+Promować codzienne logowanie się (daily login) pracowników magazynu.
+Gamifikować BHP i zadania fizyczne poprzez system punktów, rang (tytułów) i prostych awatarów.
+Wspierać pracę brygadzisty:
+zatwierdzanie misji,
+przyznawanie punktów za pre‑shift,
+podgląd zespołu.
+Aplikacja ma działać jako webowa PWA, tak aby:
+
+działała na różnych telefonach (Android, iOS, stare telefony),
+mogła być dodana do ekranu głównego,
+działała też na komputerze.
+TECHNOLOGIA (PREFERENCJE)
+Proszę zaproponować i użyć nowoczesnego, ale prostego stosu technologicznego, np.:
+
+Frontend: React / Next.js (SPA lub SSR), z PWA
+UI: Tailwind CSS lub Material UI
+Backend: Node.js (NestJS / Express) z REST API lub GraphQL
+Baza danych: PostgreSQL
+Autoryzacja: sesje / JWT, role użytkowników
+Jeśli uznasz inny stos za lepszy, możesz zaproponować, ale uzasadnij.
+Wygeneruj:
+
+model danych,
+API backendu,
+komponenty frontendu,
+prostą, ale estetyczną warstwę wizualną.
+INTEGRACJA Z ISTNIEJĄCĄ BAZĄ PRACOWNIKÓW
+Dane wejściowe:
+
+Jest istniejąca baza pracowników, w której każdy pracownik ma unikalny numer ID pracownika.
+Dla każdego pracownika mamy: employee_id, first_name, last_name (imię i nazwisko).
+W aplikacji:
+
+Należy powiązać istniejące ID pracownika z PIN‑em do logowania.
+Podczas konfiguracji systemu administrator/BHP musi móc:
+wczytać listę pracowników (np. przez import CSV lub bezpośrednie połączenie),
+dla każdego pracownika wygenerować lub przypisać PIN,
+przypisać rolę (pracownik / brygadzista / administrator/BHP).
+Logowanie dla pracownika:
+
+Logowanie za pomocą:
+employee_id + PIN
+lub prosty ekran:
+wybór z listy (np. nazwisko) + PIN (zależnie od bezpieczeństwa; preferuj ID + PIN).
+Proszę uwzględnić możliwość zmiany PINu przez administratora oraz mechanizmy bezpieczeństwa (brak wycieku PINów, hashowanie w bazie).
+
+ROLE W SYSTEMIE
+Pracownik (worker)
+Może:
+logować się codziennie (daily login),
+wykonywać daily questy (pytania BHP),
+zgłaszać wykonanie misji fizycznych,
+brać udział w miesięcznych kampaniach BHP (np. nagranie filmu),
+odpowiadać na pytania zaawansowane BHP w ramach kampanii,
+konfigurować prostego awatara,
+przeglądać swoje punkty, tytuł (rangę), poziom, historię zadań.
+Brygadzista (leader / supervisor) – opiekun grupy ~20 pracowników
+Może:
+przeglądać listę przypisanych pracowników i ich stan (punkty, tytuł, wykonane zadania),
+zatwierdzać lub odrzucać misje fizyczne zgłaszane przez pracowników,
+podczas pre‑shiftu (5 min odprawy):
+przydzielać każdemu pracownikowi:
+dodatnie punkty za uważanie i czynny udział,
+ujemne punkty za przeszkadzanie / brak zaangażowania,
+po zakończeniu pre‑shiftu sam otrzymuje punkty za przeprowadzenie takiego spotkania,
+podglądać zbiorczo wyniki swojego zespołu (np. ranking).
+Administrator / BHP / HR
+Może:
+zarządzać pracownikami i brygadzistami (przypisywać role, PINy),
+tworzyć i edytować:
+pytania BHP (pula pytań),
+daily questy,
+misje fizyczne,
+kampanie miesięczne BHP,
+ustalać zasady punktacji i progi tytułów,
+przeglądać statystyki (logowania, wykonane zadania, punkty).
+FUNKCJONALNOŚCI – SZCZEGÓŁOWE WYMAGANIA
+1. Daily login (codzienne logowanie)
+Każdy pracownik może raz dziennie zdobyć punkty za samo zalogowanie się do aplikacji.
+System powinien:
+sprawdzać, czy danego dnia pracownik już zdobył punkty za logowanie,
+zapisywać historię logowań (data, godzina),
+wspierać streak (ciągłej serii dni zalogowania – w przyszłości).
+Konfiguracja:
+
+liczba punktów za daily login powinna być konfigurowalna przez administratora (np. domyślnie 5–10 pkt).
+2. Daily questy – pytania BHP
+Każdego dnia pracownik powinien mieć do wykonania zestaw np. 5 pytań BHP.
+Pytania są losowane z puli pytań BHP:
+pytania jednokrotnego wyboru,
+opcjonalnie wyświetlanie poprawnej odpowiedzi po udzieleniu odpowiedzi.
+Za ukończenie całego dziennego zestawu:
+przyznawane są punkty (konfigurowalna liczba),
+można rozważyć dodatkowe punkty za komplet poprawnych odpowiedzi (opcjonalne).
+Administrator musi mieć panel do:
+
+dodawania/edycji/archiwizacji pytań,
+definiowania zestawów dziennych (lub logiki losowania),
+wglądu w statystyki odpowiedzi (np. które pytania są najczęściej źle).
+3. Misje fizyczne (zadania zatwierdzane przez brygadzistę)
+Pracownicy mają listę daily misji fizycznych (np. związanych z BHP, organizacją pracy).
+Flow:
+Pracownik widzi listę misji przypisanych na dany dzień/tydzień.
+Gdy realnie wykona misję, klika „Wykonano”.
+Status misji zmienia się na: oczekuje na zatwierdzenie.
+Brygadzista w swoim panelu widzi listę zgłoszonych misji z pracownikami.
+Brygadzista:
+zatwierdza (approve) – pracownik otrzymuje punkty,
+odrzuca (reject) – pracownik nie otrzymuje punktów (opcjonalnie komentarz).
+W bazie zapisywana jest informacja: kto, kiedy zatwierdził/odrzucił misję.
+Wymagania:
+
+Punkty za misje są konfigurowalne (różne misje mogą mieć różną wagę).
+Możliwość filtrowania misji po statusie: do zatwierdzenia / zatwierdzone / odrzucone.
+4. Kampanie BHP (miesięczne)
+Co miesiąc może być uruchomiona kampania BHP z zadaniem specjalnym, np.:
+nagranie krótkiego filmu o właściwym zachowaniu podczas wypadku,
+przygotowanie plakatu, opisu, prezentacji, itp.
+Każda kampania:
+ma nazwę, opis, okres trwania (start – koniec),
+ma określone zadania (np. nagranie filmu),
+ma zdefiniowaną punktację.
+Pracownik:
+
+może przesłać materiał (np. link do filmu, plik, opis) w ramach kampanii,
+może odpowiadać na pytania zaawansowane BHP związane z kampanią,
+po wykonaniu zadania jego zgłoszenie może wymagać zatwierdzenia przez brygadzistę lub BHP (konfigurowalne).
+System:
+
+zapisuje zgłoszenia w kampanii,
+przyznaje punkty po akceptacji.
+5. Pre-shift (5-minutowa odprawa)
+Każdego dnia przed zmianą brygadzista prowadzi pre‑shift (krótka 5‑minutowa odprawa).
+Podczas pre‑shiftu:
+brygadzista widzi listę swoich pracowników na danej zmianie,
+przy każdym pracowniku może przyznać:
+dodatnie punkty (np. +1, +2…) za uwagę i aktywne uczestnictwo,
+ujemne punkty (np. –1, –2…) za przeszkadzanie, brak zaangażowania,
+po zatwierdzeniu formularza:
+wpisywane są transakcje punktowe dla pracowników,
+brygadzista sam dostaje określoną liczbę punktów za przeprowadzenie pre‑shiftu.
+Wymagania:
+
+Pre‑shifty są zapisywane w bazie z datą, zmianą, listą pracowników i punktami.
+Punkty za wykonanie pre‑shiftu dla brygadzisty są konfigurowalne.
+Brygadzista może mieć wgląd w historię swoich pre‑shiftów.
+6. System punktów i tytułów (rang)
+System punktowy:
+
+Każda akcja (daily login, pytania BHP, misje, kampanie, pre‑shift, itp.) powinna generować transakcję punktową:
+typ akcji,
+liczba punktów (+ lub –),
+data,
+kto przyznał (system, brygadzista, admin),
+komentarz (opcjonalnie).
+Na podstawie sumy punktów pracownik ma tytuł (rangę).
+Progi tytułów (przykładowe – proszę zaimplementować tak, by można było je łatwo zmieniać):
+
+0–99 punktów – Początkowy
+100–299 punktów – Nowicjusz
+300–699 punktów – Doświadczony
+700–1299 punktów – Specjalista
+1300+ punktów – Mistrz
+Wymagania:
+
+Tytuł obliczany dynamicznie na podstawie aktualnej sumy punktów.
+W bazie można przechowywać tabelę KONFIGURACJI progów tytułów.
+7. System awatarów
+Każdy pracownik ma prostego awatara, który ma dwa kluczowe elementy:
+
+Konfiguracja podstawowa awatara – które elementy użytkownik może sam modyfikować:
+np. kolor ubrania, tła, prosta ikona twarzy, drobne akcesoria (ale bez sprzeczności BHP),
+wybór spośród kilku predefiniowanych wariantów (aby UI i implementacja były proste).
+Elementy zależne od tytułu (rang):
+Kask awatara:
+różny wygląd / kolor kasku w zależności od tytułu:
+„Początkowy” – najprostszy kask (np. szary),
+„Nowicjusz” – nieco lepszy / inny kolor,
+„Doświadczony” – bardziej zaawansowany wygląd,
+„Specjalista” – jeszcze lepszy,
+„Mistrz” – najbardziej wyróżniający się kask (np. złoty / z detalami).
+Obramówka (ramka) awatara / karty użytkownika:
+kolor i styl ramki uzależniony od tytułu,
+np.:
+Początkowy – szara cienka ramka,
+Nowicjusz – niebieska,
+Doświadczony – zielona,
+Specjalista – fioletowa,
+Mistrz – złota, grubsza, z lekkim efektem „shine”.
+Wymagania UI:
+
+Na dashboardzie użytkownika oraz w widoku brygadzisty:
+wyświetlać awatara z odpowiednim kaskiem i ramką zależnie od rangi.
+Ekran konfiguracji awatara:
+prosty kreator,
+wybór kilku opcji wizualnych,
+natychmiastowy podgląd zmian.
+8. Interfejs użytkownika (UI/UX)
+Styl:
+
+Aplikacja ma mieć ładną, nowoczesną szatę graficzną, ale wciąż prostą i czytelną dla pracowników magazynu.
+Duże przyciski, łatwe do trafienia w rękawicach.
+Kontrastowe kolory, czytelne fonty.
+Kolorystyka:
+
+Zielony – pozytywne działania / OK,
+Pomarańczowy – ostrzeżenia,
+Czerwony – błędy i akcje negatywne (np. ujemne punkty),
+Kolorystyka kasków i ramek powinna jednoznacznie odróżniać poziomy.
+Ekrany:
+
+Ekran logowania – ID pracownika + PIN.
+Dashboard pracownika:
+awatar,
+aktualny tytuł i poziom,
+suma punktów,
+streak logowań (jeśli jest),
+szybkie linki: Daily login, Daily BHP, Misje, Kampanie.
+Daily BHP (5 pytań) – prosty quiz.
+Misje – lista, statusy, szczegóły, przycisk „Wykonano”.
+Kampanie – aktualne i archiwalne, formularz zgłoszenia, podgląd wysłanych zgłoszeń.
+Konfiguracja awatara.
+Panel brygadzisty:
+lista pracowników (kafelki z awatarami, tytułem, punktami),
+zakładka „Misje do zatwierdzenia”,
+zakładka „Pre-shift” – formularz przyznawania +/- punktów,
+historia pre‑shiftów.
+Panel administratora/BHP:
+zarządzanie użytkownikami, rolami, PINami,
+pytania BHP, misje, kampanie,
+konfiguracja punktów, progów tytułów,
+raporty/statystyki.
+9. Architektura danych (propozycja)
+Proszę zaprojektować i opisać (oraz zaimplementować migracje) dla takich tabel jak m.in.:
+
+employees (dane z istniejącej bazy: employee_id, imię, nazwisko, itp.)
+users (powiązanie z employees, role: worker, leader, admin)
+user_pins (hash PINu, powiązanie z user_id)
+roles / enum roli
+titles (progi punktów, nazwy: Początkowy, Nowicjusz, itp.)
+user_points_transactions (historia punktów)
+daily_logins (historia daily login)
+bhp_questions (pytania BHP)
+bhp_daily_sets (jeśli potrzebne, albo generacja ad-hoc)
+bhp_answers (odpowiedzi użytkowników)
+missions (definicje misji fizycznych)
+user_missions (przypisania misji, status: oczekuje, zatwierdzona, odrzucona)
+campaigns (miesięczne kampanie BHP)
+campaign_tasks (typy zadań w kampanii)
+user_campaign_submissions (zgłoszenia użytkowników – linki/załączniki, odpowiedzi)
+pre_shift_sessions (sesje pre‑shift)
+pre_shift_scores (punkty przyznane poszczególnym pracownikom w danym pre‑shifcie)
+avatars lub user_avatar_settings (konfiguracja awatarów, wybory użytkownika)
+Możesz według uznania rozszerzać / łączyć te tabele, ale ważne jest:
+
+pełne odwzorowanie powyższych wymagań,
+możliwość dalszego rozwoju systemu.
+10. Bezpieczeństwo i praktyka
+PINy muszą być przechowywane jako hash, nie w formie jawnej.
+Endpointy API zabezpieczone przez role.
+Walidacja danych wejściowych.
+Audyt: kto przyznał/odjął punkty, kiedy, za co.
+Potencjalne ograniczenie liczby punktów ujemnych na pre‑shift (konfigurowalne).
+ZADANIE
+Zaprojektuj kompletną architekturę aplikacji (frontend + backend + baza danych).
+Zaprojektuj modele danych i relacje (np. w SQL lub ORM).
+Zaprojektuj i opisz wszystkie najważniejsze endpointy API / zapytania (logowanie, daily login, pytania BHP, misje, kampanie, punkty, pre‑shift, konfiguracja awatara).
+Zaimplementuj przykładową wersję:
+struktury backendu (np. NestJS/Express),
+struktury frontendu (np. React/Next.js z PWA),
+podstawowe widoki UI opisane wyżej.
+Uwzględnij w kodzie:
+role użytkowników,
+system punktów i tytułów,
+system awatarów z zależnością kasku i obramówki od rangi.
+Wszystkie rozwiązania proszę opatrzyć komentarzami i krótkim uzasadnieniem architektonicznym, aby projekt można było łatwo rozwijać i wdrożyć w środowisku produkcyjnym.
+
+Summary of the conversation: Użytkownik chce stworzyć kompletną aplikację webową PWA dla pracowników magazynu ArcelorMittal z następującymi wymaganiami:
+
+**Technologia:** React/Next.js (PWA), Node.js backend, PostgreSQL
+
+**Role:** Pracownik, Brygadzista, Administrator/BHP
+
+**Funkcjonalności:**
+1. Daily login z punktami i streak
+2. Daily questy - 5 pytań BHP dziennie (quiz)
+3. Misje fizyczne zatwierdzane przez brygadzistę
+4. Kampanie BHP miesięczne (np. nagranie filmu)
+5. Pre-shift - brygadzista przyznaje +/- punkty pracownikom
+6. System punktów i tytułów (Początkowy → Nowicjusz → Doświadczony → Specjalista → Mistrz)
+7. System awatarów z kaskami i ramkami zależnymi od rangi
+
+**Logowanie:** employee_id + PIN (hashowany)
+
+**Integracja:** Import pracowników z istniejącej bazy (CSV)
+
+**UI:** Nowoczesny, duże przyciski (rękawice), kontrastowe kolory (zielony/pomarańczowy/czerwony)
+
+Pełna specyfikacja z modelami danych, endpointami API i wymaganiami UI znajduje się w wiadomości użytkownika.
+--- C:/Users/mmazur/source/repos/safetyhub_bhp/Uploads/user_message_2026-02-19_14-34-05.txt ---
+napisz dla mnie taki opis możliwości dla admina, kierwonika, brygadzisty oraz pracownika. cos takiego Scenariusze do filmów
+Ogólne
+1.	Instalacja oraz logowanie – Aby aplikacja została zainstalowana naciśnij ikonę „trzy kropki” w prawym górnym rogu, aby otworzyć menu. Wybierz „Dodaj do ekranu głównego”. Naciśnij przycisk „Dodaj” w wyskakującym okienku. Aplikacja PWA jest teraz zainstalowana i dostępna na ekranie głównym. Logujesz się swoim numerem AMEI i pinem. 
+
+ADMIN
+1.	Tworzenie i modyfikacja użytkowników – każdy administrator ma możliwość edycji oraz tworzenia użytkowników. Po kliknięciu w górnym panelu „użytkownicy” przechodzimy do panelu, w którym możliwe jest dodawanie oraz modyfikacja. Aby stworzyć nowego użytkownika należy kliknąć na pomarańczowy przycisk „+dodaj”. Ważne w ID pracownika należy pisać z CAPSLOCKIEM. Resztę informacji można zapisać w normalny sposób. Należy wybrać rolę jaką nowy użytkownik będzie pełnił w systemie do wyboru „pracownik”, „brygadzista”, „kierownik” oraz „administrator”. Po wpisaniu wszystkich danych należy kliknąć pomarańczowy przycisk „dodaj”. Jeśli chcemy zmodyfikować dane istniejącego użytkownika w tym zmiana PINu, nazwiska należy kliknąć niebieską kredkę oznaczającą przycisk edycji. W razie wypisania możliwe jest usunięcie użytkownika. 
+2.	Tworzenie nowych pytań BHP – Po kliknięciu w górnym panelu „pytania BHP” należy kliknąć zielony przycisk „+dodaj”, wpisać treść pytania, wybrać liczbę odpowiedzi, wpisać opcję odpowiedzi, wybrać poprawną odpowiedź i opcjonalnie dodać zdjęcie do pytania. Następnie klikamy w zielony przycisk „dodaj”.
+3.	Usuwanie, dezaktywowanie modyfikacja pytań – te trzy funkcję opisanę są za pomocą ikonek – dezaktywacja – szary X, modyfikacja – niebieska kredka, usuwanie pytania – czerwony kosz na śmieci. Aby z powrtotem aktywować pytanie należy kliknąć zielony checkbox. 
+4.	Kampanie – aby dodać kampanie należy kliknąć pomarańczowy przycisk „+nowa kampania”. Należy wpisać tytuł lub temat opcjonalnie krótki opis, wybrać miesiąc oraz rok, wybrać punktację za quiz i utworzyć kampanie. Po utworzeniu kampanii możliwe jest dodawanie pytań do quizu za pomocą pomarańczowej strzałki. Panel jest podobny jak w pytaniach BHP. W tym panelu od razu możemy usuwać pytania w danej kampanii. Dodawanie instrukcji oraz ćwiczeń odbywa się za pomocą zielonej ikonki. Fioletowa ikonka z pucharem umożliwia nam spojrzenie na aktualny ranking punktów. 
+5.	Konfiguracja – tam znajdują się opcję zarządzania kolorami kasków, możliwe jest wykonanie resetu miesięcznego i tym samym wyjawienie top 1-5 pracowników w danym miesiącu. Możliwe jest wykonanie resetu awaryjnego punktów w danym miesiącu, gdzie nie wyróżnia się top pracowników. Możliwe jest czasowe blokowanie kampanii oraz konfiguracja punktów. 
+6.	Z ekranu głównego administratora możliwy jest podgląd historii zgłoszeń nieprawidłowości w tym czas zgłoszenia, załączone zdjęcie, status zgłoszenia oraz kogo to zgłoszenie dotyczy. 
+7.	W ekranie aktywność pracowników można sprawdzić który z pracowników spędza najwięcej lub najmniej czasu podczas użytkowania z aplikacji. Jest tutaj również % aktywnych użytkowników oraz średnia czasu spędzanego w aplikacji w danym dniu. 
+8.	Historia TOP 5 – w tym panelu możliwe jest zobaczenie który z pracowników był w top 5 po resecie miesięcznym. 
+9.	Ranking brygadzistów – klikając na danego brygadzistę można zobaczyć, ile dany brygadzista ma osób w zespole, ile miały łącznie zadań, jaka jest suma zebranych punktów przez danych pracowników pod danym brygadzistą oraz ilość gwiazdek (max - 5 min - 0)
+10.	W panelu analiza wyników mamy dokładne zestawienie jak dany kierownik radzi sobie ze swoimi brygadzistami oraz pracownikami. 
+11.	W rubryce „aktualności” możliwy jest podgląd i zarządzenie aktualnościami. Możemy dodać artykuł, sprawdzić ile osób przeczytało dany artykuł. 
+Magazynier
+1.	W panelu „dzisiaj” magazynier widzi za co dodane ma dzisiaj punkty, możliwy do wykonania quiz BHP, może zobaczyć jakie ma zadane zadania na dzisiaj oraz ocenić 5 minutówke po jej skończeniu. 
+2.	W szybkich akcjach ma możliwość do podglądu 5 minutówek które już ocenił lub ocenić nieocenione. Znajduje się również panel „moje zadania” gdzie ma historie zadań, aktualne zadania do wykonania.
+3.	W panelu kampanie magazynier może przeczytać instrukcję do danej kampanii oraz wykonać Quiz kampanii. Ma również możliwość zobaczenia jak prezentuję się w rankingu kampanii. 
+4.	W panelu aktualności znajdują się dodane przez admina aktualności. 
+5.	Magazynier ma również możliwość zgłosić naruszenie dotyczące danej osoby lub ogólnikowe (takie jak rozlany olej na hali), może wybrać do kogo chce wysłać zgłoszenie, wybrać opcjonalnie zdjęcie, napisać opis do zdarzenia i może przy tym pozostać anonimowy. 
+6.	W panelu moje uprawnienia magazynier widzi jakie ma nadane uprawnienia przez administratora. Za każde uprawnienie pracownik dostaje daną ilość punktów w danym odstępie czasowym. 
+7.	Magazynier ma również możliwość zobaczenia na swoją historię punktów w tym punkty dodatnie oraz ujemne. Tutaj też znajdzie informacje dokładnie ile punktów, za co i kiedy dane punkty zostały mu przyznane
+
+Brygadzista
+1.
+--- C:/Users/mmazur/source/repos/safetyhub_bhp/Uploads/user_message_2026-04-21_16-51-31.txt ---
+pisze raport odnosnie aplikacji naszej i potrzebuje zebys zawarł takie informacje w nim:
+Please attach evidence demonstrating tenant data segregation, such as architecture diagrams or policy documents, as requested by the question.
+Please attach your architecture diagram as requested to demonstrate that up-to-date architecture and data flow diagrams are maintained.
+Please provide evidence of your complete and up-to-date asset inventory for all software and hardware assets as requested in the question.
+Please attach your documented process for secure disposal or reuse of assets as requested in the question.
+Please provide evidence of your secure disposal methods for confidential information, such as a disposal policy or procedure document, as requested in the question.
+Please attach your documented backup procedure as requested to confirm that a defined and documented process exists.
+lease attach your backup plan or related documentation as evidence to support your answer about business-critical data backups and their defined frequency.
+Please attach your most recent backup integrity and restoration testing report as requested in the question.
+Please attach your documented BCP and DR plans as requested in the question to demonstrate that these plans exist and are tested.
+Please provide evidence demonstrating how you ensure high availability of critical infrastructure, such as architecture diagrams, policy documents, or uptime reports, as requested by the question.
+Please attach your BCP/DR plan or documentation that defines RTO and RPO timelines as requested in the question.
+Please attach evidence showing that periodic disaster recovery drills are performed, as requested in the question.
+Please provide evidence supporting your answer regarding vendor access to organizational data, including the purpose and data set collected as requested in the question.
+Please provide evidence demonstrating that appropriate data security and access control measures are implemented, such as relevant policies or procedures.
+Please attach evidence showing that access requests to stored data are logged and monitored, such as log samples or monitoring policy, as required by the question.
+Please provide evidence demonstrating that controls are in place to segregate data in shared environments as requested in the question.
+Please attach documentation demonstrating your tenant isolation controls as requested in the question about preventing impact from other tenants' data compromise.
+Please provide evidence of encryption implementation for data in transit and at rest, such as an encryption policy or technical documentation, as requested in the question.
+Please attach documentation showing your defined data retention period based on legal and business requirements as requested in the question.
+Please attach your secure data deletion or purging process documentation as requested to support your answer.
+Please attach your documented process for assessing cryptographic controls, such as policies or procedures, as requested in the question.
+Please provide evidence showing that compromised cryptographic keys are revoked, destroyed, and replaced in a timely manner as stated in your answer.
+Please attach your user access management process documentation as evidence for defined and enforced provisioning/deprovisioning controls.
+Please attach evidence of your implemented Identity and Access Management (IAM) solution as requested in the question.
+Please provide evidence showing that user accounts and access rights are removed upon termination or role change, such as a policy or procedure document.
+Please attach evidence showing that two-factor authentication (2FA) is implemented for system/application access as requested in the question.
+Please provide evidence that default passwords are changed before system deployment or use, such as a policy or procedure document, as requested by the question.
+Please attach your documented Incident Response Plan as requested to demonstrate that it exists and is regularly reviewed.
+Please provide evidence that your organization tracks and analyzes security incidents to prevent recurrence, such as incident tracking logs or analysis reports, as requested in the question.
+Please attach evidence confirming the existence of your Security Incident Response Team and provide the incident reporting email address as requested in the question.
+Please provide evidence demonstrating that logging and monitoring are implemented for security events and privileged activities as requested in the question.
+Please provide evidence of your SIEM solution implementation, such as documentation or screenshots, as requested in the question.
+Please provide evidence that metrics and reports on detected and blocked security incidents are available, as requested in the question.
+Please provide evidence of strong encryption protocols used for network communication, such as policy documents or technical specifications, as requested in the question.
+Please provide evidence demonstrating that network segmentation is implemented across web, app, and DB environments as requested in the question.
+Please provide evidence of your system and network device hardening standards, such as a policy or procedure document, as requested in the question.
+Please provide evidence of your Next-Generation Firewall (NGFW) or equivalent security control implementation as requested in the question.
+Please provide evidence of your Network Access Control (NAC) solution implementation, such as documentation or screenshots, as requested in the question.
+Please provide evidence of your Network Behavior Anomaly Detection (NBAD) implementation, such as documentation or screenshots of the solution used, as requested in the question.
+Please provide evidence of your Network Intrusion Detection/Prevention System implementation, such as documentation or screenshots specifying the NIDS/NIPS solution used, as requested in the question.
+Please provide evidence of your network discovery controls or specify the solution used to detect unauthorized devices as requested in the question.
+Please provide evidence of your Web Application Firewall (WAF) implementation, such as configuration screenshots or policy documents, as requested in the question.
+Please provide evidence of your DDoS detection and mitigation controls, such as documentation or screenshots of the solution used, as requested in the question.
+Please provide evidence demonstrating that load balancing mechanisms are implemented to ensure availability of critical resources, as requested in the question.
+Please provide evidence demonstrating that secure mechanisms are implemented to protect data in transit for remote access, such as policy documents or technical configurations.
+Please attach evidence demonstrating that controls are implemented to ensure security of customer data in transit, such as network security policies or encryption documentation.
+Please provide evidence that host-based firewall solutions are implemented on endpoints and servers as requested in the question.
+Please attach evidence showing that host-based intrusion detection/prevention solutions are implemented on endpoints and servers as requested in the question.
+Please provide evidence of your endpoint anti-malware protection, such as screenshots or documentation of the solution used, as requested in the question.
+Please attach evidence showing that application whitelisting is enforced on endpoints and servers as requested in the question.
+Please provide evidence of your Data Loss Prevention (DLP) solution implementation, such as documentation or screenshots, as requested in the question.
+Please provide evidence showing that legacy or unsupported systems are restricted or decommissioned as required by the question.
+Please attach your VAPT report as requested to support your claim that Vulnerability Assessment and Penetration Testing are conducted periodically.
+Please attach evidence showing that security best practices are integrated into your SDLC, such as policy documents or process descriptions, as requested by the question.
+Please attach documentation specifying your patch management timelines for vulnerabilities as requested in the question.
+Please attach evidence of your formal change management process as requested by the question.
+Please attach your security policies as requested in the question to demonstrate that your organization maintains and follows them.
+Please attach evidence showing that third-party risk assessments are conducted before onboarding and periodically thereafter, as requested in the question.
+Please attach your security certifications and reports (e.g., ISO 27001, SOC 2) as requested in the question.
+Please provide evidence demonstrating that the integrity of virtual machine images is maintained and monitored, such as relevant policies, procedures, or monitoring reports.
+Please provide evidence demonstrating that secure and segregated channels are used for data migration activities as requested in the question.
+Please provide evidence showing that access controls are enforced for hypervisor and administrative consoles as requested in the question.
+Please attach your documented security roles and responsibilities as requested to support your answer.
+Please attach evidence showing that background checks are conducted before granting access to sensitive data, as requested in the question.
+Please attach evidence showing that confidentiality agreements are signed by employees and contractors as requested in the question.
+Please provide evidence that security awareness trainings are conducted regularly, such as training schedules or completion records, as requested in the question.
+Please provide evidence of your physical and environmental security controls as requested in the question.
+Please provide evidence that visitor access to facilities is controlled and approved, such as a visitor policy or access log, as required by the question.
+Please attach your breach notification policy or documentation as evidence that timelines are defined and documented, as requested in the question.
+Please attach your PII data inventory or supporting documentation as requested to confirm that an inventory of PII data is maintained.
+Please attach your documented privacy policy as requested to support your answer that a policy exists.
+Please attach your documented retention policy for PII data after contract termination as requested in the question.
+Please attach evidence showing that Data Protection Impact Assessments (DPIA) are conducted where applicable, as requested in the question.
+Please provide evidence showing that customer PII is securely deleted when no longer required, such as a data deletion policy or procedure document.
+Please provide supporting evidence that your product or service uses Artificial Intelligence or Machine Learning as indicated in your answer.
+Please provide evidence supporting your claim that organizational data is used to train AI/ML models, such as documentation or policy references.
+Please attach your Acceptable Usage Policy document as evidence of implementation as requested by the question.
+Please provide evidence of your implemented Cloud Security Posture Management (CSPM) solution as requested in the question.
+Please attach evidence showing that internal audits are performed for all functions and applications as requested in the question.
+Please attach your Data Classification and Handling Policy as requested in the question to demonstrate that this policy is defined and in place.
+Please attach evidence showing your use of dynamic code analysis tools and documentation of analysis results as requested in the question.
+Please provide evidence of your SAST tool implementation, such as screenshots, tool reports, or policy documents, as requested in the question.
+Please provide evidence of your email content filtering controls as requested in the question.
+Please attach evidence showing that anti-phishing controls are implemented for email security as requested in the question.
+Please provide evidence of your Network Detection and Response (NDR) implementation, such as documentation or screenshots of the solution used, as requested in the question.
+Please attach your Security Configuration Assessment report as requested in the question to support your answer.
+Please attach your Software Composition Analysis assessment report as requested in the question to support your answer.
+Please provide evidence that your organization conducts System Capacity Planning, such as planning documents or process descriptions, as requested in the question.
+Please attach evidence showing that threat modeling is conducted during system design and development as requested in the question.

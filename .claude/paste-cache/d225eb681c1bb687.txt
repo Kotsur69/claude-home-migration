@@ -1,0 +1,38 @@
+Przeanalizuj dokładnie kod aplikacji w
+  C:\Users\mmazur\source\repos\safetyhub_bhp\safetyhub_bhp\nextjs_space — w szczególności:
+  - strukturę app/ (wszystkie route'y: dashboard/, admin/, api/, login/)
+  - schemat bazy danych prisma/schema.prisma (wszystkie modele i relacje)
+  - logikę w lib/ (auth.ts, points.ts, push.ts, s3.ts)
+  - dane seedowe w scripts/seed.ts (żeby zrozumieć przykładowe role/konta)
+
+  Na tej podstawie przygotuj szczegółowy opis aplikacji SafetyHub BHP na poziomie prezentacji dla
+  zarządu ArcelorMittal — dokument ma być w pełni po polsku, w tonie biznesowym (nie deweloperskim),
+  gotowy do pokazania osobom decyzyjnym bez technicznego backgroundu.
+
+  Dokument ma zawierać:
+
+  1. Wprowadzenie — czym jest aplikacja, jaki problem rozwiązuje (zaangażowanie pracowników magazynu w
+  kulturę BHP), na czym polega jej unikalność (grywalizacja zamiast szkoleń obowiązkowych).
+  2. Logowanie i role użytkowników — dokładny opis mechanizmu logowania (numer pracownika + PIN, bez
+  maila/hasła — dostosowane do wspólnych terminali na hali). Dla każdej z czterech ról (pracownik,
+  brygadzista/lider, kierownik/manager, administrator) osobna sekcja zawierająca:
+    - kim jest ten użytkownik w organizacji
+    - pełną listę dostępnych dla niego akcji/funkcji (na podstawie faktycznych route'ów w
+  app/dashboard/* i app/admin/*, nie na podstawie domysłów)
+    - czego NIE może zrobić (ograniczenia względem wyższych ról)
+  3. Mechanizmy grywalizacji — system punktów, rang/tytułów, kolorów kasków, awatarów, sposób ich
+  zdobywania i utraty.
+  4. Codzienny cykl pracy w aplikacji — jak wygląda typowy dzień pracownika (logowanie → quiz BHP →
+  pre-shift → misje → punkty), osobno jak wygląda dzień brygadzisty i kierownika (nadzór, akceptacje,
+  raporty).
+  5. Pozostałe funkcje — quiz miesięczny z rankingiem, misje, naruszenia BHP (violations),
+  certyfikaty, wnioski o dodatkowe punkty/"dobre praktyki", aktualności (news), powiadomienia push.
+  6. Panel administracyjny i analityka — co widzi administrator: zarządzanie użytkownikami, bank
+  pytań, konfiguracja, analityka aktywności, ranking Top 5, statystyki per brygadzista/kierownik.
+  7. Krótkie podsumowanie wartości biznesowej — 3-4 zdania o tym, jak to przekłada się na realne
+  korzyści (zaangażowanie, mniej wypadków, łatwiejszy nadzór nad zespołami).
+
+  Styl: nagłówki, wypunktowania, brak żargonu technicznego (bez nazw plików/tabel w treści głównej —
+  to ma czytać zarząd, nie programista), ale wszystko musi wynikać z rzeczywistego kodu, a nie z
+  ogólników. Jeśli natrafisz na funkcję, której nie jesteś pewien (np. dokładna logika punktacji),
+  zajrzyj do konkretnego pliku zamiast zgadywać.

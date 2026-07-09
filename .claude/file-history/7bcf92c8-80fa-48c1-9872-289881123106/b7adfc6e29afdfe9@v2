@@ -1,0 +1,33 @@
+# STAN PROJEKTU — SafetyHub BHP / AMSafety
+
+> Plik roboczy „na czym stoimy". Luna czyta go, gdy zaczynamy pracę nad tym projektem.
+> Aktualizujemy po każdej większej zmianie. Leży poza repozytorium git (nie jest wypychany).
+
+## Co to za projekt
+Grywalizowana PWA BHP dla pracowników magazynu (Next.js + Prisma + PostgreSQL).
+Punkty, rangi i kolory kasków, codzienne quizy BHP, misje, kampanie miesięczne, 5-minutówki,
+naruszenia, certyfikaty, powiadomienia push (VAPID), pliki na S3.
+Hierarchia ról: pracownik → brygadzista → kierownik → administrator.
+
+## Lokalizacje
+- **Folder roboczy (dokumenty dla zarządu):** `C:\Users\mmazur\source\repos\safetyhub_bhp`
+- **Repozytorium git = katalog aplikacji:** `C:\Users\mmazur\source\repos\safetyhub_bhp\safetyhub_bhp\nextjs_space`
+- **GitHub:** https://github.com/Kotsur69/AMSafety — **prywatne** (rozważane upublicznienie)
+
+## Co już zrobione
+- Kod wypchnięty na GitHub (bez sekretów i danych osobowych; `.env` wykluczony, dodany `.env.example`)
+- Sprawdzone pod kątem upublicznienia: **brak sekretów i danych pracowników** w repo; jedyny realny ślad to nazwa „ArcelorMittal" w metadanych (użytkownik świadomie zostawia — walor portfolio)
+- Przepisany `README.md`
+- **Dokumenty dla zarządu** (w podfolderze `safetyhub_bhp\Historia wersji i md\`):
+  - `OPIS_APLIKACJI_SafetyHub_BHP.md` — szczegółowy opis działania z podziałem na role
+  - `SafetyHub_BHP_Raport_Wersji_SZABLON.docx` — szablon cotygodniowego raportu wersji (sekcje: Ogólne / Pracownik / Brygadzista / Kierownik / Administrator)
+
+## Ważne szczegóły
+- **Logowanie:** numer pracownika + PIN (bcrypt) — pod wspólne terminale na hali.
+- **Dane osobowe:** prawdziwe raporty pracowników i logi sesji AI są w folderach `docs/` i `Uploads/` (poza repo git) — NIE wypychać.
+- **Punkty (domyślne):** logowanie 10; quiz BHP 100%→10 / ≥75%→5 / ≥50%→1; misja 10; 5-minutówka 1; instrukcja 1; ćwiczenie 10.
+- **Kaski:** zielony→niebieski→pomarańczowy (max dla pracownika)→czerwony (brygadzista); awans ręczny (admin/kierownik).
+
+## Następne kroki / otwarte tematy
+- Decyzja o upublicznieniu repo (kod gotowy) — po stronie użytkownika
+- (do uzupełnienia) — kolejna wersja raportu będzie 1.1
