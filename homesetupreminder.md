@@ -29,5 +29,6 @@ Zainstaluj jako plugin w Claude Code:
 /plugin install last30days@last30days-skill
 
 
-to tez sie p[rzyda
+to tez sie przyda
 https://github.com/koala73/worldmonitor
+https://github.com/tldraw/tldraw
