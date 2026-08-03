@@ -28,3 +28,6 @@ Zainstaluj jako plugin w Claude Code:
 
 /plugin install last30days@last30days-skill
 
+
+to tez sie p[rzyda
+https://github.com/koala73/worldmonitor
