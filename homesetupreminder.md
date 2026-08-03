@@ -32,3 +32,9 @@ Zainstaluj jako plugin w Claude Code:
 to tez sie przyda
 https://github.com/koala73/worldmonitor
 https://github.com/tldraw/tldraw
+https://github.com/liketrek/TREK
+https://github.com/resemble-ai/chatterbox
+https://github.com/mpv-player/mpv
+https://github.com/charmbracelet/crush
+maybe:
+https://github.com/e2b-dev/desktop
